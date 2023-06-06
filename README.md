@@ -35,7 +35,7 @@ git checkout -b feature#{番号}-{名前}
 
 ## コミットメッセージ
 
-分かりやすければ OK で特に規則は無し。  
+分かりやすければ OK で特に規則は無し。
 ただ、機能事にコミット分けると PR 作成時や revert する際に役に立つので意識する。
 
 ## PR の作成方法
@@ -45,10 +45,10 @@ git checkout -b feature#{番号}-{名前}
 ```
 git add .
 git commit -am "作業内容"
-git checkout main
-git pull --rebase origin main
+git checkout develop
+git pull --rebase origin develop
 git checkout {作業ブランチ}
-git merge main
+git merge develop
 # コンフリクト解消
 git push -u origin {作業ブランチ}
 ```
