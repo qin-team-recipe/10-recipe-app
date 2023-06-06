@@ -15,6 +15,7 @@ issue の頭に作業内容に沿ったキーワードをつけ、簡潔に分�
 - 【BE】→ バックエンド作業
 - 【DOC】→ ドキュメンテーション周りの作業
 - 【ETC】→ その他
+- 【DEV】→ 環境構築系
 
 `例：【FE】カルーセルコンポーネントの作成`
 
@@ -29,7 +30,7 @@ issue の頭に作業内容に沿ったキーワードをつけ、簡潔に分�
 - fix#xx-yourname(feature#issues 番号-作業者名)
 
 ```
-git pull --rebase origin main
+git pull --rebase origin develop
 git checkout -b feature#{番号}-{名前}
 ```
 
