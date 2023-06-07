@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:precommit": "eslint 'src/**/*.{ts,tsx}' --max-warnings 0",
-    "fmt:precommit": "prettier -l './**/*.{js,jsx,ts,tsx,json,css,scss}'"
+    "lint:precommit": "eslint . --fix",
+    "fmt:precommit": "prettier --write ."
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "yarn run lint:precommit",
