@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// カラーコード：指定の際にvar()を使う
+:root {
+  --link-hover: #eee;
+  --text-sublink: #bbb;
+  --bg-input-search: #eee;
+  --border-main: #ddd;
+}
+
+main {
+  margin: 0 auto;
+  width: 600px;
+}
+
+.section {
+  @apply my-6;
+}

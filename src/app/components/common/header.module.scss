@@ -1,0 +1,42 @@
+.header {
+  @apply p-2;
+  border-right: solid 1px var(--border-main);
+}
+
+.nav {
+  @apply w-64;
+}
+
+.logo {
+  @apply w-full m-1 p-5 font-bold;
+  display: block;
+  font-size: 1rem;
+}
+
+.list {
+  @apply flex flex-col;
+}
+
+.item {
+  @apply m-1;
+}
+
+.link {
+  @apply w-full p-3;
+  display: block;
+  color: red;
+  &:hover {
+    background-color: var(--link-hover);
+    border-radius: 5px;
+  }
+}
+
+.link_search {
+  font-size: 24px;
+}
+
+.link_favorite {
+}
+
+.link_shoppinglist {
+}

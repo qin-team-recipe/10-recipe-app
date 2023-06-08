@@ -1,0 +1,15 @@
+.title {
+  @apply w-full p-2 text-center;
+  font-weight: bold;
+  border-bottom: solid 1px var(--border-main);
+}
+
+.horizon_list {
+  @apply flex;
+  gap: 16px;
+}
+
+.card_list {
+  @apply flex flex-nowrap;
+  gap: 16px;
+}

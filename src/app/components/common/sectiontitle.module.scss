@@ -1,0 +1,12 @@
+.wrapper {
+  @apply flex justify-between;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.link {
+  color: var(--text-sublink);
+}
