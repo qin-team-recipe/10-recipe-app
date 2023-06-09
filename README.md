@@ -14,8 +14,8 @@ issue の頭に作業内容に沿ったキーワードをつけ、簡潔に分�
 - 【FE】→ フロントエンド作業
 - 【BE】→ バックエンド作業
 - 【DOC】→ ドキュメンテーション周りの作業
-- 【ETC】→ その他
 - 【DEV】→ 環境構築系
+- 【ETC】→ その他
 
 `例：【FE】カルーセルコンポーネントの作成`
 
@@ -23,11 +23,11 @@ issue の頭に作業内容に沿ったキーワードをつけ、簡潔に分�
 
 [開発するブランチの作成の仕方]
 
-- feature#xx-yourname(feature#issues 番号-作業者名)
+- feature#xx-yourName(feature#issues 番号-作業者名)
 
 [修正するブランチの作成の仕方]
 
-- fix#xx-yourname(feature#issues 番号-作業者名)
+- fix#xx-yourName(feature#issues 番号-作業者名)
 
 ```
 git pull --rebase origin develop
