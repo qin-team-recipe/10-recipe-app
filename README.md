@@ -104,6 +104,12 @@ git push -u origin {作業ブランチ}
 
 ![スクリーンショット 2023-06-13 0 10 50](https://github.com/qin-team-recipe/10-recipe-app/assets/59274850/65b6d361-1530-4db2-aa9e-5e4d3bf00861)
 
+**以下必要な場合のみ実行**
+
+- もし作業中で他の方にレビュー依頼通知を飛ばしたくない場合はCreate pull request横の ▼ から「Create draft pull request」を選択
+
+![スクリーンショット 2023-06-13 0 29 09](https://github.com/qin-team-recipe/10-recipe-app/assets/59274850/5e003bf1-5456-4448-87ea-0ab4ac9d2b57)
+
 ## Review、merge の流れ
 
 1. PR が作成されると Slack に通知がいくので気づいた人がレビューする。
