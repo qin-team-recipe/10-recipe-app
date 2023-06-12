@@ -1,5 +1,5 @@
 export function generateStaticParams() {
-  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 

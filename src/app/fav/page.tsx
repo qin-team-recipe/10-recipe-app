@@ -1,70 +1,70 @@
-import Sectiontitle from '../../components/common/sectiontitle';
-import styles from './styles.module.scss';
-import Image from 'next/image';
+import Sectiontitle from "../../components/common/sectiontitle";
+import styles from "./styles.module.scss";
+import Image from "next/image";
 
 export default function Page() {
   return (
     <>
       <p className={styles.title}>お気に入り</p>
-      <div className='section'>
-        <Sectiontitle title='シェフ' />
+      <div className="section">
+        <Sectiontitle title="シェフ" />
         <div className={styles.horizon_list}>
           <div>
             <Image
-              src='/images/sample_smallchef.jpg'
+              src="/images/sample_smallchef.jpg"
               width={68}
               height={68}
-              alt=''
+              alt=""
             />
             <p>山田シェフ</p>
           </div>
           <div>
             <Image
-              src='/images/sample_smallchef.jpg'
+              src="/images/sample_smallchef.jpg"
               width={68}
               height={68}
-              alt=''
+              alt=""
             />
             <p>山田シェフ</p>
           </div>
           <div>
             <Image
-              src='/images/sample_smallchef.jpg'
+              src="/images/sample_smallchef.jpg"
               width={68}
               height={68}
-              alt=''
+              alt=""
             />
             <p>山田シェフ</p>
           </div>
           <div>
             <Image
-              src='/images/sample_smallchef.jpg'
+              src="/images/sample_smallchef.jpg"
               width={68}
               height={68}
-              alt=''
+              alt=""
             />
             <p>山田シェフ</p>
           </div>
           <div>
             <Image
-              src='/images/sample_smallchef.jpg'
+              src="/images/sample_smallchef.jpg"
               width={68}
               height={68}
-              alt=''
+              alt=""
             />
             <p>山田シェフ</p>
           </div>
         </div>
       </div>
-      <div className='section'>
-        <Sectiontitle title='レシピ' url='/new-recipes' linktext='新着レシピ' />
+      <div className="section">
+        <Sectiontitle title="レシピ" url="/new-recipes" linktext="新着レシピ" />
         <div className={styles.card_list}>
           <div>
             <Image
-              src='/images/sample_recipe2.jpg'
+              src="/images/sample_recipe2.jpg"
               width={194}
               height={194}
-              alt=''
+              alt=""
             />
             <p>
               トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン
@@ -73,10 +73,10 @@ export default function Page() {
           </div>
           <div>
             <Image
-              src='/images/sample_recipe2.jpg'
+              src="/images/sample_recipe2.jpg"
               width={194}
               height={194}
-              alt=''
+              alt=""
             />
             <p>
               トマトとルッコラのマルゲリータピザに合うホワイトソースグラタン
@@ -85,7 +85,7 @@ export default function Page() {
           </div>
         </div>
       </div>
-      <Sectiontitle title='マイレシピ' url='/fav/my' linktext='新着レシピ' />
+      <Sectiontitle title="マイレシピ" url="/fav/my" linktext="新着レシピ" />
     </>
   );
 }
