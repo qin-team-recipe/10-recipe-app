@@ -3,6 +3,7 @@
 - パッケージマネージャーは**yarn**固定
 - CSSは**Tailwind**のみを使用（もし再現できななどあればメンバーに相談）
 - 記名関数ではなく**アローファンクション**固定
+- pageは**export default**でcomponentは**named export**を使用する
 - 型の宣言には**type**を使用する以下例：
 ```
 # こちらは使わない
@@ -15,7 +16,7 @@ type ButtonProps = {
   foo: string;
 }
 
-const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<ButtonProps> = (props) => {
   省略
 }
 ```
