@@ -1,6 +1,6 @@
 import "./globals.scss";
 import variables from "./variables.module.scss";
-import Header from "./components/common/header";
+import Header from '../components/common/header';
 import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
