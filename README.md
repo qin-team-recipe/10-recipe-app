@@ -96,7 +96,7 @@ git merge develop
 git push -u origin {作業ブランチ}
 ```
 
-- Pull requests タブの Compare & request を押下
+- 上の作業後、Pull requests タブの Compare & request を押下
 
 ![スクリーンショット 2023-06-13 0 06 13](https://github.com/qin-team-recipe/10-recipe-app/assets/59274850/e98d7e94-360f-4ee9-9920-bb33d216f269)
 
