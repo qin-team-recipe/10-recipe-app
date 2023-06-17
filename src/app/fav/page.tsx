@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
-const page: NextPage = () => {
-  return <div>話題のレシピ：search/favページです</div>;
+const Page: NextPage = () => {
+  return <div>ファボページ</div>;
 };
 
-export default page;
+export default Page;
