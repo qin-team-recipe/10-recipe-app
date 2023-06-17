@@ -1,4 +1,3 @@
-// eslint-disable-next-line simple-import-sort/imports
 import { NextRequest, NextResponse } from "next/server";
 
 import { createMiddlewareClient } from "@supabase/auth-helpers-nextjs";

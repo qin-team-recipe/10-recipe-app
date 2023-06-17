@@ -1,4 +1,3 @@
-// eslint-disable-next-line simple-import-sort/imports
 import { cookies } from "next/headers";
 import { NextResponse, type NextRequest } from "next/server";
 
