@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 const Page: NextPage = () => {
-  return <div className="text-tomato">トップページ</div>;
+  return <div>ファボページ</div>;
 };
 
 export default Page;
