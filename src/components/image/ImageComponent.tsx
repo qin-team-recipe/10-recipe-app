@@ -42,8 +42,6 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
     },
   ]);
 
-  const wrapperClass = cc(["flex flex-col", sizeClass, props.addClassNames]);
-
   const imageSizeClass = cc([
     "relative",
     {
@@ -70,7 +68,7 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
   ]);
 
   return (
-    <div className={wrapperClass}>
+    <div className={cc([sizeClass, props.addClassNames])}>
       <div className={imageSizeClass}>
         <Image
           src={props.src || "/images/sample_chef.jpg"}
