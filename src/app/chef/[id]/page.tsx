@@ -1,27 +1,16 @@
+/* eslint-disable import/first */
+
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
+import { RecipeAppTeam10 } from "@/mock";
+
+import { ImageComponent, ImageGrid } from "@/components/image";
 import { ArrowIcon } from "@/app/chef/ArrowIcon";
 import { ThreeDotsIcon } from "@/app/chef/ThreeDotsIcon";
 
+/* eslint-disable import/first */
 const recipeNumber = 1234;
 const followerNumber = 5678;
-const Images = [
-  {
-    id: "1",
-    image_url: "",
-    link: "",
-  },
-  {
-    id: "2",
-    image_url: "",
-    link: "",
-  },
-  {
-    id: "3",
-    image_url: "",
-    link: "",
-  },
-];
 
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
@@ -31,7 +20,7 @@ export const generateStaticParams = () => {
 const Page = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   return (
-    <div className="relative mx-auto max-w-md border-x border-light_gray/30">
+    <div className="relative mx-auto">
       <button type="button" className="absolute left-3 top-3 z-10 cursor-pointer rounded-full p-1.5">
         <ArrowIcon />
       </button>
@@ -61,24 +50,28 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>{followerNumber}フォロアー</div>
           </div>
           <div>
-            <button className="rounded-sm bg-tomato px-3 py-1 text-sm text-white">フォローする</button>
+            <button className="text-sm rounded-sm bg-tomato px-3 py-1 text-white">フォローする</button>
           </div>
         </div>
         <div>
           <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-light_gray">レシピ</div>
+            <div className="border-light_gray w-1/2 border-b-2">レシピ</div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">リンク</div>
           </div>
         </div>
-      </div>
-      {/* recipe grid */}
-      <div className="grid grid-cols-2 gap-4 p-4">
-        <div className="relative aspect-square bg-tomato/10">Image</div>
-        <div className="relative aspect-square bg-tomato/10">Image</div>
-        <div className="relative aspect-square bg-tomato/10">Image</div>
-        <div className="relative aspect-square bg-tomato/10">Image</div>
-        <div className="relative aspect-square bg-tomato/10">Image</div>
-        <div className="relative aspect-square bg-tomato/10">Image</div>
+        <ImageGrid addClassNames="mb-8 mt-4">
+          {RecipeAppTeam10.slice(0, 8).map((data, index) => (
+            <ImageComponent
+              key={`grid-${index}`}
+              src={data.src}
+              alt={`${data.title}の画像`}
+              width="full"
+              favNum={data.favNum}
+              ratio="1/1"
+              nameLabel={data.nameLabel}
+            />
+          ))}
+        </ImageGrid>
       </div>
     </div>
   );
