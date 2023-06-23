@@ -58,27 +58,25 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         </div>
         <div>
           <div className="mt-3 flex justify-center text-center">
-            <div className="border-light_gray w-1/2 border-b-2">レシピ</div>
+            <div className="border-light_gray w-1/2 border-b-2">
+              <Link href={{ pathname: `/chef/${id}` }} passHref>
+                レシピ
+              </Link>
+            </div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}/link` }} passHref>
+              <Link href={{ pathname: `/chef/${id}` }} passHref>
                 リンク
               </Link>
             </div>
           </div>
         </div>
-        <ImageGrid addClassNames="mb-8 mt-4">
-          {mockDataRecipe.slice(0, 8).map((data, index) => (
-            <Link href={{ pathname: `/recipe/${id}` }} passHref key={id}>
-              <ImageComponent
-                key={`grid-${index}`}
-                src={data.image_url1}
-                alt={`${data.title}の画像`}
-                width="full"
-                ratio="1/1"
-              />
-            </Link>
-          ))}
-        </ImageGrid>
+        <div className="mb-8 mt-4">
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
