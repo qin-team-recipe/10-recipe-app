@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 
-import { mockDataRecipe, RecipeAppTeam10 } from "@/mock";
+import { RecipeAppTeam10 } from "@/mock";
 
 import { FollowButton } from "@/components/button";
 import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
@@ -19,6 +19,7 @@ export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+// 上記参考に動的ルーティングに対応しておりますが、DBと合わせた際の挙動まで考えて実装していません。
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
