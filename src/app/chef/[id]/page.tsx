@@ -2,11 +2,11 @@
 
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
+
 import { RecipeAppTeam10 } from "@/mock";
 
+import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
-import { ArrowIcon } from "@/app/chef/ArrowIcon";
-import { ThreeDotsIcon } from "@/app/chef/ThreeDotsIcon";
 
 /* eslint-disable import/first */
 const recipeNumber = 1234;
@@ -24,7 +24,7 @@ const Page = ({ params }: { params: { id: string } }) => {
       <button type="button" className="absolute left-3 top-3 z-10 cursor-pointer rounded-full p-1.5">
         <ArrowIcon />
       </button>
-      <div className="relative aspect-square bg-tomato/10">Image</div>
+      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <div className="pt-4">
         <div className="flex justify-between px-4">
           <div>しまぶーシェフ</div>
