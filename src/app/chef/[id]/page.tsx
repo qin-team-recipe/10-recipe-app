@@ -5,6 +5,7 @@
 
 import { RecipeAppTeam10 } from "@/mock";
 
+import { FollowButton } from "@/components/button";
 import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
 
@@ -50,7 +51,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             <div>{followerNumber}フォロアー</div>
           </div>
           <div>
-            <button className="text-sm rounded-sm bg-tomato px-3 py-1 text-white">フォローする</button>
+            <FollowButton />
           </div>
         </div>
         <div>
