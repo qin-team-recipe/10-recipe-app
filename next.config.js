@@ -4,7 +4,7 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    domains: ["ca.slack-edge.com"],
+    domains: ["ca.slack-edge.com", "images.unsplash.com"],
   },
 };
 
