@@ -48,7 +48,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         </div>
         <div className="px-4">
           <div>{RecipeAppTeam10[0].description}</div>
-          <div className="mt-3 flex  justify-start">
+          <div className="my-3 flex  justify-start">
             <div className="mr-3">{recipeNumber}レシピ</div>
             <div>{followerNumber}フォロアー</div>
           </div>
