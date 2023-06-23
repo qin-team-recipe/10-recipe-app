@@ -5,7 +5,7 @@
 
 import Link from "next/link";
 
-import { RecipeAppTeam10 } from "@/mock";
+import { mockDataRecipe } from "@/mock";
 
 import { FollowButton } from "@/components/button";
 import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
@@ -63,16 +63,14 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <ImageGrid addClassNames="mb-8 mt-4">
-          {RecipeAppTeam10.slice(0, 8).map((data, index) => (
+          {mockDataRecipe.slice(0, 8).map((data, index) => (
             <Link href={{ pathname: `/recipe/${id}` }} passHref key={id}>
               <ImageComponent
                 key={`grid-${index}`}
-                image_url={data.image_url}
-                alt={`${data.name}の画像`}
+                src={data.image_url1}
+                alt={`${data.title}の画像`}
                 width="full"
-                favNum={data.favNum}
                 ratio="1/1"
-                nameLabel={data.nameLabel}
               />
             </Link>
           ))}
