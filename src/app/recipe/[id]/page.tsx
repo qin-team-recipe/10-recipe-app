@@ -27,7 +27,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
       <button type="button" className="absolute left-3 top-3 z-10 cursor-pointer rounded-full p-1.5">
         <ArrowIcon />
       </button>
-      <ImageComponent image_url={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
+      <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <div className="pt-4">
         <div className="flex justify-between px-4">
           <div>シェフのレシピ</div>
