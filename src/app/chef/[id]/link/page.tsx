@@ -48,7 +48,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         </div>
         <div className="px-4">
           <div>{RecipeAppTeam10[0].description}</div>
-          <div className="mt-3 flex  justify-start">
+          <div className="my-3 flex  justify-start">
             <div className="mr-3">{recipeNumber}レシピ</div>
             <div>{followerNumber}フォロアー</div>
           </div>
@@ -70,11 +70,43 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
             </div>
           </div>
         </div>
-        <div className="mb-8 mt-4">
-          <ul>
-            <li>A</li>
-            <li>B</li>
-            <li>C</li>
+        <div className="mb-8 mt-2">
+          <ul className="pl-3">
+            <li className="flex border-b border-lightGray pb-3">
+              <div className="mr-2 h-10 w-10 bg-tomato" />
+              <div className="flex flex-col">
+                Instagram<div></div>
+                <div className="text-small">{} フォロワー ・</div>
+                {}
+              </div>
+            </li>
+            <li className="flex border-b border-lightGray py-3">
+              <div className="mr-2 h-10 w-10 bg-tomato" />
+              <div className="flex flex-col">
+                Twitter<div></div>
+                <div className="text-small">{} フォロワー ・</div>
+                {}
+              </div>
+            </li>
+            <li className="flex border-b border-lightGray py-3">
+              <div className="mr-2 h-10 w-10 bg-tomato" />
+              <div className="flex flex-col">
+                YouTube<div></div>
+                <div className="text-small">{} フォロワー ・</div>
+                {}
+              </div>
+            </li>
+            <li className="flex border-b border-lightGray py-3">
+              <div className="mr-2 h-10 w-10 bg-tomato" />
+              <div className="flex flex-col">
+                Hoge Hoge<div></div>
+                <div className="text-small">
+                  <Link target="_blank" href={{ pathname: `https://example.com/` }} passHref>
+                    https://example.com/
+                  </Link>
+                </div>
+              </div>
+            </li>
           </ul>
         </div>
       </div>
