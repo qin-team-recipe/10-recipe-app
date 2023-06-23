@@ -25,7 +25,7 @@ type ImageComponentProps = {
   ratio: "1/1" | "3/4";
   // 画像の代替テキスト
   // TODO: DB参照できるようになったら必須に変更する
-  image_url?: string;
+  src?: string;
   // 画像の幅
   width: "full" | "large" | "medium" | "small" | "xSmall";
 };
@@ -71,7 +71,7 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
     <div className={cc([sizeClass, props.addClassNames])}>
       <div className={imageSizeClass}>
         <Image
-          src={props.image_url || "/images/sample_chef.jpg"}
+          src={props.src || "/images/sample_chef.jpg"}
           alt={props.alt}
           fill
           className={imageOptionClass}
