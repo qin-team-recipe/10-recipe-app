@@ -3,6 +3,8 @@
 /* eslint-disable tailwindcss/classnames-order */
 /* eslint-disable tailwindcss/no-custom-classname */
 
+import Link from "next/link";
+
 import { RecipeAppTeam10 } from "@/mock";
 
 import { FollowButton } from "@/components/button";
@@ -18,7 +20,7 @@ export const generateStaticParams = () => {
 };
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 
-const Page = ({ params }: { params: { id: string } }) => {
+const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   return (
     <div className="relative mx-auto">
@@ -62,15 +64,17 @@ const Page = ({ params }: { params: { id: string } }) => {
         </div>
         <ImageGrid addClassNames="mb-8 mt-4">
           {RecipeAppTeam10.slice(0, 8).map((data, index) => (
-            <ImageComponent
-              key={`grid-${index}`}
-              src={data.src}
-              alt={`${data.title}の画像`}
-              width="full"
-              favNum={data.favNum}
-              ratio="1/1"
-              nameLabel={data.nameLabel}
-            />
+            <Link href={{ pathname: `/recipe/${id}` }} passHref key={id}>
+              <ImageComponent
+                key={`grid-${index}`}
+                image_url={data.image_url}
+                alt={`${data.name}の画像`}
+                width="full"
+                favNum={data.favNum}
+                ratio="1/1"
+                nameLabel={data.nameLabel}
+              />
+            </Link>
           ))}
         </ImageGrid>
       </div>
@@ -78,4 +82,4 @@ const Page = ({ params }: { params: { id: string } }) => {
   );
 };
 
-export default Page;
+export default ChefPage;
