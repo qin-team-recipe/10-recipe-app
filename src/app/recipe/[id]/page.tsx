@@ -61,14 +61,18 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
         <div>
           <div className="mt-3 flex justify-center text-center">
             <div className="border-light_gray w-1/2 border-b-2">作り方</div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">材料</div>
+            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
+              <Link href={{ pathname: `/chef/${id}/ingredients` }} passHref>
+                材料
+              </Link>
+            </div>
           </div>
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+          </ul>
         </div>
-        <ul>
-          <li>A</li>
-          <li>B</li>
-          <li>C</li>
-        </ul>
       </div>
     </div>
   );
