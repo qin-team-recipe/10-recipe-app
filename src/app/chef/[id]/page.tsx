@@ -1,8 +1,3 @@
-/* eslint-disable import/first */
-
-/* eslint-disable tailwindcss/classnames-order */
-/* eslint-disable tailwindcss/no-custom-classname */
-
 import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
