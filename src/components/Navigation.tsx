@@ -8,15 +8,15 @@ export const Navigation: React.FC = () => {
       <ul className="mx-auto flex flex-row justify-start text-small sm:flex-col">
         <li className="hidden sm:block">ロゴ</li>
         <li className="flex flex-col items-center sm:mt-3 sm:flex-row sm:items-start">
-          <SearchIcon />
+          <SearchIcon selected={false} />
           <span className="px-3 sm:pl-2">話題を検索</span>
         </li>
         <li className="flex flex-col items-center sm:flex-row sm:items-start">
-          <FavIcon />
+          <FavIcon selected={false} />
           <span className="px-3 sm:pl-2">お気に入り</span>
         </li>
         <li className="flex flex-col items-center sm:flex-row sm:items-start">
-          <ShoppingCartIcon />
+          <ShoppingCartIcon selected={false} />
           <span className="px-3 sm:pl-2">買い物リスト</span>
         </li>
       </ul>
