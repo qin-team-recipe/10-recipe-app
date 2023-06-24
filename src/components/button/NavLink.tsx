@@ -11,7 +11,6 @@ type Props = LinkProps<any> & { children: ReactElement; activeClassName: string 
 //  型がわからなくてanyになっています😅
 
 export const NavLink = (props: Props) => {
-  // eslint-disable-next-line react/destructuring-assignment
   const { activeClassName, children, ...linkProps } = props;
   const router = usePathname();
   const pathname = router === "/root" ? "/" : router;
