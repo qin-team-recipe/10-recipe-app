@@ -5,10 +5,10 @@
 
 import Link from "next/link";
 
-import { mockDataRecipe, RecipeAppTeam10 } from "@/mock";
+import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { FollowButton } from "@/components/button";
-import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
+import { Button } from "@/components/button";
+import { ArrowIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
 
 /* eslint-disable import/first */
@@ -25,41 +25,29 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   return (
     <div className="relative mx-auto">
+      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 z-10 cursor-pointer rounded-full p-1.5">
         <Link href={{ pathname: `/` }} passHref>
           <ArrowIcon />
         </Link>
       </button>
-      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <div className="pt-4">
-        <div className="flex justify-between px-4">
-          <div>しまぶーシェフ</div>
-          <div>
-            <button
-              className="-mr-0.5 -mt-px rounded p-1 outline-none hover:bg-gray focus-visible:ring-2"
-              type="button"
-              id="radix-:r0:"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              data-state="closed"
-            >
-              <ThreeDotsIcon />
-            </button>
-          </div>
+        <div className="px-4 pb-3 text-large">
+          {RecipeAppT10Chefs[0].name} <span className="text-medium">シェフ</span>
         </div>
         <div className="px-4">
-          <div>{RecipeAppTeam10[0].description}</div>
+          <div>{RecipeAppT10Chefs[0].description}</div>
           <div className="my-3 flex  justify-start">
             <div className="mr-3">{recipeNumber}レシピ</div>
             <div>{followerNumber}フォロアー</div>
           </div>
           <div>
-            <FollowButton />
+            <Button color="tomato">フォローする</Button>
           </div>
         </div>
         <div>
           <div className="mt-3 flex justify-center text-center">
-            <div className="border-light_gray w-1/2 border-b-2">レシピ</div>
+            <div className="w-1/2 border-b-2 border-lightGray">レシピ</div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
               <Link href={{ pathname: `/chef/${id}/link` }} passHref>
                 リンク
@@ -76,6 +64,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
                 alt={`${data.title}の画像`}
                 width="full"
                 ratio="1/1"
+                isRounded
               />
             </Link>
           ))}

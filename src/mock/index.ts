@@ -1,2 +1,2 @@
-export { RecipeAppTeam10 } from "./Chef";
+export { RecipeAppT10Chefs } from "./Chef";
 export { mockDataRecipe } from "./Recipe";

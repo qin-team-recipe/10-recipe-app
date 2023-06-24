@@ -7,7 +7,7 @@ type MockChef = {
   image_url: string;
 };
 
-export const RecipeAppTeam10: MockChef[] = [
+export const RecipeAppT10Chefs: MockChef[] = [
   {
     id: "1",
     name: "Taiyo",

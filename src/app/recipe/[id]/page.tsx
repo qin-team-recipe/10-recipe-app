@@ -7,8 +7,8 @@ import Link from "next/link";
 
 import { mockDataRecipe } from "@/mock";
 
-import { FavButton } from "@/components/button";
-import { ArrowIcon, ThreeDotsIcon } from "@/components/icons";
+import { Button } from "@/components/button";
+import { ArrowIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
 
 /* eslint-disable import/first */
@@ -25,43 +25,31 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   return (
     <div className="relative mx-auto">
+      <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 z-10 cursor-pointer rounded-full p-1.5">
         <Link href={{ pathname: `/` }} passHref>
           <ArrowIcon />
         </Link>
       </button>
-      <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <div className="pt-4">
-        <div className="flex justify-between px-4">
+        <div className="px-4 pb-3 text-large">
           <div>シェフのレシピ</div>
-          <div>
-            <button
-              className="-mr-0.5 -mt-px rounded p-1 outline-none hover:bg-gray focus-visible:ring-2"
-              type="button"
-              id="radix-:r0:"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              data-state="closed"
-            >
-              <ThreeDotsIcon />
-            </button>
-          </div>
         </div>
         <div className="px-4">
           <div>
             吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
           </div>
-          <div className="mt-3 flex  justify-start">
+          <div className="my-3 flex  justify-start">
             <div className="mr-3">{recipeNumber}レシピ</div>
             <div>{followerNumber}フォロアー</div>
           </div>
           <div>
-            <FavButton />
+            <Button color="tomato">お気に入りに追加</Button>
           </div>
         </div>
         <div>
           <div className="mt-3 flex justify-center text-center">
-            <div className="border-light_gray w-1/2 border-b-2">作り方</div>
+            <div className="w-1/2 border-b-2 border-lightGray">作り方</div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
               <Link href={{ pathname: `/chef/${id}/ingredients` }} passHref>
                 材料
