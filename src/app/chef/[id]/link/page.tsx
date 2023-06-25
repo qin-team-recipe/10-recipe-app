@@ -22,7 +22,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href={{ pathname: `/` }} passHref>
+        <Link href={{ pathname: `/` }}>
           <ArrowIcon />
         </Link>
       </button>
@@ -43,14 +43,10 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         <div>
           <div className="mt-3 flex justify-center text-center">
             <div className="w-1/2 border-b-2 border-lightGray">
-              <Link href={{ pathname: `/chef/${id}` }} passHref>
-                レシピ
-              </Link>
+              <Link href={{ pathname: `/chef/${id}` }}>レシピ</Link>
             </div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}` }} passHref>
-                リンク
-              </Link>
+              <Link href={{ pathname: `/chef/${id}` }}>リンク</Link>
             </div>
           </div>
         </div>
@@ -85,7 +81,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
               <div className="flex flex-col">
                 Hoge Hoge<div></div>
                 <div className="text-small">
-                  <Link target="_blank" href={{ pathname: `https://example.com/` }} passHref>
+                  <Link target="_blank" href={{ pathname: `https://example.com/` }}>
                     https://example.com/
                   </Link>
                 </div>

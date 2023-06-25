@@ -22,7 +22,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href={{ pathname: `/` }} passHref>
+        <Link href={{ pathname: `/` }}>
           <ArrowIcon />
         </Link>
       </button>
@@ -44,15 +44,13 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           <div className="mt-3 flex justify-center text-center">
             <div className="w-1/2 border-b-2 border-lightGray">レシピ</div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}/link` }} passHref>
-                リンク
-              </Link>
+              <Link href={{ pathname: `/chef/${id}/link` }}>リンク</Link>
             </div>
           </div>
         </div>
         <ImageGrid addClassNames="mb-8 mt-4">
           {mockDataRecipe.slice(0, 8).map((data, index) => (
-            <Link href={{ pathname: `/recipe/${id}` }} passHref key={id}>
+            <Link href={{ pathname: `/recipe/${id}` }} key={id}>
               <ImageComponent
                 key={`grid-${index}`}
                 src={data.image_url1}
