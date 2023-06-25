@@ -15,7 +15,7 @@ type navigationProps = {
 
 export const Navigation: React.FC<navigationProps> = (props) => {
   return (
-    <nav className="px-4 pt-2">
+    <nav className="pt-2">
       <ul className="flex w-screen justify-around sm:w-full sm:flex-col">
         <li className="hidden sm:block">ロゴ</li>
         {labels.map(({ href, label, icon }) => {
