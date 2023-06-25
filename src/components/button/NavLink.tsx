@@ -7,17 +7,17 @@ import { usePathname } from "next/navigation";
 /**
  * @package
  */
-type Props = LinkProps<any> & { children: ReactElement; activeClassName: string };
+export type NavProps = LinkProps<any> & { children: ReactElement; activeClassName: string; activeStrokeColor: string };
 //  型がわからなくてanyになっています😅
 
-export const NavLink = (props: Props) => {
-  const { activeClassName, children, ...linkProps } = props;
+export const NavLink = (props: NavProps) => {
+  const { activeClassName, children, activeStrokeColor, ...linkProps } = props;
   const router = usePathname();
   const pathname = router === "/root" ? "/" : router;
 
   const className =
     pathname === linkProps.href
-      ? `${activeClassName} ${children.props.className ?? ""}`
+      ? `${activeClassName} ${children.props.className ?? ""} ${activeStrokeColor}`
       : children.props.className ?? "";
 
   return <Link {...linkProps}>{cloneElement(children, { className })}</Link>;
