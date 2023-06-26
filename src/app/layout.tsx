@@ -10,10 +10,10 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
-      <body>
-        <div className="mx-auto flex max-w-2xl">
-          <Navigation />
-          <main className="max-w-xl flex-1 border-x border-lightGray">{children}</main>
+      <body className="mx-auto flex max-w-2xl flex-col-reverse items-start sm:flex-row">
+        <Navigation />
+        <div className="flex flex-col">
+          <main className="w-screen border-x border-lightGray sm:max-w-md">{children}</main>
         </div>
       </body>
     </html>
