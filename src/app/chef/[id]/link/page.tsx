@@ -39,10 +39,10 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         <div>
           <div className="mt-3 flex justify-center text-center">
             <div className="w-1/2 border-b-2 border-lightGray">
-              <Link href={{ pathname: `/chef/${id}` }}>レシピ</Link>
+              <Link href={`/chef/${id}`}>レシピ</Link>
             </div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}` }}>リンク</Link>
+              <Link href={`/chef/${id}`}>リンク</Link>
             </div>
           </div>
         </div>
