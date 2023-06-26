@@ -21,7 +21,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
     <div className="relative mx-auto">
       <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href={{ pathname: `/` }}>
+        <Link href="/">
           <ArrowIcon />
         </Link>
       </button>
@@ -42,7 +42,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
           <div className="mt-3 flex justify-center text-center">
             <div className="w-1/2 border-b-2 border-lightGray">作り方</div>
             <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}/ingredients` }}>材料</Link>
+              <Link href="/">材料</Link>
             </div>
           </div>
           <ul>
