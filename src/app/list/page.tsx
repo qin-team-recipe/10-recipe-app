@@ -109,7 +109,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -118,7 +118,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -127,7 +127,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -136,7 +136,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
           </div>
           <div className="mt-3 flex justify-between p-3 [border-bottom:1px_solid_lightgray]">
@@ -151,7 +151,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -160,7 +160,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -169,7 +169,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
             <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
               <div className="flex">
@@ -178,7 +178,7 @@ const Page: NextPage = () => {
                 </button>
                 <p className="p-1">キャベツ</p>
               </div>
-              <p className="cursor-pointer p-1 text-[red] hover:[text-decoration-line:underline]">削除</p>
+              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
             </div>
           </div>
         </div>
@@ -188,10 +188,10 @@ const Page: NextPage = () => {
           <p className="py-2 text-center font-bold">ログインをお願いします</p>
           <p className="text-center text-[14px]">こちらの機能を利用するにはログインが必要です</p>
           <div className="flex w-[370px] justify-between py-4">
-            <button className="w-[180px] rounded-[10px]  bg-[blue] p-[10px] font-bold text-[white] hover:opacity-[.8]">
+            <button className="w-[180px] rounded-[10px]  bg-blue p-[10px] font-bold text-white hover:opacity-[.8]">
               Google ログイン
             </button>
-            <button className="w-[180px] rounded-[10px]  bg-[black] p-[10px] font-bold text-[white] hover:opacity-[.8]">
+            <button className="w-[180px] rounded-[10px]  bg-black p-[10px] font-bold text-white hover:opacity-[.8]">
               Apple ログイン
             </button>
           </div>
