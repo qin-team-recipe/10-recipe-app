@@ -1,5 +1,3 @@
-"use client";
-
 import cc from "classcat";
 
 type ButtonProps = {
