@@ -7,7 +7,6 @@ import { ArrowIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
 
 /* eslint-disable import/first */
-const recipeNumber = 1234;
 const followerNumber = 5678;
 
 export const generateStaticParams = () => {
@@ -32,10 +31,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         </div>
         <div className="px-4">
           <div>{RecipeAppT10Chefs[0].description}</div>
-          <div className="my-3 flex  justify-start">
-            <div className="mr-3">{recipeNumber}レシピ</div>
-            <div>{followerNumber}フォロアー</div>
-          </div>
+          <div className="my-3">{followerNumber}フォロアー</div>
           <div>
             <Button color="tomato">フォローする</Button>
           </div>

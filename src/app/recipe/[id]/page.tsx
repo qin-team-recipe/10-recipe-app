@@ -7,7 +7,6 @@ import { ArrowIcon } from "@/components/icons";
 import { ImageComponent, ImageGrid } from "@/components/image";
 
 /* eslint-disable import/first */
-const recipeNumber = 1234;
 const followerNumber = 5678;
 
 export const generateStaticParams = () => {
@@ -34,10 +33,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
           <div>
             吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
           </div>
-          <div className="my-3 flex  justify-start">
-            <div className="mr-3">{recipeNumber}レシピ</div>
-            <div>{followerNumber}フォロアー</div>
-          </div>
+          <div className="my-3">{followerNumber}フォロアー</div>
           <div>
             <Button color="tomato">お気に入りに追加</Button>
           </div>
