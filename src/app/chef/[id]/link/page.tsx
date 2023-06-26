@@ -77,7 +77,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
               <div className="flex flex-col">
                 Hoge Hoge<div></div>
                 <div className="text-small">
-                  <Link target="_blank" href={{ pathname: `https://example.com/` }}>
+                  <Link target="_blank" href={`https://example.com/`}>
                     https://example.com/
                   </Link>
                 </div>
