@@ -1,25 +1,25 @@
 -- CreateTable
 CREATE TABLE "chef" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "image_url" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "chef_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "link" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "site" TEXT NOT NULL,
     "url" TEXT NOT NULL,
     "site_id" TEXT,
     "follower" TEXT,
-    "chef_id" UUID NOT NULL,
+    "chef_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "link_pkey" PRIMARY KEY ("id")
 );
@@ -36,7 +36,7 @@ CREATE TABLE "user" (
 
 -- CreateTable
 CREATE TABLE "recipe" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
     "servings" TEXT NOT NULL,
@@ -44,59 +44,59 @@ CREATE TABLE "recipe" (
     "image_url1" TEXT NOT NULL,
     "image_url2" TEXT,
     "status" TEXT NOT NULL,
-    "chef_id" UUID,
+    "chef_id" INTEGER,
     "user_id" UUID,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "recipe_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "instruction" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "step" INTEGER NOT NULL,
     "description" TEXT,
     "note" TEXT,
-    "recipe_id" UUID NOT NULL,
+    "recipe_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "instruction_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "ingredient" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "quantity" TEXT,
-    "recipe_id" UUID NOT NULL,
+    "recipe_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "ingredient_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "shoppingList" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "step" INTEGER NOT NULL,
     "user_id" UUID NOT NULL,
-    "recipe_id" UUID,
+    "recipe_id" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "shoppingList_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "shoppingItem" (
-    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
+    "id" SERIAL NOT NULL,
     "isChecked" BOOLEAN NOT NULL,
-    "shoppingList_id" UUID NOT NULL,
-    "ingredient_id" UUID,
+    "shoppingList_id" INTEGER NOT NULL,
+    "ingredient_id" INTEGER,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "shoppingItem_pkey" PRIMARY KEY ("id")
 );
@@ -104,9 +104,9 @@ CREATE TABLE "shoppingItem" (
 -- CreateTable
 CREATE TABLE "favorite" (
     "user_id" UUID NOT NULL,
-    "recipe_id" UUID NOT NULL,
+    "recipe_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "favorite_pkey" PRIMARY KEY ("user_id","recipe_id")
 );
@@ -114,9 +114,9 @@ CREATE TABLE "favorite" (
 -- CreateTable
 CREATE TABLE "follow" (
     "user_id" UUID NOT NULL,
-    "chef_id" UUID NOT NULL,
+    "chef_id" INTEGER NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL,
+    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "follow_pkey" PRIMARY KEY ("user_id","chef_id")
 );
