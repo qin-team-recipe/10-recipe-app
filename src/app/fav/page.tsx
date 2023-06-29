@@ -8,7 +8,7 @@ import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 const Fav: NextPage = () => {
   return (
     <div>
-      <div className="relative flex items-center  justify-between border-b border-lightGray p-1">
+      <div className="relative flex items-center justify-between border-b border-lightGray p-1">
         <div className="mx-auto text-title font-bold">
           <p>お気に入り</p>
         </div>
