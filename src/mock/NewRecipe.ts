@@ -1,8 +1,8 @@
 export const mockDataNewRecipe = {
   material: {
     items: [
-      { id: 1, title: "キャベツ", supplement: "5〜6枚" },
-      { id: 2, title: "チーズ", supplement: "ピザ用" },
+      { id: 1, title: "キャベツ" },
+      { id: 2, title: "チーズ" },
     ],
     buttonTitle: "材料を追加する",
   },

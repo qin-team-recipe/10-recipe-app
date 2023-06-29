@@ -29,10 +29,11 @@ const Page = () => {
         <div>
           <div className="flex items-center gap-1">
             <div className={titleClass}>材料 / 2人前</div>
+            <Edit />
           </div>
           <div className="border-y border-lightGray">
             {mockDataNewRecipe.material.items.map((item) => (
-              <IngredientListItem title={item.title} supplement={item.supplement} key={item.id} />
+              <IngredientListItem title={item.title} key={item.id} />
             ))}
           </div>
           <AddButton title={mockDataNewRecipe.material.buttonTitle} />
