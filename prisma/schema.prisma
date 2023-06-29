@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
 }
 
@@ -12,126 +12,125 @@ datasource db {
 }
 
 model chef {
-  id       Int      @id @default(autoincrement())
-  name     String
+  id          Int      @id @default(autoincrement())
+  name        String
   description String
-  image_url String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
-  recipes recipe[]
-  follows follow[]
-  links link[]
+  image_url   String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+  recipes     recipe[]
+  follows     follow[]
+  links       link[]
 }
 
 model link {
-  id       Int      @id @default(autoincrement())
-  site    String
-  url     String
-  site_id String? 
-  follower String?
-  chef   chef      @relation(fields: [chef_id], references: [id], onDelete: Cascade)
-  chef_id Int
+  id         Int      @id @default(autoincrement())
+  site       String
+  url        String
+  site_id    String?
+  follower   String?
+  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef_id    Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 }
 
 model user {
-  id       String      @id @db.Uuid
-  name     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String         @id @db.Uuid
+  name         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   shoppingList shoppingList[]
-  favorites favorite[]
-  follows follow[]
-  recipes recipe[]
+  favorites    favorite[]
+  follows      follow[]
+  recipes      recipe[]
 }
 
-
 model recipe {
-  id Int @id @default(autoincrement())
-  title String
-  description String?
-  servings String
-  link String?
-  image_url1 String
-  image_url2 String?
+  id           Int            @id @default(autoincrement())
+  title        String
+  description  String?
+  servings     String
+  link         String?
+  image_url1   String
+  image_url2   String?
   // statusはmyrecipeかpublished　バリデーションはサーバーアクションで行う？
-  status String
-  chef chef? @relation(fields: [chef_id], references: [id], onDelete: Cascade)
-  chef_id Int?
-  user user? @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String? @db.Uuid
+  status       String
+  chef         chef?          @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef_id      Int?
+  user         user?          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id      String?        @db.Uuid
   shoppingList shoppingList[]
   instructions instruction[]
-  ingredients ingredient[]
-  favorites favorite[]
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  ingredients  ingredient[]
+  favorites    favorite[]
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @default(now()) @updatedAt
 }
 
 model instruction {
-  id       Int      @id @default(autoincrement())
-  step     Int
-  description  String?
-  note String?
-  recipe   recipe      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id Int
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  id          Int      @id @default(autoincrement())
+  step        Int
+  description String?
+  note        String?
+  recipe      recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id   Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
 }
 
 model ingredient {
-  id       Int      @id @default(autoincrement())
-  name     String
-  quantity String?
-  recipe   recipe      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id Int
+  id            Int            @id @default(autoincrement())
+  name          String
+  quantity      String?
+  recipe        recipe         @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id     Int
   shoppingItems shoppingItem[]
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @default(now()) @updatedAt
 }
 
 model shoppingList {
-  id             Int         @id @default(autoincrement())
-  step           Int
-  user           user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id        String         @db.Uuid
-  recipe         recipe?         @relation(fields: [recipe_id], references: [id], onDelete: Cascade)   
-  recipe_id      Int?
-  shoppingItems  shoppingItem[]
-  created_at     DateTime       @default(now())
-  updated_at     DateTime       @default(now()) @updatedAt
+  id            Int            @id @default(autoincrement())
+  step          Int
+  user          user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id       String         @db.Uuid
+  recipe        recipe?        @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id     Int?
+  shoppingItems shoppingItem[]
+  created_at    DateTime       @default(now())
+  updated_at    DateTime       @default(now()) @updatedAt
 }
-
 
 model shoppingItem {
-  id       Int      @id @default(autoincrement())
-  isChecked     Boolean
-  shoppingList   shoppingList      @relation(fields: [shoppingList_id], references: [id], onDelete: Cascade)
+  id              Int          @id @default(autoincrement())
+  isChecked       Boolean
+  shoppingList    shoppingList @relation(fields: [shoppingList_id], references: [id], onDelete: Cascade)
   shoppingList_id Int
-  ingredient   ingredient?      @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
-  ingredient_id Int?
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  ingredient      ingredient?  @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+  ingredient_id   Int?
+  created_at      DateTime     @default(now())
+  updated_at      DateTime     @default(now()) @updatedAt
 }
 
-
 model favorite {
-  user     user        @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id  String  @db.Uuid
-  recipe   recipe      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)   
-  recipe_id Int
+  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String   @db.Uuid
+  recipe     recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id  Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
+
   @@id([user_id, recipe_id])
 }
 
 model follow {
-  user    user        @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id  String  @db.Uuid
-  chef   chef      @relation(fields: [chef_id], references: [id], onDelete: Cascade)   
-  chef_id Int
+  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String   @db.Uuid
+  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef_id    Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
+
   @@id([user_id, chef_id])
 }
