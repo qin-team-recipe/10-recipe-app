@@ -1,41 +1,17 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import { NextPage } from "next";
 import Link from "next/link";
 
+import { mockDataFav } from "@/mock";
+
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
-type Mock = {
-  title: string;
-  description?: string;
-  favNum?: number;
-  nameLabel?: string;
-  src: string;
-};
-
 const Fav: NextPage = () => {
-  const mockData: Mock[] = [
-    {
-      title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      description: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      favNum: 2000,
-      nameLabel: "山田シェフ",
-      src: "/images/sample_chef.jpg",
-    },
-    {
-      title: "トマトとルッコラ",
-      description: "トマトとルッコラのマルゲリータ",
-      nameLabel: "武田シェフ",
-      src: "/images/sample_chef.jpg",
-    },
-    ...[...Array(10)].map((_) => ({
-      title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      src: "/images/sample_chef.jpg",
-    })),
-  ];
   return (
     <div>
       <div className="relative flex items-center  justify-between border-b border-lightGray p-1">
-        <div className="mx-auto text-title font-bold">お気に入り</div>
+        <div className="mx-auto text-title font-bold">
+          <p>お気に入り</p>
+        </div>
         <div className="p-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -56,11 +32,11 @@ const Fav: NextPage = () => {
       </div>
       <div className="py-5">
         <div className="space-y-2">
-          <div className="flex items-end justify-between px-4 font-bold">
+          <div className="flex items-center justify-between px-4 font-bold">
             <div className="text-large">シェフ</div>
           </div>
           <ImageCarousel>
-            {mockData.map((data, index) => (
+            {mockDataFav.map((data, index) => (
               <ImageComponent
                 key={`bottom-carousel-${index}`}
                 alt={`${data.nameLabel || data.title}の画像`}
@@ -77,15 +53,19 @@ const Fav: NextPage = () => {
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-end justify-between px-4 font-bold">
-            <div className="text-large">新着レシピ</div>
-            <div className="contents text-gray">
-              <Link href="/fav">マイレシピを作成</Link>
+          <div className="flex items-center justify-between px-4 font-bold">
+            <div className="text-large">
+              <p>新着レシピ</p>
+            </div>
+            <div className="text-gray">
+              <Link href="/fav">
+                <p>マイレシピを作成</p>
+              </Link>
             </div>
           </div>
 
           <ImageCarousel>
-            {mockData.map((data, index) => (
+            {mockDataFav.map((data, index) => (
               <ImageComponent
                 key={`top-carousel-${index}`}
                 title={data.title}
@@ -103,15 +83,19 @@ const Fav: NextPage = () => {
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-end justify-between px-4 font-bold">
-            <div className="text-large">お気に入りレシピ</div>
-            <div className="contents text-gray">
-              <Link href="/fav">マイレシピを見る</Link>
+          <div className="flex items-center justify-between px-4 font-bold">
+            <div className="text-large">
+              <p>お気に入りレシピ</p>
+            </div>
+            <div className="text-gray">
+              <Link href="/fav">
+                <p>マイレシピを見る</p>
+              </Link>
             </div>
           </div>
           <div className="space-y-2">
             <ImageGrid addClassNames="mb-8">
-              {mockData.slice(0, 10).map((data, index) => (
+              {mockDataFav.slice(0, 10).map((data, index) => (
                 <ImageComponent
                   key={`grid-${index}`}
                   src={data.src}
