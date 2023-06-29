@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 import { RecipeAppT10Chefs } from "@/mock";
@@ -5,6 +7,7 @@ import { RecipeAppT10Chefs } from "@/mock";
 import { Button } from "@/components/button";
 import { ArrowIcon } from "@/components/icons";
 import { ImageComponent } from "@/components/image";
+import { TabsLink } from "@/components/tab";
 
 /* eslint-disable import/first */
 const followerNumber = 5678;
@@ -37,14 +40,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-lightGray">
-              <Link href={`/chef/${id}`}>レシピ</Link>
-            </div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={`/chef/${id}`}>リンク</Link>
-            </div>
-          </div>
+          <TabsLink />
         </div>
         <div className="mb-8 mt-2">
           <ul className="pl-3">

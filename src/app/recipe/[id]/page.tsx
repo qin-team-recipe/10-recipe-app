@@ -1,10 +1,13 @@
+"use client";
+
 import Link from "next/link";
 
 import { mockDataRecipe } from "@/mock";
 
 import { Button } from "@/components/button";
 import { ArrowIcon } from "@/components/icons";
-import { ImageComponent, ImageGrid } from "@/components/image";
+import { ImageComponent } from "@/components/image";
+import { TabsLink } from "@/components/tab";
 
 /* eslint-disable import/first */
 const followerNumber = 5678;
@@ -39,12 +42,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-lightGray">作り方</div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href="/">材料</Link>
-            </div>
-          </div>
+          <TabsLink />
           <ul>
             <li>A</li>
             <li>B</li>
