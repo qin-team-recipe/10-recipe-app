@@ -19,7 +19,7 @@ const tabMock = [
   {
     title: "リンク",
     href: `/link`,
-    slug: "/link/2",
+    slug: "/chef/1/link",
   },
 ];
 
