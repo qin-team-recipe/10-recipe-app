@@ -1,5 +1,7 @@
 import { NextPage } from "next";
 
+import { Chef } from "@/types/tableType";
+
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 type Mock = {
@@ -30,6 +32,30 @@ const Home: NextPage = () => {
       src: "/images/sample_chef.jpg",
     })),
   ];
+  // サーバーコンポーネントの場合
+  const getChef = async () => {
+    const data = await fetch("http://localhost:3000/api/chef");
+    // 型はtableType.tsにapiのパスと同じ名前の型があるのでそれを使用する
+    const chef: Chef = await data.json();
+    return chef;
+  };
+  // const Home: NextPage = () => {　とすると型えらになるので、関数を定義してそこで非同期処理をしている
+  const chef = getChef();
+  console.log(chef);
+
+  // クライアントコンポーネントの場合
+  // const [state, setState] = useState<Chef>();
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  /* { cache: "no-cache" }としないとSSGのような挙動になりデータがキャッシュされる
+   今後、データの追加を試したいときに、キャッシュされているとデータが追加されないのでこのようにすることでキャッシュを無効化して確認ができる */
+  //     const data = await fetch("http://localhost:3000/api/chef", { cache: "no-cache" });
+  //     const chef = await data.json();
+  //     setState(chef);
+  //   };
+  //   fetchData();
+  // }, []);
+  // console.log(state);
 
   return (
     <>
