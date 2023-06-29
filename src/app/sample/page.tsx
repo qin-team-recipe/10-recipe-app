@@ -39,7 +39,7 @@ const Home: NextPage = () => {
     const chef: Chef = await data.json();
     return chef;
   };
-  // const Home: NextPage = () => {　とすると型えらになるので、関数を定義してそこで非同期処理をしている
+  // const Home: NextPage = () => {　とすると型エラーになるので、関数を定義してそこで非同期処理をしている
   const chef = getChef();
   console.log(chef);
 
