@@ -7,6 +7,7 @@ export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 
+// TODO:propsにより呼び出す方式に変更（現状：hrefがundefinedとなる症状を解消できず）
 // type TabsLinkProps = {
 //   title: string;
 //   href: string;
