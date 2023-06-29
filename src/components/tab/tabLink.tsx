@@ -29,8 +29,6 @@ export const TabsLink = () => {
   const pathname = usePathname();
   return (
     <TabWrapper>
-      {/* 次の書き方は残念ながらエラー解消できず...
-       const url = new URL(tab.slug, process.env.NEXT_PUBLIC_BASE_URL); */}
       {tabMock.map((tab: any) => {
         //次の書き方は残念ながらエラー解消できず...
         // const url = new URL(tab.slug, process.env.NEXT_PUBLIC_BASE_URL);
