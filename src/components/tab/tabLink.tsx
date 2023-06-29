@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { TabWrapper } from "@/components/tab/tabWrapper";
+
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 
-type TabsLinkProps = {
-  href?: string;
-  slug?: string;
-};
-
+// type TabsLinkProps = {
+//   title: string;
+//   href: string;
+//   slug: string;
+// };
 const tabMock = [
   {
     title: "レシピ",
@@ -23,30 +25,28 @@ const tabMock = [
   },
 ];
 
-export const TabsLink: React.FC<TabsLinkProps> = (props) => {
+export const TabsLink = () => {
   const pathname = usePathname();
   return (
-    <div className="flex items-center justify-center py-12">
-      <div className="flex w-full max-w-md flex-col gap-y-2">
-        <div className="flex items-center justify-between p-1">
-          {tabMock.map((tab) => {
-            //次の書き方は残念ながらエラー解消できず...
-            // const url = new URL(tab.slug, process.env.NEXT_PUBLIC_BASE_URL);
-            return (
-              <Link
-                key={tab.href}
-                // TODO: url検証、生成ロジック
-                href={tab.slug as unknown as URL}
-                className={`w-full border-b-2 p-2 text-center outline-none ${
-                  pathname === tab.slug ? " border-gray" : "border-lightGray"
-                } `}
-              >
-                {tab.title}
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </div>
+    <TabWrapper>
+      {/* 次の書き方は残念ながらエラー解消できず...
+       const url = new URL(tab.slug, process.env.NEXT_PUBLIC_BASE_URL); */}
+      {tabMock.map((tab: any) => {
+        //次の書き方は残念ながらエラー解消できず...
+        // const url = new URL(tab.slug, process.env.NEXT_PUBLIC_BASE_URL);
+        return (
+          <Link
+            key={tab.href}
+            // TODO: url検証、生成ロジック
+            href={tab.slug as unknown as URL}
+            className={`w-full border-b-2 p-2 text-center outline-none ${
+              pathname === tab.slug ? " border-gray" : "border-lightGray"
+            } `}
+          >
+            {tab.title}
+          </Link>
+        );
+      })}
+    </TabWrapper>
   );
 };
