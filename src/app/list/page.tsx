@@ -3,6 +3,17 @@ import { NextPage } from "next";
 const Page: NextPage = () => {
   const isLogin = true;
 
+  const recipe = [
+    {
+      id: 0,
+      title: "じぶんメモ",
+    },
+    {
+      id: 1,
+      title: "グラタン",
+    },
+  ];
+
   const shopping_list = [
     {
       id: 0,
@@ -15,7 +26,7 @@ const Page: NextPage = () => {
     {
       id: 1,
       created_at: "2023-06-20",
-      recipe_id: 2,
+      recipe_id: 1,
       step: 1,
       updated_at: "2023-06-20",
       user_id: 0,
@@ -79,7 +90,7 @@ const Page: NextPage = () => {
       name: "きゅうり",
       created_at: "2023-06-20",
       quantity: 3,
-      recipe_id: 0,
+      recipe_id: 1,
       updated_at: "2023-06-20",
     },
     {
@@ -87,7 +98,7 @@ const Page: NextPage = () => {
       name: "ピーマン",
       created_at: "2023-06-20",
       quantity: 5,
-      recipe_id: 0,
+      recipe_id: 1,
       updated_at: "2023-06-20",
     },
   ];
@@ -98,104 +109,58 @@ const Page: NextPage = () => {
       {isLogin ? (
         <div>
           <div className="mt-3 flex justify-between p-3 [border-bottom:1px_solid_lightgray]">
-            <p className="text-[18px] font-bold">じぶんメモ</p>
-            <p className="w-[28px] cursor-pointer text-[20px]">＋</p>
+            <p className="text-large font-bold">じぶんメモ</p>
+            <p className="w-8 cursor-pointer text-large">＋</p>
           </div>
           <div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
+            {ingredient.map((item) => {
+              return (
+                <div key={item.id} className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
+                  <div className="flex">
+                    <button className="p-1">
+                      <img className="w-6" src="/images/check_on.svg" alt="" />
+                    </button>
+                    <p className="p-1 text-lightGray">{item.name}</p>
+                  </div>
+                  <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
+                </div>
+              );
+            })}{" "}
           </div>
           <div className="mt-3 flex justify-between p-3 [border-bottom:1px_solid_lightgray]">
-            <p className="text-[18px] font-bold">グラタン</p>
-            <p className="w-[28px] cursor-pointer text-[20px]">︙</p>
+            <p className="text-large font-bold">グラタン</p>
+            <p className="w-8 cursor-pointer text-large">︙</p>
           </div>
           <div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
-            <div className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
-              <div className="flex">
-                <button className="p-1">
-                  <img className="w-[24px]" src="/images/check_on.svg" alt="" />
-                </button>
-                <p className="p-1">キャベツ</p>
-              </div>
-              <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
-            </div>
+            {ingredient.map((item) => {
+              return (
+                <div key={item.id} className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
+                  <div className="flex">
+                    <button className="p-1">
+                      <img className="w-6" src="/images/check_off.svg" alt="" />
+                    </button>
+                    <p className="p-1">{item.name}</p>
+                  </div>
+                  <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
+                </div>
+              );
+            })}{" "}
           </div>
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <img className="w-[240px]" src="/images/sample_list.png" alt="" />
+          <img className="w-64" src="/images/sample_list.png" alt="" />
           <p className="py-2 text-center font-bold">ログインをお願いします</p>
-          <p className="text-center text-[14px]">こちらの機能を利用するにはログインが必要です</p>
-          <div className="flex w-[370px] justify-between py-4">
-            <button className="w-[180px] rounded-[10px]  bg-blue p-[10px] font-bold text-white hover:opacity-[.8]">
+          <p className="text-center text-medium">こちらの機能を利用するにはログインが必要です</p>
+          <div className="flex w-96 justify-between py-4">
+            <button className="w-44 rounded-[10px]  bg-blue p-[10px] font-bold text-white hover:opacity-[.8]">
               Google ログイン
             </button>
-            <button className="w-[180px] rounded-[10px]  bg-black p-[10px] font-bold text-white hover:opacity-[.8]">
+            <button className="w-44 rounded-[10px]  bg-black p-[10px] font-bold text-white hover:opacity-[.8]">
               Apple ログイン
             </button>
           </div>
-          <p className="text-center text-[12px]">↑ cookiesを使ってログインっぽい挙動にしてます ↑</p>
+          <p className="text-center text-small">↑ cookiesを使ってログインっぽい挙動にしてます ↑</p>
         </div>
       )}
     </>
