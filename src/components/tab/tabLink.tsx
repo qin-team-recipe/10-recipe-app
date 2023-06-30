@@ -13,6 +13,8 @@ export const generateStaticParams = () => {
 //   href: string;
 //   slug: string;
 // };
+
+// TODO：slugを動的に渡す方法未実装
 const tabMock = [
   {
     title: "レシピ",
