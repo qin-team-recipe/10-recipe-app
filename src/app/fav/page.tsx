@@ -1,3 +1,4 @@
+//FavPage修正
 import { NextPage } from "next";
 import Link from "next/link";
 

@@ -1,3 +1,4 @@
+//Favmockデータ追加
 type MockFav = {
   title: string;
   description?: string;
