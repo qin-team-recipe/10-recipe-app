@@ -32,10 +32,13 @@ const Home = async () => {
     })),
   ];
   // サーバーコンポーネントの場合
-  const data = await fetch("http://localhost:3000/api/chef");
-  // 型はtableType.tsにapiのパスと同じ名前の型があるのでそれを使用する
-  const chef: Chef = await data.json();
-  console.log(chef);
+  // revalidateは何秒キャッシュされたデータを使うかの設定
+  // 開発中はキャッシュが邪魔になるので0秒に設定
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 0 } });
+  if (!res.ok) {
+    throw new Error("データの取得に失敗しました");
+  }
+  const chefs: Chef[] = await res.json();
 
   // クライアントコンポーネントの場合
   // const [state, setState] = useState<Chef>();
