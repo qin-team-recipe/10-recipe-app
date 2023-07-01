@@ -82,6 +82,18 @@ const Home = async () => {
         nameLabel="たけちゃんシェフ"
         ratio="3/4"
       />
+      {/* 取得してきたデータの使い方 */}
+      {chefs.map((chef) => (
+        <ImageComponent
+          key={chef.id}
+          src={chef.image_url}
+          alt={`${chef.name}の画像`}
+          nameLabel={chef.name}
+          ratio="3/4"
+          width="large"
+          addClassNames="mb-8"
+        />
+      ))}
     </>
   );
 };
