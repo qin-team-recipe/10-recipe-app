@@ -1,5 +1,3 @@
-import { NextPage } from "next";
-
 import { Chef } from "@/types/tableType";
 
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
@@ -12,7 +10,8 @@ type Mock = {
   src: string;
 };
 
-const Home: NextPage = () => {
+// fetchする場合はNextPage型は削除してasyncをつける
+const Home = async () => {
   const mockData: Mock[] = [
     {
       title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
@@ -33,14 +32,9 @@ const Home: NextPage = () => {
     })),
   ];
   // サーバーコンポーネントの場合
-  const getChef = async () => {
-    const data = await fetch("http://localhost:3000/api/chef");
-    // 型はtableType.tsにapiのパスと同じ名前の型があるのでそれを使用する
-    const chef: Chef = await data.json();
-    return chef;
-  };
-  // const Home: NextPage = () => {　とすると型えらになるので、関数を定義してそこで非同期処理をしている
-  const chef = getChef();
+  const data = await fetch("http://localhost:3000/api/chef");
+  // 型はtableType.tsにapiのパスと同じ名前の型があるのでそれを使用する
+  const chef: Chef = await data.json();
   console.log(chef);
 
   // クライアントコンポーネントの場合
