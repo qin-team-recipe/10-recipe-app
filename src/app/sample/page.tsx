@@ -1,36 +1,10 @@
+import { mockData } from "@/mock/SampleMockData";
 import { Chef } from "@/types/tableType";
 
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
-type Mock = {
-  title: string;
-  description?: string;
-  favNum?: number;
-  nameLabel?: string;
-  src: string;
-};
-
 // fetchする場合はNextPage型は削除してasyncをつける
 const Home = async () => {
-  const mockData: Mock[] = [
-    {
-      title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      description: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      favNum: 2000,
-      nameLabel: "山田シェフ",
-      src: "/images/sample_chef.jpg",
-    },
-    {
-      title: "トマトとルッコラ",
-      description: "トマトとルッコラのマルゲリータ",
-      nameLabel: "武田シェフ",
-      src: "/images/sample_chef.jpg",
-    },
-    ...[...Array(10)].map((_) => ({
-      title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
-      src: "/images/sample_chef.jpg",
-    })),
-  ];
   // サーバーコンポーネントの場合
   // revalidateは何秒キャッシュされたデータを使うかの設定
   // 開発中はキャッシュが邪魔になるので0秒に設定
