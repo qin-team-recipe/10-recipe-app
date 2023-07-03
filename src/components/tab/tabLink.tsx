@@ -41,7 +41,7 @@ export const TabsLink = () => {
             // TODO: url検証、生成ロジック
             href={tab.slug as unknown as URL}
             className={`w-full border-b-2 p-2 text-center outline-none ${
-              pathname === tab.slug ? " border-gray" : "border-lightGray"
+              pathname === tab.slug ? " border-gray font-semibold" : "border-lightGray"
             } `}
           >
             {tab.title}
