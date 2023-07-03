@@ -9,7 +9,6 @@ import { ArrowIcon } from "@/components/icons";
 import { ImageComponent } from "@/components/image";
 import { TabsLink } from "@/components/tab";
 
-/* eslint-disable import/first */
 const followerNumber = 5678;
 
 export const generateStaticParams = () => {
