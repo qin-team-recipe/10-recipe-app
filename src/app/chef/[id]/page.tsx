@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
