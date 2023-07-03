@@ -8,7 +8,6 @@ import { ImageComponent } from "@/components/image";
 import { TabsLink } from "@/components/tab";
 
 const followerNumber = 5678;
-
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
@@ -17,6 +16,7 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+
   return (
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
@@ -37,7 +37,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <TabsLink />
+          <TabsLink tabMock={[]} />
         </div>
         <div className="mb-8 mt-2">
           <ul className="pl-3">
