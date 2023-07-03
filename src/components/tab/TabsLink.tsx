@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { TabWrapper } from "@/components/tab/tabWrapper";
+import { TabWrapper } from "@/components/tab/TabWrapper";
 
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
