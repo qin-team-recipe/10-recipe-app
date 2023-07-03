@@ -10,16 +10,16 @@ const Page = () => {
   const titleClass = "mb-1 ml-4 font-bold text-black";
   return (
     <div>
-      <div className="flex items-center justify-between border-b border-lightGray px-3 py-4">
+      <header className="flex items-center justify-between border-b border-lightGray px-3 py-4">
         <CloseButton />
         <div className="flex items-center gap-4 font-bold">
           <button className="text-gray">下書き</button>
           <button className="text-tomato">作成する</button>
         </div>
-      </div>
+      </header>
       <div className="mb-12 mt-5 flex flex-col gap-8">
         <div>
-          <div className={titleClass}>レシピ名</div>
+          <h3 className={titleClass}>レシピ名</h3>
           <input
             className="w-full border-y border-lightGray py-3 pl-5 outline-none"
             type="text"
@@ -28,7 +28,7 @@ const Page = () => {
         </div>
         <div>
           <div className="flex items-center gap-1">
-            <div className={titleClass}>材料 / 2人前</div>
+            <h3 className={titleClass}>材料 / 2人前</h3>
             <Edit />
           </div>
           <div className="border-y border-lightGray">
@@ -39,7 +39,7 @@ const Page = () => {
           <AddButton title={mockDataNewRecipe.material.buttonTitle} />
         </div>
         <div>
-          <div className={titleClass}>作り方</div>
+          <h3 className={titleClass}>作り方</h3>
           <div className="border-y border-lightGray">
             {mockDataNewRecipe.recipeStep.items.map((item, i) => (
               <RecipeStepItem
@@ -56,7 +56,7 @@ const Page = () => {
           </div>
         </div>
         <div>
-          <div className={titleClass}>画像</div>
+          <h3 className={titleClass}>画像</h3>
           <ImageCarousel>
             {mockDataNewRecipe.image.items.map((item) => (
               <ImageComponent src={item.image_url} key={item.id} alt="" width="small" ratio="1/1" isRounded />
@@ -68,10 +68,10 @@ const Page = () => {
           </div>
         </div>
         <div>
-          <div className={titleClass}>リンク</div>
+          <h3 className={titleClass}>リンク</h3>
           <div className="border-y border-lightGray">
             {mockDataNewRecipe.link.items.map((item) => (
-              <IngredientListItem title={item.url} external key={item.id} />
+              <IngredientListItem title={item.url} url={item.url} isExternalLink key={item.id} />
             ))}
           </div>
           <div className="ml-4 mt-2 flex items-center gap-1">

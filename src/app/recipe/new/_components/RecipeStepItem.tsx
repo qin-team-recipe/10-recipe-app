@@ -11,7 +11,7 @@ export const RecipeStepItem: React.FC<Props> = (props) => {
         <span className=" text-medium text-white">{props.stepNumber}</span>
       </div>
       <div>
-        <div>{props.description}</div>
+        <p>{props.description}</p>
         <p className="text-small text-gray">{props.supplement}</p>
       </div>
     </div>
