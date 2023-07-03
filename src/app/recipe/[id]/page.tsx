@@ -18,6 +18,16 @@ export const generateStaticParams = () => {
 
 const RecipePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const tabMock = [
+    {
+      label: "作り方",
+      href: `/recipe/${id}`,
+    },
+    {
+      label: "材料",
+      href: `/recipe/${id}/ingredients`,
+    },
+  ];
   return (
     <div className="relative mx-auto">
       <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
@@ -40,7 +50,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <TabsLink />
+          <TabsLink tabMock={tabMock} />
           <ul>
             <li>A</li>
             <li>B</li>

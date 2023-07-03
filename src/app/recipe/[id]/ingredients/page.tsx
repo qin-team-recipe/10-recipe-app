@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
+import { mockDataRecipe } from "@/mock";
 
 import { Button } from "@/components/button";
 import { ArrowIcon } from "@/components/icons";
-import { ImageComponent, ImageGrid } from "@/components/image";
+import { ImageComponent } from "@/components/image";
 import { TabsLink } from "@/components/tab";
 
 /* eslint-disable import/first */
@@ -16,21 +16,21 @@ export const generateStaticParams = () => {
 // https://nextjs.org/docs/app/api-reference/functions/generate-static-params
 // 上記参考に動的ルーティングに対応しておりますが、DBと合わせた際の挙動まで考えて実装していません。
 
-const ChefPage = ({ params }: { params: { id: string } }) => {
+const IngredientPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const tabMock = [
     {
-      label: "レシピ",
-      href: `/chef/${id}`,
+      label: "作り方",
+      href: `/recipe/${id}`,
     },
     {
-      label: "リンク",
-      href: `/chef/${id}/link`,
+      label: "材料",
+      href: `/recipe/${id}/ingredients`,
     },
   ];
   return (
     <div className="relative mx-auto">
-      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
+      <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href="/">
           <ArrowIcon />
@@ -38,35 +38,28 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
       </button>
       <div className="pt-4">
         <div className="px-4 pb-3 text-large">
-          {RecipeAppT10Chefs[0].name} <span className="text-medium">シェフ</span>
+          <div>シェフのレシピ</div>
         </div>
         <div className="px-4">
-          <div>{RecipeAppT10Chefs[0].description}</div>
+          <div>
+            吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
+          </div>
           <div className="my-3">{followerNumber}フォロアー</div>
           <div>
-            <Button color="tomato">フォローする</Button>
+            <Button color="tomato">お気に入りに追加</Button>
           </div>
         </div>
         <div>
           <TabsLink tabMock={tabMock} />
+          <ul>
+            <li>A</li>
+            <li>B</li>
+            <li>C</li>
+          </ul>
         </div>
-        <ImageGrid addClassNames="mb-8 mt-4">
-          {mockDataRecipe.slice(0, 8).map((data, index) => (
-            <Link href={`/recipe/${id}`} key={id}>
-              <ImageComponent
-                key={`grid-${index}`}
-                src={data.image_url1}
-                alt={`${data.title}の画像`}
-                width="full"
-                ratio="1/1"
-                isRounded
-              />
-            </Link>
-          ))}
-        </ImageGrid>
       </div>
     </div>
   );
 };
 
-export default ChefPage;
+export default IngredientPage;
