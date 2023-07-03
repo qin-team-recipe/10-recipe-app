@@ -21,7 +21,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href={{ pathname: `/` }}>
+        <Link href="/">
           <ArrowIcon />
         </Link>
       </button>
