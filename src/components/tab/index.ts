@@ -1,1 +1,1 @@
-export { TabsLink } from "./tabLink";
+export { TabsLink } from "./TabsLink";
