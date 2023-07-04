@@ -1,8 +1,6 @@
 import { TabsLink } from "@/components/tab";
 import { TopSection } from "@/app/recipe/[id]/_common";
 
-/* eslint-disable import/first */
-
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
