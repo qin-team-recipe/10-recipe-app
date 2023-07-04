@@ -1,13 +1,8 @@
 import Link from "next/link";
 
-import { RecipeAppT10Chefs } from "@/mock";
-
-import { Button } from "@/components/button";
-import { ArrowIcon } from "@/components/icons";
-import { ImageComponent } from "@/components/image";
 import { TabsLink } from "@/components/tab";
+import { TopSection } from "@/app/chef/[id]/_common";
 
-const followerNumber = 5678;
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
@@ -28,65 +23,52 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
   ];
   return (
     <div className="relative mx-auto">
-      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
-      <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href="/">
-          <ArrowIcon />
-        </Link>
-      </button>
-      <div className="pt-4">
-        <div className="px-4 pb-3 text-large">
-          {RecipeAppT10Chefs[0].name} <span className="text-medium">シェフ</span>
-        </div>
-        <div className="px-4">
-          <div>{RecipeAppT10Chefs[0].description}</div>
-          <div className="my-3">{followerNumber}フォロアー</div>
-          <div>
-            <Button color="tomato">フォローする</Button>
-          </div>
-        </div>
-        <div>
-          <TabsLink tabMock={tabMock} />
-        </div>
-        <div className="mb-8 mt-2">
-          <ul className="pl-3">
-            <li className="flex border-b border-lightGray pb-3">
-              <div className="mr-2 h-10 w-10 bg-tomato" />
-              <div className="flex flex-col">
-                Instagram<div></div>
-                <div className="text-small">{} フォロワー ・</div>
-                {}
+      <TopSection
+        params={{
+          id: `${id}`,
+        }}
+      />
+      <div>
+        <TabsLink tabMock={tabMock} />
+      </div>
+      <div className="mb-8 mt-2">
+        <ul className="pl-3">
+          <li className="flex border-b border-lightGray pb-3">
+            <div className="mr-2 h-10 w-10 bg-tomato" />
+            <div className="flex flex-col">
+              Instagram<div></div>
+              <div className="text-small">{} フォロワー ・</div>
+              {}
+            </div>
+          </li>
+          <li className="flex border-b border-lightGray py-3">
+            <div className="mr-2 h-10 w-10 bg-tomato" />
+            <div className="flex flex-col">
+              Twitter<div></div>
+              <div className="text-small">{} フォロワー ・</div>
+              {}
+            </div>
+          </li>
+          <li className="flex border-b border-lightGray py-3">
+            <div className="mr-2 h-10 w-10 bg-tomato" />
+            <div className="flex flex-col">
+              YouTube<div></div>
+              <div className="text-small">{} フォロワー ・</div>
+              {}
+            </div>
+          </li>
+          <li className="flex border-b border-lightGray py-3">
+            <div className="mr-2 h-10 w-10 bg-tomato" />
+            <div className="flex flex-col">
+              Hoge Hoge<div></div>
+              <div className="text-small">
+                <Link target="_blank" href={{ pathname: `https://example.com/` }}>
+                  https://example.com/
+                </Link>
               </div>
-            </li>
-            <li className="flex border-b border-lightGray py-3">
-              <div className="mr-2 h-10 w-10 bg-tomato" />
-              <div className="flex flex-col">
-                Twitter<div></div>
-                <div className="text-small">{} フォロワー ・</div>
-                {}
-              </div>
-            </li>
-            <li className="flex border-b border-lightGray py-3">
-              <div className="mr-2 h-10 w-10 bg-tomato" />
-              <div className="flex flex-col">
-                YouTube<div></div>
-                <div className="text-small">{} フォロワー ・</div>
-                {}
-              </div>
-            </li>
-            <li className="flex border-b border-lightGray py-3">
-              <div className="mr-2 h-10 w-10 bg-tomato" />
-              <div className="flex flex-col">
-                Hoge Hoge<div></div>
-                <div className="text-small">
-                  <Link target="_blank" href={{ pathname: `https://example.com/` }}>
-                    https://example.com/
-                  </Link>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
