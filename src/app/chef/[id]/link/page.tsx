@@ -31,7 +31,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
       <div>
         <TabsLink tabMock={tabMock} />
       </div>
-      <div className="mb-8 mt-2">
+      <div className="mb-8 mt-4">
         <ul className="pl-3">
           <li className="flex border-b border-lightGray pb-3">
             <div className="mr-2 h-10 w-10 bg-tomato" />
