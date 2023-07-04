@@ -1,5 +1,3 @@
-import { loadDefaultErrorComponents } from "next/dist/server/load-components";
-
 type MockRecipe = {
   id: string;
   title: string;
