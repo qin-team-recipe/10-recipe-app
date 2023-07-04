@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-import { Button } from "@/components/button";
+import { Button, ButtonToggle } from "@/components/button";
 
 type Mock = {};
 
@@ -10,14 +10,10 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="py-1">
-        <Button bgColor="tomato" fontColor="white" size="small">
-          お気に入りに追加
-        </Button>
+        <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入りから削除" isChecked />
       </div>
       <div className="py-1">
-        <Button bgColor="white" fontColor="tomato" size="small" isBorder>
-          お気に入りから削除
-        </Button>
+        <ButtonToggle initialText="フォローする" clickedText="フォロー中" />
       </div>
       <div className="py-1">
         <Button bgColor="black" fontColor="white" size="medium" hoverAction>
