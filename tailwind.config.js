@@ -14,6 +14,9 @@ module.exports = {
       aspectRatio: {
         "3/4": "3/4",
       },
+      justifyContent: {
+        start: "flex-start",
+      },
     },
     fontSize: {
       title: "24px",
