@@ -3,7 +3,7 @@ import Link from "next/link";
 import { RecipeAppT10Chefs } from "@/mock";
 
 import { Button } from "@/components/button";
-import { ArrowIcon } from "@/components/icons";
+import { Icon } from "@/components/icon/Icon";
 import { ImageComponent } from "@/components/image";
 
 /* eslint-disable import/first */
@@ -22,7 +22,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href={{ pathname: `/` }}>
-          <ArrowIcon />
+          <Icon type="arrowLeft" color="white" />
         </Link>
       </button>
       <div className="pt-4">

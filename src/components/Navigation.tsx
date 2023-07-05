@@ -1,10 +1,10 @@
 import { NavLink } from "@/components/button";
-import { FavIcon, SearchIcon, ShoppingCartIcon } from "@/components/icons";
+import { Icon } from "@/components/icon/Icon";
 
 const labels = [
-  { href: "/", label: "話題を検索", icon: <SearchIcon /> },
-  { href: "/fav", label: "お気に入り", icon: <FavIcon /> },
-  { href: "/list", label: "買い物リスト", icon: <ShoppingCartIcon /> },
+  { href: "/", label: "話題を検索", icon: <Icon type="search" /> },
+  { href: "/fav", label: "お気に入り", icon: <Icon type="favorite" /> },
+  { href: "/list", label: "買い物リスト", icon: <Icon type="shoppingCart" /> },
 ];
 
 // TODO: 仮の左カラム兼、フッターなので、後で対応お願いします。
