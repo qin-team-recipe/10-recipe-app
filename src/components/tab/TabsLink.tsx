@@ -1,40 +1,37 @@
-"use client";
-
-import { UrlObject } from "url";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
+import cc from "classcat";
 
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 
 type TabsLinkProps = {
-  tabMock: {
+  tabs: {
     label: string;
     href: string;
+    isActive?: boolean;
   }[];
 };
 
-export const TabsLink: React.FC<TabsLinkProps> = ({ tabMock }) => {
-  const pathname = usePathname();
+export const TabsLink: React.FC<TabsLinkProps> = ({ tabs }) => {
+  // const pathname = usePathname();
 
   return (
     <div className="flex items-center justify-center py-12">
       <div className="flex w-full max-w-md flex-col gap-y-2">
         <div className="flex items-center justify-between p-1">
-          {tabMock.map((tab) => {
-            const isActive = pathname.endsWith(tab.href);
+          {tabs.map((tab) => {
+            const tabClass = cc([
+              "w-full border-b-2 border-lightGray p-2 text-center text-small",
+              {
+                "border-black font-semibold border-b-2": tab.isActive,
+              },
+            ]);
             return (
-              <Link
-                className={`w-full border-b-2 p-2 text-center outline-none ${
-                  isActive ? " border-gray font-semibold" : "border-lightGray"
-                } `}
-                // TODO: url検証、生成ロジック
-                href={tab.href as unknown as UrlObject}
-                key={tab.label}
-              >
+              <div key={tab.href} className={tabClass}>
                 {tab.label}
-              </Link>
+              </div>
             );
           })}
         </div>
