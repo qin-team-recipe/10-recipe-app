@@ -1,4 +1,4 @@
-import { TabLinks, type Tab } from "@/components/tab";
+import { TabLinks, type Tab } from "@/components/TabLinks";
 import { TopSection } from "@/app/recipe/[id]/_common";
 
 export const generateStaticParams = () => {

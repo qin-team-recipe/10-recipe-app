@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { TabLinks, type Tab } from "@/components/tab";
+import { TabLinks, type Tab } from "@/components/TabLinks";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 export const generateStaticParams = () => {
