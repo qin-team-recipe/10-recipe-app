@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 const Page: NextPage = () => {
-  const isLogin = true;
+  const isLogin = false;
 
   const recipe = [
     {
@@ -105,43 +105,43 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <p className="w-full p-2 text-center font-bold [border-bottom:solid_1px_lightgray]">買い物リスト</p>
+      <p className="w-full border-b border-lightGray p-2 text-center font-bold">買い物リスト</p>
       {isLogin ? (
         <div>
-          <div className="mt-3 flex justify-between p-3 [border-bottom:1px_solid_lightgray]">
+          <div className="mt-3 flex justify-between border-b border-solid border-lightGray p-3">
             <p className="text-large font-bold">じぶんメモ</p>
             <p className="w-8 cursor-pointer text-large">＋</p>
           </div>
           <div>
             {ingredient.map((item) => {
               return (
-                <div key={item.id} className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
+                <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
                       <img className="w-6" src="/images/check_on.svg" alt="" />
                     </button>
                     <p className="p-1 text-lightGray">{item.name}</p>
                   </div>
-                  <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
+                  <p className="cursor-pointer p-1 text-tomato hover:underline">削除</p>
                 </div>
               );
             })}{" "}
           </div>
-          <div className="mt-3 flex justify-between p-3 [border-bottom:1px_solid_lightgray]">
+          <div className="mt-3 flex justify-between border-b border-solid border-lightGray p-3">
             <p className="text-large font-bold">グラタン</p>
             <p className="w-8 cursor-pointer text-large">︙</p>
           </div>
           <div>
             {ingredient.map((item) => {
               return (
-                <div key={item.id} className="flex justify-between px-3 py-2 [border-bottom:1px_solid_lightgray]">
+                <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
                       <img className="w-6" src="/images/check_off.svg" alt="" />
                     </button>
                     <p className="p-1">{item.name}</p>
                   </div>
-                  <p className="cursor-pointer p-1 text-tomato hover:[text-decoration-line:underline]">削除</p>
+                  <p className="cursor-pointer p-1 text-tomato hover:underline">削除</p>
                 </div>
               );
             })}{" "}
@@ -153,10 +153,10 @@ const Page: NextPage = () => {
           <p className="py-2 text-center font-bold">ログインをお願いします</p>
           <p className="text-center text-medium">こちらの機能を利用するにはログインが必要です</p>
           <div className="flex w-96 justify-between py-4">
-            <button className="w-44 rounded-[10px]  bg-blue p-[10px] font-bold text-white hover:opacity-[.8]">
+            <button className="w-44 rounded-xl  bg-blue p-2.5 font-bold text-white hover:opacity-80">
               Google ログイン
             </button>
-            <button className="w-44 rounded-[10px]  bg-black p-[10px] font-bold text-white hover:opacity-[.8]">
+            <button className="w-44 rounded-xl  bg-black p-2.5 font-bold text-white hover:opacity-80">
               Apple ログイン
             </button>
           </div>
