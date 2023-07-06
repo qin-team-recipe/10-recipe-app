@@ -19,7 +19,7 @@ export const TopSection = ({ params }: { params: { id: string } }) => {
 
   return (
     <div>
-      <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
+      <ImageComponent alt={`${RecipeAppT10Chefs[0].name}の画像`} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href="/">
           <ArrowIcon />
