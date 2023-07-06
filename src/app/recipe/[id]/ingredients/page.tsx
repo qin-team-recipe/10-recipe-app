@@ -9,7 +9,7 @@ export const generateStaticParams = () => {
 
 const IngredientPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabMock = [
+  const tabs = [
     {
       label: "作り方",
       href: `/recipe/${id}`,
@@ -17,6 +17,7 @@ const IngredientPage = ({ params }: { params: { id: string } }) => {
     {
       label: "材料",
       href: `/recipe/${id}/ingredients`,
+      isActive: true,
     },
   ];
   return (
@@ -27,7 +28,7 @@ const IngredientPage = ({ params }: { params: { id: string } }) => {
         }}
       />
       <div>
-        <TabsLink tabMock={tabMock} />
+        <TabsLink tabs={tabs} />
         <ul>
           <li>A</li>
           <li>B</li>

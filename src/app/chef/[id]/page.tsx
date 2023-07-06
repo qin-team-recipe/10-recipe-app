@@ -16,10 +16,11 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabMock = [
+  const tabs = [
     {
       label: "レシピ",
       href: `/chef/${id}`,
+      isActive: true,
     },
     {
       label: "リンク",
@@ -34,7 +35,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         }}
       />
       <div>
-        <TabsLink tabMock={tabMock} />
+        <TabsLink tabs={tabs} />
       </div>
       <ImageGrid addClassNames="mb-8 mt-4">
         {mockDataRecipe.slice(0, 8).map((data, index) => (
