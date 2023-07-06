@@ -1,7 +1,8 @@
 import { NextPage } from "next";
+import Image from "next/image";
 
 const Page: NextPage = () => {
-  const isLogin = false;
+  const isLogin = true;
 
   const recipe = [
     {
@@ -118,7 +119,7 @@ const Page: NextPage = () => {
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <img className="w-6" src="/images/check_on.svg" alt="" />
+                      <Image className="w-6" src="/images/check_on.svg" width="25" height="25" alt="" />
                     </button>
                     <p className="p-1 text-lightGray">{item.name}</p>
                   </div>
@@ -137,7 +138,7 @@ const Page: NextPage = () => {
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <img className="w-6" src="/images/check_off.svg" alt="" />
+                      <Image className="w-6" src="/images/check_off.svg" width="25" height="25" alt="" />
                     </button>
                     <p className="p-1">{item.name}</p>
                   </div>
@@ -149,7 +150,7 @@ const Page: NextPage = () => {
         </div>
       ) : (
         <div className="flex flex-col items-center">
-          <img className="w-64" src="/images/sample_list.png" alt="" />
+          <Image className="w-64" src="/images/sample_list.png" width="256" height="256" alt="" />
           <p className="py-2 text-center font-bold">ログインをお願いします</p>
           <p className="text-center text-medium">こちらの機能を利用するにはログインが必要です</p>
           <div className="flex w-96 justify-between py-4">
