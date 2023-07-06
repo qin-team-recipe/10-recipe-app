@@ -11,7 +11,7 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabMock = [
+  const tabs = [
     {
       label: "レシピ",
       href: `/chef/${id}`,
@@ -29,7 +29,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         }}
       />
       <div>
-        <TabLinks tabMock={tabMock} />
+        <TabLinks tabs={tabs} />
       </div>
       <div className="mb-8 mt-4">
         <ul className="pl-3">
