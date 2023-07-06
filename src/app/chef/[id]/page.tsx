@@ -3,7 +3,7 @@ import Link from "next/link";
 import { mockDataRecipe } from "@/mock";
 
 import { ImageComponent, ImageGrid } from "@/components/image";
-import { TabsLink } from "@/components/tab";
+import { TabLinks } from "@/components/tab";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 /* eslint-disable import/first */
@@ -35,7 +35,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         }}
       />
       <div>
-        <TabsLink tabs={tabs} />
+        <TabLinks tabs={tabs} />
       </div>
       <ImageGrid addClassNames="mb-8 mt-4">
         {mockDataRecipe.slice(0, 8).map((data, index) => (

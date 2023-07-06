@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { TabsLink } from "@/components/tab";
+import { TabLinks } from "@/components/tab";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 export const generateStaticParams = () => {
@@ -29,7 +29,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
         }}
       />
       <div>
-        <TabsLink tabMock={tabMock} />
+        <TabLinks tabMock={tabMock} />
       </div>
       <div className="mb-8 mt-4">
         <ul className="pl-3">

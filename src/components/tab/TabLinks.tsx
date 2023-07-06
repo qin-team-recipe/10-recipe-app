@@ -6,7 +6,7 @@ export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 
-type TabsLinkProps = {
+type TabLinksProps = {
   tabs: {
     label: string;
     href: string;
@@ -14,7 +14,7 @@ type TabsLinkProps = {
   }[];
 };
 
-export const TabsLink: React.FC<TabsLinkProps> = ({ tabs }) => {
+export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
   // const pathname = usePathname();
 
   return (
