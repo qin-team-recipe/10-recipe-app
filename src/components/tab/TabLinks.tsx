@@ -1,22 +1,20 @@
-import Link from "next/link";
-
 import cc from "classcat";
 
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 };
 
+export type Tab = {
+  label: string;
+  href: string;
+  isActive?: boolean;
+};
+
 type TabLinksProps = {
-  tabs: {
-    label: string;
-    href: string;
-    isActive?: boolean;
-  }[];
+  tabs: Tab[];
 };
 
 export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
-  // const pathname = usePathname();
-
   return (
     <div className="flex items-center justify-center py-12">
       <div className="flex w-full max-w-md flex-col gap-y-2">

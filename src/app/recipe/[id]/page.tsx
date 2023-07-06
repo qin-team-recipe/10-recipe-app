@@ -1,4 +1,4 @@
-import { TabLinks } from "@/components/tab";
+import { TabLinks, type Tab } from "@/components/tab";
 import { TopSection } from "@/app/recipe/[id]/_common";
 
 export const generateStaticParams = () => {
@@ -9,7 +9,7 @@ export const generateStaticParams = () => {
 
 const RecipePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabs = [
+  const tabs: Tab[] = [
     {
       label: "作り方",
       href: `/recipe/${id}`,

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { mockDataRecipe } from "@/mock";
 
 import { ImageComponent, ImageGrid } from "@/components/image";
-import { TabLinks } from "@/components/tab";
+import { Tab, TabLinks } from "@/components/tab";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 /* eslint-disable import/first */
@@ -16,7 +16,7 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabs = [
+  const tabs: Tab[] = [
     {
       label: "レシピ",
       href: `/chef/${id}`,

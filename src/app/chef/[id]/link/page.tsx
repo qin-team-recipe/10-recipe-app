@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { TabLinks } from "@/components/tab";
+import { TabLinks, type Tab } from "@/components/tab";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 export const generateStaticParams = () => {
@@ -11,7 +11,7 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const tabs = [
+  const tabs: Tab[] = [
     {
       label: "レシピ",
       href: `/chef/${id}`,
@@ -19,6 +19,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
     {
       label: "リンク",
       href: `/chef/${id}/link`,
+      isActive: true,
     },
   ];
   return (
