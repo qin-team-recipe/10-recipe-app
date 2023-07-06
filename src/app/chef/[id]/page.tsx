@@ -3,7 +3,7 @@ import Link from "next/link";
 import { mockDataRecipe } from "@/mock";
 
 import { ImageComponent, ImageGrid } from "@/components/image";
-import { Tab, TabLinks } from "@/components/tab";
+import { TabLinks, type Tab } from "@/components/tab";
 import { TopSection } from "@/app/chef/[id]/_common";
 
 /* eslint-disable import/first */
