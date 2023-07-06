@@ -21,9 +21,10 @@ export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
         <div className="flex items-center justify-between p-1">
           {tabs.map((tab) => {
             const tabClass = cc([
-              "w-full border-b-2 border-lightGray p-2 text-center text-small",
+              "w-full border-b-2 p-2 text-center text-small",
               {
                 "border-black font-semibold border-b-2": tab.isActive,
+                "border-lightGray": !tab.isActive,
               },
             ]);
             return (
