@@ -9,12 +9,16 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <small>お気に入り追加、フォローする用トグルボタン</small>
       <div className="py-1">
         <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入りから削除" isChecked />
       </div>
       <div className="py-1">
         <ButtonToggle initialText="フォローする" clickedText="フォロー中" />
       </div>
+      <br />
+      <hr />
+      <small>その他のボタン</small>
       <div className="py-1">
         <Button bgColor="black" fontColor="white" size="medium" hoverAction>
           Appleログイン
@@ -26,7 +30,7 @@ const Home: NextPage = () => {
         </Button>
       </div>
       <div className="py-1">
-        <Button bgColor="none" fontColor="tomato" size="medium" width="medium">
+        <Button bgColor="none" fontColor="tomato" size="medium" width="medium" isBorder>
           ログアウト
         </Button>
       </div>
