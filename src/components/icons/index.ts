@@ -3,3 +3,4 @@ export { SearchIcon } from "./SearchIcon";
 export { TopChefIcon } from "./TopChefIcon";
 export { ShoppingCartIcon } from "./ShoppingCartIcon";
 export { FavIcon } from "./FavIcon";
+export { CopyIcon } from "./CopyIcon";
