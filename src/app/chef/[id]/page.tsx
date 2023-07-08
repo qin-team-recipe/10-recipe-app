@@ -37,7 +37,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href="/">
-          <Icon type="arrowLeft" color="white" />
+          <Icon type="ArrowLeft" color="white" />
         </Link>
       </button>
       <div className="pt-4">

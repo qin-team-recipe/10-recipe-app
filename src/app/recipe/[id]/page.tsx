@@ -3,8 +3,8 @@ import Link from "next/link";
 import { mockDataRecipe } from "@/mock";
 
 import { Button } from "@/components/button";
-import { ArrowIcon } from "@/components/icons";
-import { ImageComponent, ImageGrid } from "@/components/image";
+import { Icon } from "@/components/icon/Icon";
+import { ImageComponent } from "@/components/image";
 
 /* eslint-disable import/first */
 const followerNumber = 5678;
@@ -22,7 +22,7 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
       <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href="/">
-          <ArrowIcon />
+          <Icon type="ArrowLeft" color="white" />
         </Link>
       </button>
       <div className="pt-4">
