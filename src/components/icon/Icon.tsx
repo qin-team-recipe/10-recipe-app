@@ -1,29 +1,29 @@
 import cc from "classcat";
+import {
+  ArrowLeft,
+  Circle,
+  CircleCheck,
+  Heart,
+  Menu,
+  Plus,
+  Search,
+  ShoppingCart,
+  UserCircle,
+} from "tabler-icons-react";
 
-import { Account } from "@/components/icon/assets/Account";
-import { ArrowLeft } from "@/components/icon/assets/ArrowLeft";
-import { Check } from "@/components/icon/assets/Check";
-import { Circle } from "@/components/icon/assets/Circle";
-import { Close } from "@/components/icon/assets/Close";
-import { Favorite } from "@/components/icon/assets/Favorite";
-import { Menu } from "@/components/icon/assets/Menu";
-import { Plus } from "@/components/icon/assets/Plus";
-import { Search } from "@/components/icon/assets/Search";
-import { ShoppingCart } from "@/components/icon/assets/ShoppingCart";
 import { SiteLogo } from "@/components/icon/assets/SiteLogo";
 
 export type IconType =
-  | "account"
-  | "arrowLeft"
-  | "check"
-  | "circle"
-  | "close"
-  | "favorite"
-  | "menu"
-  | "plus"
-  | "search"
-  | "shoppingCart"
-  | "siteLogo";
+  | "ArrowLeft"
+  | "Circle"
+  | "CircleCheck"
+  | "Heart"
+  | "Menu"
+  | "Plus"
+  | "Search"
+  | "ShoppingCart"
+  | "SiteLogo"
+  | "UserCircle";
 
 type IconProps = {
   type: IconType;
@@ -31,33 +31,33 @@ type IconProps = {
   color?: "black" | "gray" | "lightGray" | "tomato" | "white" | "organicColor";
   size?: "small" | "medium" | "large";
   addClassNames?: string;
+  // https://tabler-icons-react.vercel.app/ にないアイコンでassetsに追加したものを使用する場合はtrueにしてください。
+  isLocalSvg?: boolean;
 };
 
 export const Icon: React.FC<IconProps> = (props) => {
   const iconElm = (type: IconType) => {
     switch (type) {
-      case "account":
-        return <Account />;
-      case "arrowLeft":
-        return <ArrowLeft />;
-      case "circle":
-        return <Circle />;
-      case "check":
-        return <Check />;
-      case "close":
-        return <Close />;
-      case "favorite":
-        return <Favorite />;
-      case "menu":
-        return <Menu />;
-      case "plus":
-        return <Plus />;
-      case "search":
-        return <Search />;
-      case "shoppingCart":
-        return <ShoppingCart />;
-      case "siteLogo":
+      case "ArrowLeft":
+        return <ArrowLeft className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Circle":
+        return <Circle className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "CircleCheck":
+        return <CircleCheck className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Heart":
+        return <Heart className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Menu":
+        return <Menu className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Plus":
+        return <Plus className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Search":
+        return <Search className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "ShoppingCart":
+        return <ShoppingCart className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "SiteLogo":
         return <SiteLogo />;
+      case "UserCircle":
+        return <UserCircle className={cc([iconColor, iconSize, props.addClassNames])} />;
     }
   };
 
@@ -79,5 +79,9 @@ export const Icon: React.FC<IconProps> = (props) => {
     },
   ]);
 
-  return <i className={cc(["inline-block", iconColor, iconSize, props.addClassNames])}>{iconElm(props.type)}</i>;
+  return props.isLocalSvg ? (
+    <i className={cc(["inline-block", iconColor, iconSize, props.addClassNames])}>{iconElm(props.type)}</i>
+  ) : (
+    <i className="inline-block">{iconElm(props.type)}</i>
+  );
 };

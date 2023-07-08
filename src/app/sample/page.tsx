@@ -37,6 +37,19 @@ const SamplePage: NextPage = () => {
       <div className="m-4 rounded-md border border-black p-2">
         <h3 className="mb-2 text-large font-bold">アイコン</h3>
         <div className="rounded-md bg-gray p-4 text-white">
+          <p className="text-large font-bold">
+            https://tabler-icons-react.vercel.app/ に存在するアイコンを使用する場合
+          </p>
+          <br />
+          1. アイコンコンポーネント内でアイコンをimport
+          <br />
+          2. 既存のアイコンに倣ってIconType・iconElmなどに必要な値を追加
+          <br />
+          <br />
+          <p className="text-large font-bold">
+            https://tabler-icons-react.vercel.app/ に存在しないアイコンを使用する場合
+          </p>
+          <br />
           1. アイコンSVGをtsxとして作成し src/app/component/icon/assets に追加
           <br />
           2. 追加する際にSVGのwidth・height・strokeを削除
@@ -47,33 +60,32 @@ const SamplePage: NextPage = () => {
         </div>
         <div>
           <p>Size</p>
-          <Icon type="account" size="small" />
-          <Icon type="account" size="medium" />
-          <Icon type="account" size="large" />
+          <Icon type="UserCircle" size="small" />
+          <Icon type="UserCircle" size="medium" />
+          <Icon type="UserCircle" size="large" />
         </div>
         <hr />
         <div>
           <p>Color</p>
-          <Icon type="account" />
-          <Icon type="account" color="gray" />
-          <Icon type="account" color="lightGray" />
-          <Icon type="account" color="tomato" />
-          <Icon type="account" color="white" addClassNames="bg-black" />
+          <Icon type="UserCircle" />
+          <Icon type="UserCircle" color="gray" />
+          <Icon type="UserCircle" color="lightGray" />
+          <Icon type="UserCircle" color="tomato" />
+          <Icon type="UserCircle" color="white" addClassNames="bg-black" />
         </div>
         <hr />
         <div>
           <p>Type</p>
-          <Icon type="account" />
-          <Icon type="arrowLeft" />
-          <Icon type="check" color="organicColor" />
-          <Icon type="circle" color="tomato" />
-          <Icon type="close" />
-          <Icon type="favorite" />
-          <Icon type="menu" />
-          <Icon type="plus" />
-          <Icon type="search" />
-          <Icon type="shoppingCart" />
-          <Icon type="siteLogo" />
+          <Icon type="UserCircle" />
+          <Icon type="ArrowLeft" />
+          <Icon type="CircleCheck" color="organicColor" />
+          <Icon type="Circle" color="tomato" />
+          <Icon type="Heart" />
+          <Icon type="Menu" />
+          <Icon type="Plus" />
+          <Icon type="Search" />
+          <Icon type="ShoppingCart" />
+          <Icon type="SiteLogo" isLocalSvg />
         </div>
       </div>
       <ImageCarousel>

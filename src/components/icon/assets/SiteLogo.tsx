@@ -6,6 +6,6 @@ export const SiteLogo = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-    <path d="M8.21466 22.6787L24 22.6667" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M8.21466 22.6787L24 22.6667" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
