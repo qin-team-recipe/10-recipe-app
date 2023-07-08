@@ -1,9 +1,5 @@
 import cc from "classcat";
 
-export const generateStaticParams = () => {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
-};
-
 export type Tab = {
   label: string;
   href: string;
