@@ -5,6 +5,7 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 import { Button } from "@/components/button";
 import { Icon } from "@/components/icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/image";
+import { TabLinks, type Tab } from "@/components/TabLinks";
 
 /* eslint-disable import/first */
 const followerNumber = 5678;
@@ -17,6 +18,20 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+
+  //TabLinksの実装例
+  const tabs: Tab[] = [
+    {
+      label: "レシピ",
+      href: `/chef/${id}`,
+      isActive: true,
+    },
+    {
+      label: "リンク",
+      href: `/chef/${id}/link`,
+    },
+  ];
+
   return (
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
@@ -37,12 +52,8 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-lightGray">レシピ</div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={`/chef/${id}/link`}>リンク</Link>
-            </div>
-          </div>
+          {/* TabLinksの実装例 */}
+          <TabLinks tabs={tabs} />
         </div>
         <ImageGrid addClassNames="mb-8 mt-4">
           {mockDataRecipe.slice(0, 8).map((data, index) => (
