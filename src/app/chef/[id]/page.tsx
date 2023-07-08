@@ -24,11 +24,11 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
     {
       label: "レシピ",
       href: `/chef/${id}`,
+      isActive: true,
     },
     {
       label: "リンク",
       href: `/chef/${id}/link`,
-      isActive: true,
     },
   ];
 
