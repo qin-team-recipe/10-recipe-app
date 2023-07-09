@@ -4,12 +4,12 @@ import Link from "next/link";
 import { mockDataFav } from "@/mock";
 
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
-import { HeaderLayout } from "@/components/title";
+import Header from "@/components/title/Header";
 
 const Fav: NextPage = () => {
   return (
     <div>
-      <HeaderLayout position="center" title="お気に入り" userCircle={true} arrowLeft={true} />
+      <Header position="left" title="お気に入り" isUserIcon isBrowserBackIcon />
       <div className="py-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between px-4 font-bold">
