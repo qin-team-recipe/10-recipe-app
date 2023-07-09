@@ -1,35 +1,31 @@
 import { mockData } from "@/mock/SampleMockData";
-import { Chef } from "@/types/tableType";
+import { Chef } from "@prisma/client";
 
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
-// fetchする場合はNextPage型は削除してasyncをつける
-const Home = async () => {
-  // サーバーコンポーネントの場合
+const SamplePage = async () => {
   // revalidateは何秒キャッシュされたデータを使うかの設定
-  // 開発中はキャッシュが邪魔になるので0秒に設定
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 0 } });
-  if (!res.ok) {
-    throw new Error("データの取得に失敗しました");
-  }
+  // 開発中はキャッシュが邪魔になるので1秒に設定
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
   const chefs: Chef[] = await res.json();
-
-  // クライアントコンポーネントの場合
-  // const [state, setState] = useState<Chef>();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  /* { cache: "no-cache" }としないとSSGのような挙動になりデータがキャッシュされる
-   今後、データの追加を試したいときに、キャッシュされているとデータが追加されないのでこのようにすることでキャッシュを無効化して確認ができる */
-  //     const data = await fetch("http://localhost:3000/api/chef", { cache: "no-cache" });
-  //     const chef = await data.json();
-  //     setState(chef);
-  //   };
-  //   fetchData();
-  // }, []);
-  // console.log(state);
 
   return (
     <>
+      <p className="mb-2 pl-4 text-large font-bold">GETしたデータをmapで表示させる場合</p>
+      <ImageCarousel>
+        {chefs.map((chef) => (
+          <ImageComponent
+            key={chef.id}
+            src={chef.image_url}
+            alt={`${chef.name}の画像`}
+            nameLabel={chef.name}
+            ratio="3/4"
+            width="large"
+            addClassNames="mb-4"
+          />
+        ))}
+      </ImageCarousel>
+      <hr className="mb-4" />
       <ImageCarousel>
         {mockData.map((data, index) => (
           <ImageComponent
@@ -82,20 +78,8 @@ const Home = async () => {
         nameLabel="たけちゃんシェフ"
         ratio="3/4"
       />
-      {/* 取得してきたデータの使い方 */}
-      {chefs.map((chef) => (
-        <ImageComponent
-          key={chef.id}
-          src={chef.image_url}
-          alt={`${chef.name}の画像`}
-          nameLabel={chef.name}
-          ratio="3/4"
-          width="large"
-          addClassNames="mb-8"
-        />
-      ))}
     </>
   );
 };
 
-export default Home;
+export default SamplePage;

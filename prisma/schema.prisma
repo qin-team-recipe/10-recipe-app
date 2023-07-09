@@ -7,46 +7,47 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model chef {
+model Chef {
   id          Int      @id @default(autoincrement())
   name        String
   description String
   image_url   String
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
-  recipes     recipe[]
-  follows     follow[]
-  links       link[]
+  recipes     Recipe[]
+  follows     Follow[]
+  links       Link[]
 }
 
-model link {
+model Link {
   id         Int      @id @default(autoincrement())
   site       String
   url        String
   site_id    String?
   follower   String?
-  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef       Chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
   chef_id    Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 }
 
-model user {
+model User {
   id           String         @id @db.Uuid
   name         String
   createdAt    DateTime       @default(now())
   updatedAt    DateTime       @updatedAt
-  shoppingList shoppingList[]
-  favorites    favorite[]
-  follows      follow[]
-  recipes      recipe[]
+  shoppingList ShoppingList[]
+  favorites    Favorite[]
+  follows      Follow[]
+  recipes      Recipe[]
 }
 
-model recipe {
+model Recipe {
   id           Int            @id @default(autoincrement())
   title        String
   description  String?
@@ -56,67 +57,67 @@ model recipe {
   image_url2   String?
   // statusはmyrecipeかpublished　バリデーションはサーバーアクションで行う？
   status       String
-  chef         chef?          @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef         Chef?          @relation(fields: [chef_id], references: [id], onDelete: Cascade)
   chef_id      Int?
-  user         user?          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user         User?          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id      String?        @db.Uuid
-  shoppingList shoppingList[]
-  instructions instruction[]
-  ingredients  ingredient[]
-  favorites    favorite[]
+  shoppingList ShoppingList[]
+  instructions Instruction[]
+  ingredients  Ingredient[]
+  favorites    Favorite[]
   created_at   DateTime       @default(now())
   updated_at   DateTime       @default(now()) @updatedAt
 }
 
-model instruction {
+model Instruction {
   id          Int      @id @default(autoincrement())
   step        Int
   description String?
   note        String?
-  recipe      recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe      Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id   Int
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 }
 
-model ingredient {
+model Ingredient {
   id            Int            @id @default(autoincrement())
   name          String
   quantity      String?
-  recipe        recipe         @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe        Recipe         @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id     Int
-  shoppingItems shoppingItem[]
+  shoppingItems ShoppingItem[]
   created_at    DateTime       @default(now())
   updated_at    DateTime       @default(now()) @updatedAt
 }
 
-model shoppingList {
+model ShoppingList {
   id            Int            @id @default(autoincrement())
   step          Int
-  user          user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user          User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id       String         @db.Uuid
-  recipe        recipe?        @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe        Recipe?        @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id     Int?
-  shoppingItems shoppingItem[]
+  shoppingItems ShoppingItem[]
   created_at    DateTime       @default(now())
   updated_at    DateTime       @default(now()) @updatedAt
 }
 
-model shoppingItem {
+model ShoppingItem {
   id              Int          @id @default(autoincrement())
   isChecked       Boolean
-  shoppingList    shoppingList @relation(fields: [shoppingList_id], references: [id], onDelete: Cascade)
+  shoppingList    ShoppingList @relation(fields: [shoppingList_id], references: [id], onDelete: Cascade)
   shoppingList_id Int
-  ingredient      ingredient?  @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+  ingredient      Ingredient?  @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
   ingredient_id   Int?
   created_at      DateTime     @default(now())
   updated_at      DateTime     @default(now()) @updatedAt
 }
 
-model favorite {
-  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+model Favorite {
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String   @db.Uuid
-  recipe     recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe     Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id  Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
@@ -124,10 +125,10 @@ model favorite {
   @@id([user_id, recipe_id])
 }
 
-model follow {
-  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+model Follow {
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String   @db.Uuid
-  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
+  chef       Chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
   chef_id    Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt

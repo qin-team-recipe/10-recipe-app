@@ -1,17 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { routeHandlerSupabase } from "@/lib/routeHandlerSupabase";
+import { PrismaClient } from "@prisma/client";
 
-export async function GET(request: Request) {
-  const supabase = await routeHandlerSupabase;
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
+const prisma = new PrismaClient();
 
-  if (id) {
-    const { data } = await supabase.from("chef").select("*").eq("id", id);
-    return NextResponse.json(data);
-  } else {
-    const { data } = await supabase.from("chef").select("*");
-    return NextResponse.json(data);
-  }
+export async function GET() {
+  const data = await prisma.chef.findMany();
+  return NextResponse.json(data);
 }
