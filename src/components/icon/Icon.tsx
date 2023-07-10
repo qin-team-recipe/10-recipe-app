@@ -3,12 +3,14 @@ import {
   ArrowLeft,
   Circle,
   CircleCheck,
+  Copy,
   Heart,
   Menu,
   Plus,
   Search,
   ShoppingCart,
   UserCircle,
+  X,
 } from "tabler-icons-react";
 
 import { SiteLogo } from "@/components/icon/assets/SiteLogo";
@@ -17,18 +19,20 @@ export type IconType =
   | "ArrowLeft"
   | "Circle"
   | "CircleCheck"
+  | "Copy"
   | "Heart"
   | "Menu"
   | "Plus"
   | "Search"
   | "ShoppingCart"
   | "SiteLogo"
-  | "UserCircle";
+  | "UserCircle"
+  | "X";
 
 type IconProps = {
   type: IconType;
   // organicColorは、アイコンの色をそのままにしたい場合に使用してください。
-  color?: "black" | "gray" | "lightGray" | "tomato" | "white" | "organicColor";
+  color?: "black" | "blue" | "gray" | "lightGray" | "tomato" | "white" | "organicColor";
   size?: "small" | "medium" | "large";
   addClassNames?: string;
   // https://tabler-icons-react.vercel.app/ にないアイコンでassetsに追加したものを使用する場合はtrueにしてください。
@@ -44,6 +48,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <Circle className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CircleCheck":
         return <CircleCheck className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Copy":
+        return <Copy className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Heart":
         return <Heart className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Menu":
@@ -58,6 +64,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <SiteLogo />;
       case "UserCircle":
         return <UserCircle className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "X":
+        return <X className={cc([iconColor, iconSize, props.addClassNames])} />;
     }
   };
 
