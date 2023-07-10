@@ -1,6 +1,6 @@
 import { mockDataNewRecipe } from "@/mock/NewRecipe";
 
-import { CloseButton, Edit, Plus } from "@/components/icons";
+import { CloseButton, Edit } from "@/components/icons";
 import { ImageCarousel, ImageComponent } from "@/components/image";
 import { AddButton } from "@/app/recipe/new/_components/AddButton";
 import { IngredientListItem } from "@/app/recipe/new/_components/IngredientListItem";
@@ -33,10 +33,10 @@ const Page = () => {
           </div>
           <div className="border-y border-lightGray">
             {mockDataNewRecipe.material.items.map((item) => (
-              <IngredientListItem title={item.title} key={item.id} />
+              <IngredientListItem title={item.title} key={item.id} url="/" />
             ))}
           </div>
-          <AddButton title={mockDataNewRecipe.material.buttonTitle} />
+          <AddButton title="材料を追加する" />
         </div>
         <div>
           <h3 className={titleClass}>作り方</h3>
@@ -50,10 +50,7 @@ const Page = () => {
               />
             ))}
           </div>
-          <div className="ml-4 mt-2 flex items-center gap-1">
-            <Plus />
-            <p className="text-tomato">{mockDataNewRecipe.recipeStep.buttonTitle}</p>
-          </div>
+          <AddButton title="工程を追加する" />
         </div>
         <div>
           <h3 className={titleClass}>画像</h3>
@@ -62,10 +59,7 @@ const Page = () => {
               <ImageComponent src={item.image_url} key={item.id} alt="" width="small" ratio="1/1" isRounded />
             ))}
           </ImageCarousel>
-          <div className="ml-4 mt-2 flex items-center gap-1">
-            <Plus />
-            <p className="text-tomato">{mockDataNewRecipe.image.buttonTitle}</p>
-          </div>
+          <AddButton title="画像を追加する" />
         </div>
         <div>
           <h3 className={titleClass}>リンク</h3>
@@ -74,10 +68,7 @@ const Page = () => {
               <IngredientListItem title={item.url} url={item.url} isExternalLink key={item.id} />
             ))}
           </div>
-          <div className="ml-4 mt-2 flex items-center gap-1">
-            <Plus />
-            <p className="text-tomato">{mockDataNewRecipe.link.buttonTitle}</p>
-          </div>
+          <AddButton title="リンクを追加する" />
         </div>
       </div>
     </div>
