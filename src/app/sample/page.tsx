@@ -1,10 +1,11 @@
 import { mockData } from "@/mock/SampleMockData";
 import { Chef } from "@/types/tableType";
 
+import { Icon } from "@/components/icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 // fetchする場合はNextPage型は削除してasyncをつける
-const Home = async () => {
+const SamplePage = async () => {
   // サーバーコンポーネントの場合
   // revalidateは何秒キャッシュされたデータを使うかの設定
   // 開発中はキャッシュが邪魔になるので0秒に設定
@@ -30,6 +31,60 @@ const Home = async () => {
 
   return (
     <>
+      <div className="m-4 rounded-md border border-black p-2">
+        <h3 className="mb-2 text-large font-bold">アイコン</h3>
+        <div className="rounded-md bg-gray p-4 text-white">
+          <p className="text-large font-bold">
+            https://tabler-icons-react.vercel.app/ に存在するアイコンを使用する場合
+          </p>
+          <br />
+          1. アイコンコンポーネント内でアイコンをimport
+          <br />
+          2. 既存のアイコンに倣ってIconType・iconElmなどに必要な値を追加
+          <br />
+          <br />
+          <p className="text-large font-bold">
+            https://tabler-icons-react.vercel.app/ に存在しないアイコンを使用する場合
+          </p>
+          <br />
+          1. アイコンSVGをtsxとして作成し src/app/component/icon/assets に追加
+          <br />
+          2. 追加する際にSVGのwidth・height・strokeを削除
+          <br />
+          3. src/app/component/icon/Icon.tsx の IconType・iconElmに追加
+          <br />
+          4. うまく表示されない場合は削除したstrokeを復活させるなど色々と調整。使用する際はcolorにorganicColorを指定
+        </div>
+        <div>
+          <p>Size</p>
+          <Icon type="UserCircle" size="small" />
+          <Icon type="UserCircle" size="medium" />
+          <Icon type="UserCircle" size="large" />
+        </div>
+        <hr />
+        <div>
+          <p>Color</p>
+          <Icon type="UserCircle" />
+          <Icon type="UserCircle" color="gray" />
+          <Icon type="UserCircle" color="lightGray" />
+          <Icon type="UserCircle" color="tomato" />
+          <Icon type="UserCircle" color="white" addClassNames="bg-black" />
+        </div>
+        <hr />
+        <div>
+          <p>Type</p>
+          <Icon type="UserCircle" />
+          <Icon type="ArrowLeft" />
+          <Icon type="CircleCheck" color="organicColor" />
+          <Icon type="Circle" color="tomato" />
+          <Icon type="Heart" />
+          <Icon type="Menu" />
+          <Icon type="Plus" />
+          <Icon type="Search" />
+          <Icon type="ShoppingCart" />
+          <Icon type="SiteLogo" isLocalSvg />
+        </div>
+      </div>
       <ImageCarousel>
         {mockData.map((data, index) => (
           <ImageComponent
@@ -98,4 +153,4 @@ const Home = async () => {
   );
 };
 
-export default Home;
+export default SamplePage;
