@@ -1,6 +1,6 @@
 import { mockDataNewRecipe } from "@/mock/NewRecipe";
 
-import { CloseButton, Edit } from "@/components/icons";
+import { Icon } from "@/components/icon/Icon";
 import { ImageCarousel, ImageComponent } from "@/components/image";
 import { AddButton } from "@/app/recipe/new/_components/AddButton";
 import { IngredientListItem } from "@/app/recipe/new/_components/IngredientListItem";
@@ -11,7 +11,7 @@ const Page = () => {
   return (
     <div>
       <header className="flex items-center justify-between border-b border-lightGray px-3 py-4">
-        <CloseButton />
+        <Icon type="CloseButton" />
         <div className="flex items-center gap-4 font-bold">
           <button className="text-gray">下書き</button>
           <button className="text-tomato">作成する</button>
@@ -29,7 +29,7 @@ const Page = () => {
         <div>
           <div className="flex items-center gap-1">
             <h3 className={titleClass}>材料 / 2人前</h3>
-            <Edit />
+            <Icon type="Edit" />
           </div>
           <div className="border-y border-lightGray">
             {mockDataNewRecipe.material.items.map((item) => (
