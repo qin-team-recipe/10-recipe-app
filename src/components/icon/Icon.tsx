@@ -11,6 +11,8 @@ import {
   UserCircle,
 } from "tabler-icons-react";
 
+import { CloseButton } from "@/components/icon/assets/CloseButton";
+import { Edit } from "@/components/icon/assets/Edit";
 import { SiteLogo } from "@/components/icon/assets/SiteLogo";
 
 export type IconType =
@@ -23,7 +25,9 @@ export type IconType =
   | "Search"
   | "ShoppingCart"
   | "SiteLogo"
-  | "UserCircle";
+  | "UserCircle"
+  | "CloseButton"
+  | "Edit";
 
 type IconProps = {
   type: IconType;
@@ -58,6 +62,10 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <SiteLogo />;
       case "UserCircle":
         return <UserCircle className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "CloseButton":
+        return <CloseButton />;
+      case "Edit":
+        return <Edit />;
     }
   };
 
