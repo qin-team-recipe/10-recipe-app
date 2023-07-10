@@ -1,13 +1,8 @@
-import Link from "next/link";
-
 import { mockDataRecipe } from "@/mock";
 
-import { Button } from "@/components/button";
 import { Icon } from "@/components/icon/Icon";
-import { ImageComponent } from "@/components/image";
-
-/* eslint-disable import/first */
-const followerNumber = 5678;
+import { TabLinks, type Tab } from "@/components/TabLinks";
+import { TopSection } from "@/app/recipe/_common/TopSection";
 
 export const generateStaticParams = () => {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
@@ -17,40 +12,37 @@ export const generateStaticParams = () => {
 
 const RecipePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const tabs: Tab[] = [
+    {
+      label: "作り方",
+      href: `/recipe/${id}`,
+      isActive: true,
+    },
+    {
+      label: "材料",
+      href: `/recipe/${id}/ingredients`,
+    },
+  ];
   return (
-    <div className="relative mx-auto">
-      <ImageComponent src={mockDataRecipe[0].image_url1} alt={""} ratio={"1/1"} width={"full"} />
-      <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href="/">
-          <Icon type="ArrowLeft" color="white" />
-        </Link>
-      </button>
-      <div className="pt-4">
-        <div className="px-4 pb-3 text-large">
-          <div>シェフのレシピ</div>
-        </div>
-        <div className="px-4">
-          <div>
-            吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
-          </div>
-          <div className="my-3">{followerNumber}フォロアー</div>
-          <div>
-            <Button color="tomato">お気に入りに追加</Button>
-          </div>
-        </div>
-        <div>
-          <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-lightGray">作り方</div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href="/">材料</Link>
-            </div>
-          </div>
-          <ul>
-            <li>A</li>
-            <li>B</li>
-            <li>C</li>
-          </ul>
-        </div>
+    <div className="relative mx-auto pb-16">
+      <TopSection />
+      <TabLinks tabs={tabs} />
+      <ul className="mb-3">
+        {mockDataRecipe.map((recipe) => {
+          return (
+            <li key={recipe.id} className="flex w-full items-start gap-x-2 border-y border-lightGray  px-4 py-2">
+              <div className="grid h-5 w-5 shrink-0 select-none place-items-center rounded-full  bg-tomato text-small text-white">
+                {recipe.id}
+              </div>
+              <div className="leading-snug">{recipe.description}</div>
+            </li>
+          );
+        })}
+      </ul>
+      <div className="flex h-4 flex-row-reverse">
+        <button className="flex items-center px-4 text-blue">
+          <Icon type="Copy" color="blue" /> コピーする
+        </button>
       </div>
     </div>
   );
