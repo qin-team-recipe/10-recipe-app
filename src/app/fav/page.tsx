@@ -3,13 +3,13 @@ import Link from "next/link";
 
 import { mockDataFav } from "@/mock";
 
+import { Header } from "@/components/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
-import Header from "@/components/title/Header";
 
 const Fav: NextPage = () => {
   return (
     <div>
-      <Header position="left" title="お気に入り" isUserIcon isBrowserBackIcon />
+      <Header position="center" title="お気に入り" isUserIcon isMenuIcon />
       <div className="py-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between px-4 font-bold">
