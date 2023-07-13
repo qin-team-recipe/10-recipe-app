@@ -1,5 +1,3 @@
-import cc from "classcat";
-
 import { Button } from "@/components/button";
 
 type ButtonToggleProps = {
