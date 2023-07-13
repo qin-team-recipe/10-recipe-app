@@ -3,8 +3,9 @@ import Link from "next/link";
 import { RecipeAppT10Chefs } from "@/mock";
 
 import { Button } from "@/components/button";
-import { ArrowIcon } from "@/components/icons";
+import { Icon } from "@/components/icon/Icon";
 import { ImageComponent } from "@/components/image";
+import { TabLinks, type Tab } from "@/components/TabLinks";
 
 /* eslint-disable import/first */
 const followerNumber = 5678;
@@ -17,12 +18,24 @@ export const generateStaticParams = () => {
 
 const ChefPage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  //TabLinksの実装例
+  const tabs: Tab[] = [
+    {
+      label: "レシピ",
+      href: `/chef/${id}`,
+    },
+    {
+      label: "リンク",
+      href: `/chef/${id}/link`,
+      isActive: true,
+    },
+  ];
   return (
     <div className="relative mx-auto">
       <ImageComponent alt={""} ratio={"1/1"} width={"full"} />
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
         <Link href={{ pathname: `/` }}>
-          <ArrowIcon />
+          <Icon type="ArrowLeft" color="white" />
         </Link>
       </button>
       <div className="pt-4">
@@ -37,14 +50,8 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
         <div>
-          <div className="mt-3 flex justify-center text-center">
-            <div className="w-1/2 border-b-2 border-lightGray">
-              <Link href={{ pathname: `/chef/${id}` }}>レシピ</Link>
-            </div>
-            <div className="w-1/2 border-b border-gray/20 hover:border-b-2  hover:border-gray">
-              <Link href={{ pathname: `/chef/${id}` }}>リンク</Link>
-            </div>
-          </div>
+          {/* TabLinksの実装例 */}
+          <TabLinks tabs={tabs} />
         </div>
         <div className="mb-8 mt-2">
           <ul className="pl-3">

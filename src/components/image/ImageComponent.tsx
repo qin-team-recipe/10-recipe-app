@@ -27,13 +27,14 @@ type ImageComponentProps = {
   // TODO: DB参照できるようになったら必須に変更する
   src?: string;
   // 画像の幅
-  width: "full" | "large" | "medium" | "small" | "xSmall";
+  width: "full" | "large" | "medium" | "small" | "xSmall" | "xxSmall";
 };
 
 // next/imageと区別するために、ImageComponentで定義
 export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
   const sizeClass = cc([
     {
+      "w-6": props.width === "xxSmall",
       "w-16": props.width === "xSmall",
       "w-24": props.width === "small",
       "w-32": props.width === "medium",
