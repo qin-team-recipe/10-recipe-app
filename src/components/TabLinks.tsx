@@ -12,12 +12,12 @@ type TabLinksProps = {
 
 export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
   return (
-    <div className="flex items-center justify-center py-12">
-      <div className="flex w-full max-w-md flex-col gap-y-2">
-        <div className="flex items-center justify-between p-1">
+    <div className="flex items-center justify-center pt-6">
+      <div className="flex w-full max-w-md flex-col">
+        <div className="flex items-center justify-between">
           {tabs.map((tab) => {
             const tabClass = cc([
-              "w-full border-b-2 p-2 text-center text-small",
+              "w-full border-b-2 px-2 text-center text-small",
               {
                 "border-black font-semibold border-b-2": tab.isActive,
                 "border-lightGray": !tab.isActive,
