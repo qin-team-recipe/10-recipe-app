@@ -30,11 +30,11 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
       <ul className="mb-3">
         {mockDataRecipe.map((recipe) => {
           return (
-            <li key={recipe.id} className="flex w-full items-start gap-x-2 border-y border-lightGray  px-4 py-2">
-              <div className="grid h-5 w-5 shrink-0 select-none place-items-center rounded-full  bg-tomato text-small text-white">
+            <li key={recipe.id} className="flex justify-start gap-x-2 border-y border-lightGray  px-4 py-2">
+              <div className="grid h-5 w-5 select-none place-items-center rounded-full bg-tomato text-small text-white">
                 {recipe.id}
               </div>
-              <div className="leading-snug">{recipe.description}</div>
+              <p className="w-full text-medium leading-snug">{recipe.description}</p>
             </li>
           );
         })}

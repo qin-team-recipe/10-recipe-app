@@ -24,13 +24,11 @@ export const TopSection = () => {
         </Link>
       </button>
       <div className="pt-4">
-        <div className="px-4 pb-3 text-large">
-          <div>シェフのレシピ</div>
-        </div>
+        <h3 className="px-4 pb-3 text-large font-bold">シェフのレシピ</h3>
         <div className="px-4">
-          <div>
+          <p>
             吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
-          </div>
+          </p>
           <div className="my-3 flex">
             <div className="mr-3 flex  items-center">
               <ImageComponent
