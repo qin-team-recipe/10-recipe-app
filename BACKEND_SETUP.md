@@ -13,6 +13,8 @@ NEXT_PUBLIC_SUPABASE_KEY
 テーブルを変更したい場合、`prisma/schema.prisma`を編集し、`npx prisma migrate dev --name 〇〇`のコマンドを打つ。
 `schema.ts`の型も更新する必要があるので、[この記事を参考にしてください。](https://zenn.dev/k_kind/articles/supabase-type-generate)
 
+# TODO：fetchのやり方が固まり次第修正
+
 ## supabaseの使い方
 `lib`ディレクトリにある`〇〇supabase`のファイルからそれぞれ必要なものを使用。
 クライアントコンポーネントであれば`clientComponentSupabase`
