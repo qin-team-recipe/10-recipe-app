@@ -10,7 +10,8 @@
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx}'",
     "lint:precommit": "eslint 'src/**/*.{ts,tsx}'",
     "fmt:precommit": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css,scss}'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migrate": "prisma format && prisma migrate dev --name"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "yarn run lint:precommit",
