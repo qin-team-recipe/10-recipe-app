@@ -27,7 +27,7 @@ model User {
   Recipe      Recipe[]
   Ingredients Ingredients[]
 
-  @@map("user")
+  @@map("users")
 }
 
 model Recipe {
@@ -45,7 +45,7 @@ model Recipe {
   Favorite     Favorite[]
   Ingredients  Ingredients[]
 
-  @@map("recipe")
+  @@map("recipes")
 }
 
 model Ingredients {
@@ -60,7 +60,7 @@ model Ingredients {
   updated_at DateTime     @default(now()) @updatedAt
   ingredient Ingredient[]
 
-  @@map("ingredients")
+  @@map("ingredients_lists")
 }
 
 model Ingredient {
@@ -74,7 +74,7 @@ model Ingredient {
   created_at       DateTime    @default(now())
   updated_at       DateTime    @default(now()) @updatedAt
 
-  @@map("ingredient")
+  @@map("ingredients")
 }
 
 model Link {
@@ -87,7 +87,7 @@ model Link {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  @@map("link")
+  @@map("links")
 }
 
 model Follow {
@@ -99,7 +99,7 @@ model Follow {
   updated_at  DateTime @default(now()) @updatedAt
 
   @@unique([follower_id, followed_id])
-  @@map("follow")
+  @@map("follows")
 }
 
 model Favorite {
@@ -111,7 +111,7 @@ model Favorite {
   updated_at DateTime @default(now()) @updatedAt
 
   @@unique([user_id, recipe_id])
-  @@map("favorite")
+  @@map("favorites")
 }
 
 enum RecipeStatus {
