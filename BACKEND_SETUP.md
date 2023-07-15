@@ -10,7 +10,7 @@ NEXT_PUBLIC_SUPABASE_KEY
 環境変数の共有の仕方は後日。
 
 ## テーブルに変更があった場合
-テーブルを変更したい場合、`prisma/schema.prisma`を編集し、`npx prisma migrate dev --name 〇〇`のコマンドを打つ。
+テーブルを変更したい場合、`prisma/schema.prisma`を編集し、`yarn migrate "{変更内容}"`のコマンドを打つ。
 `schema.ts`の型も更新する必要があるので、[この記事を参考にしてください。](https://zenn.dev/k_kind/articles/supabase-type-generate)
 
 # TODO：fetchのやり方が固まり次第修正
