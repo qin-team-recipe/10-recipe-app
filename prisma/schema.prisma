@@ -93,10 +93,10 @@ model Link {
 model Follow {
   following    User     @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
   following_id String   @db.Uuid
-  followed    User     @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
-  followed_id String   @db.Uuid
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+  followed     User     @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
+  followed_id  String   @db.Uuid
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now()) @updatedAt
 
   @@unique([following_id, followed_id])
   @@map("follows")

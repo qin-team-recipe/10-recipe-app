@@ -1,89 +1,14 @@
 /*
   Warnings:
 
-  - You are about to drop the `chef` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `favorite` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `follow` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ingredient` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `instruction` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `link` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `recipe` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `shoppingItem` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `shoppingList` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `user` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `tests` table. If the table is not empty, all the data it contains will be lost.
 
 */
 -- CreateEnum
 CREATE TYPE "RecipeStatus" AS ENUM ('PUBLIC', 'LIMIT', 'PRIVATE');
 
--- DropForeignKey
-ALTER TABLE "public"."favorite" DROP CONSTRAINT "favorite_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."favorite" DROP CONSTRAINT "favorite_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."follow" DROP CONSTRAINT "follow_chef_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."follow" DROP CONSTRAINT "follow_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."ingredient" DROP CONSTRAINT "ingredient_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."instruction" DROP CONSTRAINT "instruction_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."link" DROP CONSTRAINT "link_chef_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."recipe" DROP CONSTRAINT "recipe_chef_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."recipe" DROP CONSTRAINT "recipe_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."shoppingItem" DROP CONSTRAINT "shoppingItem_ingredient_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."shoppingItem" DROP CONSTRAINT "shoppingItem_shoppingList_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."shoppingList" DROP CONSTRAINT "shoppingList_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."shoppingList" DROP CONSTRAINT "shoppingList_user_id_fkey";
-
 -- DropTable
-DROP TABLE "public"."chef";
-
--- DropTable
-DROP TABLE "public"."favorite";
-
--- DropTable
-DROP TABLE "public"."follow";
-
--- DropTable
-DROP TABLE "public"."ingredient";
-
--- DropTable
-DROP TABLE "public"."instruction";
-
--- DropTable
-DROP TABLE "public"."link";
-
--- DropTable
-DROP TABLE "public"."recipe";
-
--- DropTable
-DROP TABLE "public"."shoppingItem";
-
--- DropTable
-DROP TABLE "public"."shoppingList";
-
--- DropTable
-DROP TABLE "public"."user";
+DROP TABLE "public"."tests";
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -154,7 +79,7 @@ CREATE TABLE "links" (
 
 -- CreateTable
 CREATE TABLE "follows" (
-    "follower_id" UUID NOT NULL,
+    "following_id" UUID NOT NULL,
     "followed_id" UUID NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -169,7 +94,7 @@ CREATE TABLE "favorites" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "follows_follower_id_followed_id_key" ON "follows"("follower_id", "followed_id");
+CREATE UNIQUE INDEX "follows_following_id_followed_id_key" ON "follows"("following_id", "followed_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "favorites_user_id_recipe_id_key" ON "favorites"("user_id", "recipe_id");
@@ -193,7 +118,7 @@ ALTER TABLE "links" ADD CONSTRAINT "links_user_id_fkey" FOREIGN KEY ("user_id") 
 ALTER TABLE "links" ADD CONSTRAINT "links_recipe_id_fkey" FOREIGN KEY ("recipe_id") REFERENCES "recipes"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "follows" ADD CONSTRAINT "follows_follower_id_fkey" FOREIGN KEY ("follower_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "follows" ADD CONSTRAINT "follows_following_id_fkey" FOREIGN KEY ("following_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "follows" ADD CONSTRAINT "follows_followed_id_fkey" FOREIGN KEY ("followed_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
