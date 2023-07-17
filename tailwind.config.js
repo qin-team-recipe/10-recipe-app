@@ -9,6 +9,7 @@ module.exports = {
       lightGray: "#DCDBDD",
       tomato: "#CA3214",
       white: "#FFFFFF",
+      blue: "#006ADC",
     },
     extend: {
       aspectRatio: {

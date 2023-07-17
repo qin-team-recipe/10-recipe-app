@@ -1,5 +1,3 @@
-import { loadDefaultErrorComponents } from "next/dist/server/load-components";
-
 type MockRecipe = {
   id: string;
   title: string;
@@ -18,7 +16,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "1",
     title: "Recipe A",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。1",
     servings: 4,
     link: "string",
     image_url1:
@@ -32,7 +30,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "2",
     title: "Recipe B",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。2",
     servings: 4,
     link: "string",
     image_url1:
@@ -46,7 +44,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "3",
     title: "Recipe C",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。3",
     servings: 4,
     link: "string",
     image_url1:
@@ -60,7 +58,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "4",
     title: "Recipe D",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。4",
     servings: 4,
     link: "string",
     image_url1:
@@ -74,7 +72,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "5",
     title: "Recipe E",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。5",
     servings: 4,
     link: "string",
     image_url1:
@@ -88,7 +86,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "6",
     title: "Recipe F",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. At ut repudiandae maxime magnam illum eligendi facere alias voluptates, quasi fugiat omnis, cumque voluptatibus repellat repellendus necessitatibus tenetur dolorem? Ex, maiores.",
+      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。6",
     servings: 4,
     link: "string",
     image_url1:
