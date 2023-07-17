@@ -97,3 +97,63 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
 ];
+
+type MockIngredient = {
+  id: number;
+  ingredients_id: string;
+  step?: string;
+  name?: string;
+  is_checked?: boolean;
+  is_shopping_list?: boolean;
+};
+
+export const mockDataIngredient: MockIngredient[] = [
+  {
+    id: 1,
+    ingredients_id: "1",
+    step: "1",
+    name: "キャベツ",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+  {
+    id: 2,
+    ingredients_id: "1",
+    step: "1",
+    name: "人参",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+  {
+    id: 3,
+    ingredients_id: "1",
+    step: "1",
+    name: "レタス",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+  {
+    id: 4,
+    ingredients_id: "1",
+    step: "1",
+    name: "トマト",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+  {
+    id: 5,
+    ingredients_id: "1",
+    step: "1",
+    name: "豚ひき肉200g",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+  {
+    id: 6,
+    ingredients_id: "1",
+    step: "1",
+    name: "トマト",
+    is_checked: true,
+    is_shopping_list: false,
+  },
+];
