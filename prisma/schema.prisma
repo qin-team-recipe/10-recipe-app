@@ -20,7 +20,7 @@ model User {
   is_chef     Boolean?
   created_at  DateTime      @default(now())
   updated_at  DateTime      @default(now()) @updatedAt
-  follower    Follow[]      @relation("follower")
+  following   Follow[]      @relation("following")
   followed    Follow[]      @relation("followed")
   Link        Link[]
   Favorite    Favorite[]
@@ -91,14 +91,14 @@ model Link {
 }
 
 model Follow {
-  follower    User     @relation("follower", fields: [follower_id], references: [id], onDelete: Cascade)
-  follower_id String   @db.Uuid
+  following    User     @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
+  following_id String   @db.Uuid
   followed    User     @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
   followed_id String   @db.Uuid
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 
-  @@unique([follower_id, followed_id])
+  @@unique([following_id, followed_id])
   @@map("follows")
 }
 
