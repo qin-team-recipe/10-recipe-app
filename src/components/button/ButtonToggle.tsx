@@ -11,11 +11,11 @@ type ButtonToggleProps = {
 
 export const ButtonToggle: React.FC<ButtonToggleProps> = (props) => {
   return !props.isChecked ? (
-    <Button bgColor="tomato" fontColor="white" size="small">
+    <Button bgColor="tomato" fontColor="white" fontSize="small">
       {props.initialText}
     </Button>
   ) : (
-    <Button bgColor="white" fontColor="tomato" size="small" isBorder>
+    <Button bgColor="white" fontColor="tomato" fontSize="small" isBorder>
       {props.clickedText}
     </Button>
   );

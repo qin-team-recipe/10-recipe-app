@@ -7,7 +7,7 @@ type ButtonProps = {
   // 文字色
   fontColor: "tomato" | "blue" | "black" | "white";
   // 文字サイズ
-  size: "large" | "medium" | "small";
+  fontSize: "large" | "medium" | "small";
   // ボタン幅
   width?: "large" | "medium" | "small";
   // 枠線の有無
@@ -44,22 +44,22 @@ export const Button: React.FC<ButtonProps> = (props) => {
   const buttonWidth = cc([
     {
       "w-1/5": props.width === "small",
-      "w-5/12": props.width === "medium",
-      "w-2/3": props.width === "large",
+      "w-1/2": props.width === "medium",
+      "w-full": props.width === "large",
     },
   ]);
   const buttonPadding = cc([
     {
-      "px-2 py-0.5": props.size === "small",
-      "px-3.5 py-1.5": props.size === "medium",
-      "px-4.5 py-2.5": props.size === "large",
+      "px-2 py-0.5": props.fontSize === "small",
+      "px-3.5 py-1.5": props.fontSize === "medium",
+      "px-4.5 py-2.5": props.fontSize === "large",
     },
   ]);
   const buttonFontSize = cc([
     {
-      "text-small": props.size === "small",
-      "text-medium": props.size === "medium",
-      "text-large": props.size === "large",
+      "text-small": props.fontSize === "small",
+      "text-medium": props.fontSize === "medium",
+      "text-large": props.fontSize === "large",
     },
   ]);
   const buttonBorder = cc([
