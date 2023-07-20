@@ -7,7 +7,8 @@ const SettingsPage = () => {
     <div className="min-h-screen">
       <div className="flex items-center border-b border-lightGray p-1.5">
         <div className="">
-          <Link href="/fav">
+          {/* ↓pathname この書き方でないとWarningになる。自分の環境だけ？💦 */}
+          <Link href={`pathname: /fav`}>
             <Icon type="ArrowLeft" color="black" />
           </Link>
         </div>
