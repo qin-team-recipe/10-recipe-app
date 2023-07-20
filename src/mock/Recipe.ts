@@ -1,4 +1,5 @@
 type MockRecipe = {
+  pk: number;
   id: string;
   title: string;
   description?: string;
@@ -13,6 +14,7 @@ type MockRecipe = {
 
 export const mockDataRecipe: MockRecipe[] = [
   {
+    pk: 1,
     id: "1",
     title: "Recipe A",
     description:
@@ -27,6 +29,7 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
   {
+    pk: 2,
     id: "2",
     title: "Recipe B",
     description:
@@ -41,6 +44,7 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
   {
+    pk: 3,
     id: "3",
     title: "Recipe C",
     description:
@@ -55,6 +59,7 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
   {
+    pk: 4,
     id: "4",
     title: "Recipe D",
     description:
@@ -69,6 +74,7 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
   {
+    pk: 5,
     id: "5",
     title: "Recipe E",
     description:
@@ -83,6 +89,7 @@ export const mockDataRecipe: MockRecipe[] = [
     user_id: "string",
   },
   {
+    pk: 6,
     id: "6",
     title: "Recipe F",
     description:
