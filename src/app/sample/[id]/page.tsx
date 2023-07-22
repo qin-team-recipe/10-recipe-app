@@ -1,10 +1,10 @@
-import { Chef } from "@prisma/client";
+import { User } from "@prisma/client";
 
 import { ImageComponent } from "@/components/image";
 
 const RouteSamplePage = async ({ params }: { params: { id: string } }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${params.id}`, { next: { revalidate: 1 } });
-  const chef: Chef = await res.json();
+  const chef: User = await res.json();
 
   return (
     <>
