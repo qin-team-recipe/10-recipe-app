@@ -4,8 +4,10 @@ import {
   Circle,
   CircleCheck,
   Copy,
+  DotsVertical,
   Heart,
   Menu,
+  Minus,
   Plus,
   Search,
   ShoppingCart,
@@ -25,17 +27,20 @@ export type IconType =
   | "Heart"
   | "Menu"
   | "Plus"
+  | "Minus"
   | "Search"
   | "ShoppingCart"
   | "SiteLogo"
   | "UserCircle"
   | "CloseButton"
-  | "Edit";
+  | "Edit"
+  | "DotsVertical";
 
 type IconProps = {
   type: IconType;
   // organicColorは、アイコンの色をそのままにしたい場合に使用してください。
   color?: "black" | "blue" | "gray" | "lightGray" | "tomato" | "white" | "organicColor";
+  backgrondColor?: "lightTomato";
   size?: "small" | "medium" | "large";
   addClassNames?: string;
   // https://tabler-icons-react.vercel.app/ にないアイコンでassetsに追加したものを使用する場合はtrueにしてください。
@@ -56,9 +61,11 @@ export const Icon: React.FC<IconProps> = (props) => {
       case "Heart":
         return <Heart className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Menu":
-        return <Menu className={cc([iconColor, iconSize, props.addClassNames])} />;
+        return <Menu className={cc([iconColor, iconBackGround, iconSize, props.addClassNames])} />;
       case "Plus":
-        return <Plus className={cc([iconColor, iconSize, props.addClassNames])} />;
+        return <Plus className={cc([iconColor, iconBackGround, iconSize, props.addClassNames])} />;
+      case "Minus":
+        return <Minus className={cc([iconColor, iconBackGround, iconSize, props.addClassNames])} />;
       case "Search":
         return <Search className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ShoppingCart":
@@ -67,6 +74,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <SiteLogo />;
       case "UserCircle":
         return <UserCircle className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "DotsVertical":
+        return <DotsVertical className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CloseButton":
         return <CloseButton />;
       case "Edit":
@@ -83,6 +92,8 @@ export const Icon: React.FC<IconProps> = (props) => {
       "stroke-white": props.color === "white",
     },
   ]);
+
+  const iconBackGround = cc([{ "bg-lightTomato": props.backgrondColor === "lightTomato" }]);
 
   const iconSize = cc([
     {

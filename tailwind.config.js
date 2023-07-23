@@ -8,6 +8,7 @@ module.exports = {
       gray: "#6F6E77",
       lightGray: "#DCDBDD",
       tomato: "#CA3214",
+      lightTomato: "#FFF0EE",
       white: "#FFFFFF",
       blue: "#006ADC",
     },
