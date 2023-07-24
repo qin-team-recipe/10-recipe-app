@@ -10,7 +10,8 @@
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx}'",
     "lint:precommit": "eslint 'src/**/*.{ts,tsx}'",
     "fmt:precommit": "prettier --write './src/**/*.{js,jsx,ts,tsx,json,css,scss}'",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "migrate": "prisma format && prisma migrate dev --name"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": "yarn run lint:precommit",
@@ -21,6 +22,7 @@
     "@prisma/client": "^4.15.0",
     "@supabase/auth-helpers-nextjs": "^0.7.2",
     "@supabase/supabase-js": "^2.24.0",
+    "@tabler/icons-react": "^2.23.0",
     "next": "13.4.4",
     "prisma": "^4.15.0",
     "react": "18.2.0",
