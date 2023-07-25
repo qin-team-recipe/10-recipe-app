@@ -1,3 +1,6 @@
+import { UrlObject } from "url";
+import Link from "next/link";
+
 import { IconArrowLeft, IconMenu, IconUserCircle } from "@tabler/icons-react";
 import cc from "classcat";
 
@@ -6,7 +9,7 @@ type Props = {
   addClassNames?: string;
   position?: "left" | "center";
   isUserIcon?: boolean;
-  isBrowserBackIcon?: boolean;
+  browserBackHref?: UrlObject;
   isMenuIcon?: boolean;
 };
 
@@ -21,11 +24,27 @@ export const Header: React.FC<Props> = (props) => {
   return (
     <div className={cc(["flex items-center justify-between border-b border-lightGray p-4", props.addClassNames])}>
       <div className="w-6">
-        {props.isBrowserBackIcon && <IconArrowLeft />}
-        {props.isMenuIcon && <IconMenu />}
+        {props.browserBackHref && (
+          <Link href={props.browserBackHref}>
+            <IconArrowLeft />
+          </Link>
+        )}
+        {props.isMenuIcon && (
+          // TODO: 設定ページに移動するが、まだ設定ページがなかったので修正する
+          <Link href={"/"}>
+            <IconMenu />
+          </Link>
+        )}
       </div>
       <h1 className={titleClass}>{props.title}</h1>
-      <div className="w-6">{props.isUserIcon && <IconUserCircle className="w-6" />}</div>
+      <div className="w-6">
+        {props.isUserIcon && (
+          // TODO: マイページに移動するが、まだマイページがなかったので修正する
+          <Link href={"/"}>
+            <IconUserCircle className="w-6" />
+          </Link>
+        )}
+      </div>
     </div>
   );
 };
