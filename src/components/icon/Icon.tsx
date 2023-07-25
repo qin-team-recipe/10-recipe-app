@@ -7,12 +7,14 @@ import {
   Copy,
   ExternalLink,
   Heart,
+  Logout,
   Menu,
   Plus,
   Search,
   ShoppingCart,
   UserCircle,
   X,
+  ZoomExclamation,
 } from "tabler-icons-react";
 
 import { CloseButton } from "@/components/icon/assets/CloseButton";
@@ -34,7 +36,9 @@ export type IconType =
   | "UserCircle"
   | "CloseButton"
   | "Edit"
-  | "ExternalLink";
+  | "ExternalLink"
+  | "Logout"
+  | "ZoomExclamation";
 
 type IconProps = {
   type: IconType;
@@ -79,6 +83,10 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <ExternalLink className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ChevronRight":
         return <ChevronRight className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Logout":
+        return <Logout className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "ZoomExclamation":
+        return <ZoomExclamation className={cc([iconColor, iconSize, props.addClassNames])} />;
     }
   };
 

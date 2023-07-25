@@ -44,16 +44,18 @@ const SettingsPage: NextPage = () => {
         <div>
           <p className="pb-4 pt-8 font-semibold ">アカウントの操作</p>
           <ul className="flex flex-col gap-4">
-            <li>
+            <li className="flex justify-between">
               <Link href="/settings/logout">ログアウト</Link>
+              <Icon type={"Logout"} color="gray" />
             </li>
           </ul>
         </div>
         <div>
           <p className="pb-4  pt-8 font-semibold ">取り消しができない操作</p>
-          <ul className="flex flex-col gap-4">
+          <ul className="flex  justify-between">
             {/* TODO：確認モーダルを出して delete と打ったら削除するロジック */}
             <li>退会する</li>
+            <Icon type="ZoomExclamation" color="gray" />
           </ul>
         </div>
       </div>
