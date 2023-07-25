@@ -26,7 +26,7 @@ const SettingsPage: NextPage = () => {
       </div>
       <div className="flex flex-col justify-between gap-3 p-4">
         <div>
-          <p className="pb-4 text-large font-semibold">利用規約や問い合わせ</p>
+          <p className="pb-4 font-semibold">利用規約や問い合わせ</p>
           <ul className="flex flex-col gap-4">
             {LinkTitle.map((l) => {
               return (
@@ -42,7 +42,7 @@ const SettingsPage: NextPage = () => {
           </ul>
         </div>
         <div>
-          <p className="pb-4 pt-8 text-large font-semibold ">アカウントの操作</p>
+          <p className="pb-4 pt-8 font-semibold ">アカウントの操作</p>
           <ul className="flex flex-col gap-4">
             <li>
               <Link href="/settings/logout">ログアウト</Link>
@@ -50,7 +50,7 @@ const SettingsPage: NextPage = () => {
           </ul>
         </div>
         <div>
-          <p className="pb-4  pt-8 text-large font-semibold ">取り消しができない操作</p>
+          <p className="pb-4  pt-8 font-semibold ">取り消しができない操作</p>
           <ul className="flex flex-col gap-4">
             {/* TODO：確認モーダルを出して delete と打ったら削除するロジック */}
             <li>退会する</li>
