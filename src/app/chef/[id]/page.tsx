@@ -55,7 +55,7 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
           {/* TabLinksの実装例 */}
           <TabLinks tabs={tabs} />
         </div>
-        <ImageGrid addClassNames="mb-8 mt-4">
+        <ImageGrid isTwoColumns addClassNames="mb-8 mt-4">
           {mockDataRecipe.slice(0, 8).map((data, index) => (
             <Link href={`/recipe/${id}`} key={id}>
               <ImageComponent

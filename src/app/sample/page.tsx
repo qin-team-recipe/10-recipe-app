@@ -114,7 +114,7 @@ const SamplePage = async () => {
           />
         ))}
       </ImageCarousel>
-      <ImageGrid addClassNames="mb-8">
+      <ImageGrid isTwoColumns addClassNames="mb-8">
         {mockData.slice(0, 4).map((data, index) => (
           <ImageComponent
             key={`grid-${index}`}
