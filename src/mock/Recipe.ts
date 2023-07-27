@@ -18,7 +18,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "1",
     title: "Recipe A",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。1",
+      "1.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。1",
     servings: 4,
     link: "string",
     image_url1:
@@ -33,7 +33,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "2",
     title: "Recipe B",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。2",
+      "2.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。2",
     servings: 4,
     link: "string",
     image_url1:
@@ -48,7 +48,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "3",
     title: "Recipe C",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。3",
+      "3.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。3",
     servings: 4,
     link: "string",
     image_url1:
@@ -63,7 +63,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "4",
     title: "Recipe D",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。4",
+      "4.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。4",
     servings: 4,
     link: "string",
     image_url1:
@@ -78,7 +78,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "5",
     title: "Recipe E",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。5",
+      "5.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。5",
     servings: 4,
     link: "string",
     image_url1:
@@ -93,7 +93,7 @@ export const mockDataRecipe: MockRecipe[] = [
     id: "6",
     title: "Recipe F",
     description:
-      "用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。6",
+      "6.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。6",
     servings: 4,
     link: "string",
     image_url1:
@@ -101,6 +101,21 @@ export const mockDataRecipe: MockRecipe[] = [
     image_url2: "string",
     status: true,
     chef_id: "6",
+    user_id: "string",
+  },
+  {
+    pk: 7,
+    id: "1",
+    title: "Recipe G",
+    description:
+      "7.用意するメインの材料は、マカロニ、牛乳、鶏もも肉、玉ねぎ、椎茸で、バター、小麦粉、塩、こしょうも使用します。1",
+    servings: 4,
+    link: "string",
+    image_url1:
+      "https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
+    image_url2: "string",
+    status: true,
+    chef_id: "1",
     user_id: "string",
   },
 ];
