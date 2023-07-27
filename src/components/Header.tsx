@@ -30,8 +30,7 @@ export const Header: React.FC<Props> = (props) => {
           </Link>
         )}
         {props.isMenuIcon && (
-          // TODO: 設定ページに移動するが、まだ設定ページがなかったので修正する
-          <Link href={"/"}>
+          <Link href={"/settings"}>
             <IconMenu />
           </Link>
         )}
@@ -39,8 +38,7 @@ export const Header: React.FC<Props> = (props) => {
       <h1 className={titleClass}>{props.title}</h1>
       <div className="w-6">
         {props.isUserIcon && (
-          // TODO: マイページに移動するが、まだマイページがなかったので修正する
-          <Link href={"/"}>
+          <Link href={"/fav/my"}>
             <IconUserCircle className="w-6" />
           </Link>
         )}
