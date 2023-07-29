@@ -1,31 +1,29 @@
 import { NextPage } from "next";
 import Link from "next/link";
 
-import { mockDataFav } from "@/mock";
+import { mockDataFav, mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
+import { ToolsKitchen2 } from "tabler-icons-react";
 
-import { Header } from "@/components/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
-const Fav: NextPage = () => {
+const Search: NextPage = () => {
   return (
     <div>
-      <Header position="center" title="お気に入り" isUserIcon isMenuIcon />
       <div className="py-5">
         <div className="space-y-2">
           <div className="flex items-center justify-between px-4 font-bold">
-            <div className="text-large">シェフ</div>
+            <div className="text-large">注目のシェフ</div>
           </div>
           <ImageCarousel>
             {mockDataFav.map((data, index) => (
               <ImageComponent
                 key={`bottom-carousel-${index}`}
                 alt={`${data.nameLabel || data.title}の画像`}
-                description={data.description || "シェフ"}
-                descriptionAlign="center"
+                nameLabel={data.nameLabel}
                 src={data.src}
-                isCircle
+                isRounded
                 ratio="1/1"
-                width="xSmall"
+                width="medium"
                 addClassNames="mb-8"
               />
             ))}
@@ -34,25 +32,24 @@ const Fav: NextPage = () => {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between px-4 font-bold">
-            <p className="text-large">新着レシピ</p>
+            <p className="text-large">話題のレシピ</p>
             <div className="text-gray">
               <Link href="/fav">
-                <p>マイレシピを作成</p>
+                <p>もっと見る</p>
               </Link>
             </div>
           </div>
 
           <ImageCarousel>
-            {mockDataFav.map((data, index) => (
+            {mockDataRecipe.map((data, index) => (
               <ImageComponent
                 key={`top-carousel-${index}`}
                 title={data.title}
-                alt={`${data.nameLabel || data.title}の画像`}
+                alt={`${data.title}の画像`}
                 description={data.description}
-                nameLabel={data.nameLabel}
-                src={data.src}
+                src={data.image_url1}
                 isRounded
-                ratio="3/4"
+                ratio="1/1"
                 width="large"
                 addClassNames="mb-8"
               />
@@ -62,26 +59,30 @@ const Fav: NextPage = () => {
 
         <div className="space-y-2">
           <div className="flex items-center justify-between px-4 font-bold">
-            <p className="text-large">お気に入りレシピ</p>
+            <p className="text-large">シェフ</p>
             <div className="text-gray">
               <Link href="/fav">
-                <p>マイレシピを見る</p>
+                <p>もっと見る</p>
               </Link>
             </div>
           </div>
-          <div className="space-y-2">
-            <ImageGrid isTwoColumns addClassNames="mb-8">
-              {mockDataFav.slice(0, 10).map((data, index) => (
-                <ImageComponent
-                  key={`grid-${index}`}
-                  src={data.src}
-                  isRounded
-                  alt={`${data.title}の画像`}
-                  width="full"
-                  favNum={data.favNum}
-                  ratio="1/1"
-                  nameLabel={data.nameLabel}
-                />
+          <div className="space-y-2 ">
+            <ImageGrid isTwoColumns={false} addClassNames="mb-8">
+              {RecipeAppT10Chefs.slice(0, 10).map((data, index) => (
+                <div key={`grid-${index}`} className="flex gap-4">
+                  <ImageComponent src={data.image_url} isRounded alt={`${data.name}の画像`} width="small" ratio="3/4" />
+                  <div className="flex flex-col space-y-2">
+                    <p className="text-large font-bold">{data.name}</p>
+                    <p className="text-small text-gray">{data.description}</p>
+                    <div className="flex space-x-2">
+                      <p>
+                        <ToolsKitchen2 />
+                      </p>
+                      <p>{data.favNum}</p>
+                      <p>レシピ</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </ImageGrid>
           </div>
@@ -91,4 +92,4 @@ const Fav: NextPage = () => {
   );
 };
 
-export default Fav;
+export default Search;
