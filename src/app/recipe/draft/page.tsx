@@ -4,7 +4,7 @@ import { Icon } from "@/components/icon/Icon";
 
 const Page = () => {
   return (
-    <div className="h-screen">
+    <div className="h-screen bg-lightGray2">
       <header className="flex gap-4 px-3 py-4">
         <Icon type="ArrowLeft" color="gray" />
         <h3 className="font-bold text-gray">下書き</h3>
@@ -13,7 +13,7 @@ const Page = () => {
         {mockDataDraftRecipe.map((data) => (
           <div
             key={data.id}
-            className="flex items-center justify-between border-t border-lightGray px-4 py-2 last:border-b"
+            className="flex items-center justify-between border-t border-lightGray bg-white px-4 py-2 last:border-b"
           >
             <div className="flex flex-col gap-1">
               <h3>{data.title}</h3>

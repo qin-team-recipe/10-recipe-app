@@ -1,6 +1,8 @@
 import cc from "classcat";
 import {
   ArrowLeft,
+  ChevronDown,
+  ChevronUp,
   Circle,
   CircleCheck,
   Copy,
@@ -11,6 +13,7 @@ import {
   Plus,
   Search,
   ShoppingCart,
+  Trash,
   UserCircle,
   X,
 } from "tabler-icons-react";
@@ -32,9 +35,12 @@ export type IconType =
   | "ShoppingCart"
   | "SiteLogo"
   | "UserCircle"
+  | "Trash"
   | "CloseButton"
   | "Edit"
-  | "DotsVertical";
+  | "DotsVertical"
+  | "ChevronUp"
+  | "ChevronDown";
 
 type IconProps = {
   type: IconType;
@@ -52,6 +58,10 @@ export const Icon: React.FC<IconProps> = (props) => {
     switch (type) {
       case "ArrowLeft":
         return <ArrowLeft className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "ChevronUp":
+        return <ChevronUp className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "ChevronDown":
+        return <ChevronDown className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Circle":
         return <Circle className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CircleCheck":
@@ -74,6 +84,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <SiteLogo />;
       case "UserCircle":
         return <UserCircle className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "Trash":
+        return <Trash className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "DotsVertical":
         return <DotsVertical className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CloseButton":
