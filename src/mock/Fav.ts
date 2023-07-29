@@ -20,8 +20,10 @@ export const mockDataFav: MockFav[] = [
     nameLabel: "武田シェフ",
     src: "/images/sample_chef.jpg",
   },
-  ...[...Array(10)].map((_) => ({
+  ...[...Array(10)].map((_, index) => ({
     title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
     src: "/images/sample_chef.jpg",
+    //擬似的にシェフの名前を生成したため、のちに削除する
+    nameLabel: `シェフ${index + 3}`,
   })),
 ];
