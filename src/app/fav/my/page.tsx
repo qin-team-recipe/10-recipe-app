@@ -44,7 +44,7 @@ const MyPage: NextPage = () => {
         <div className="space-y-6">
           <TabLinks tabs={tabs} />
           <div className="relative">
-            <ImageGrid addClassNames="mb-8">
+            <ImageGrid isTwoColumns addClassNames="mb-8">
               {mockDataRecipe.slice(0, 10).map((data, index) => (
                 <ImageComponent
                   key={`grid-${index}`}
