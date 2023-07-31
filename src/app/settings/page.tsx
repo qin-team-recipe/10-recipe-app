@@ -17,8 +17,7 @@ const SettingsPage: NextPage = () => {
     <div className="min-h-screen">
       <div className="flex border-b border-lightGray p-1.5">
         <div className="h-4">
-          {/* pathname:このやり方でないとBuildエラーになる... */}
-          <Link href={{ pathname: "/fav" }}>
+          <Link href="/fav">
             <Icon type="ArrowLeft" color="black" />
           </Link>
         </div>
@@ -32,7 +31,6 @@ const SettingsPage: NextPage = () => {
               return (
                 <li key={l.title} className="flex justify-between">
                   {l.title}
-                  {/* pathname:このやり方でないとBuildエラーになる... */}
                   <Link href={{ pathname: l.url }} target={l.isExternalLink ? `_blank` : `_self`}>
                     <Icon size="medium" type={l.isExternalLink ? `ExternalLink` : `ChevronRight`} color="gray" />
                   </Link>
