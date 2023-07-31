@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "run-p dev:*",
+    "dev:next": "next dev",
+    "dev:path": "pathpida --ignorePath .gitignore --watch",
+    "build": "pathpida --ignorePath .gitignore && next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write './src/**/*.{js,jsx,ts,tsx}'",
