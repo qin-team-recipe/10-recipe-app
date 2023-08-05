@@ -36,3 +36,21 @@ export const mockDataNewRecipe = {
     ],
   },
 };
+
+export const mockDataDraftRecipe = [
+  {
+    id: 1,
+    title: "グラタン",
+    createdAt: "2023年4月22日",
+  },
+  {
+    id: 2,
+    title: "レシピ名未記載",
+    createdAt: "2023年4月22日",
+  },
+  {
+    id: 3,
+    title: "オムライス",
+    createdAt: "2023年4月22日",
+  },
+];

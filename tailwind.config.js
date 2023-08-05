@@ -5,9 +5,13 @@ module.exports = {
   theme: {
     colors: {
       black: "#1A1523",
+      lightGra1: "#FDFCFD",
+      lightGray2: "#F9F8F9",
+      lightGray6: "#E4E2E4",
       gray: "#6F6E77",
       lightGray: "#DCDBDD",
       tomato: "#CA3214",
+      lightTomato: "#FFF0EE",
       white: "#FFFFFF",
       blue: "#006ADC",
     },
