@@ -22,11 +22,11 @@ const ChefPage = ({ params }: { params: { id: string } }) => {
   const tabs: Tab[] = [
     {
       label: "レシピ",
-      href: `/chef/${id}`,
+      href: `http://localhost:3000/chef/${id}`,
     },
     {
       label: "リンク",
-      href: `/chef/${id}/link`,
+      href: `http://localhost:3000/chef/${id}/link`,
       isActive: true,
     },
   ];
