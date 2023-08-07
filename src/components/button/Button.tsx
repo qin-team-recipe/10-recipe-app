@@ -23,8 +23,7 @@ type ButtonProps = {
 };
 
 export const Button: React.FC<ButtonProps> = (props) => {
-  const buttonCommon = cc([""]);
-  const buttonBgColor = cc([
+  const buttonClass = cc([
     {
       "bg-tomato": props.bgColor === "tomato" || !props.bgColor,
       "bg-blue": props.bgColor === "blue",
@@ -32,75 +31,41 @@ export const Button: React.FC<ButtonProps> = (props) => {
       "bg-white": props.bgColor === "white",
       transparent: props.bgColor === "none",
     },
-  ]);
-  const buttonColor = cc([
     {
       "text-tomato": props.fontColor === "tomato",
       "text-blue": props.fontColor === "blue",
       "text-black": props.fontColor === "black",
       "text-white": props.fontColor === "white" || !props.fontColor,
     },
-  ]);
-  const buttonWidth = cc([
     {
       "w-1/5": props.width === "small",
       "w-1/2": props.width === "medium",
       "w-full": props.width === "large",
     },
-  ]);
-  const buttonPadding = cc([
     {
       "px-2 py-0.5": props.fontSize === "small",
       "px-3.5 py-1.5": props.fontSize === "medium",
       "px-4.5 py-2": props.fontSize === "large",
     },
-  ]);
-  const buttonFontSize = cc([
     {
       "text-small": props.fontSize === "small",
       "text-medium": props.fontSize === "medium",
       "text-large": props.fontSize === "large",
     },
-  ]);
-  const buttonBorder = cc([
     {
       border: props.isBorder,
       "border-tomato": props.fontColor == "tomato",
     },
-  ]);
-  const buttonHover = cc([
     {
       "hover:opacity-80": props.hoverAction,
     },
-  ]);
-  const buttonRound = cc([
     {
       rounded: !props.isRounded,
       "rounded-full": props.isRounded,
     },
-  ]);
-  const buttonShadow = cc([
     {
       "drop-shadow-lg": props.isShadow,
     },
   ]);
-  return (
-    <button
-      className={cc([
-        buttonCommon,
-        buttonBgColor,
-        buttonColor,
-        buttonWidth,
-        buttonPadding,
-        buttonFontSize,
-        buttonBorder,
-        buttonHover,
-        buttonRound,
-        buttonShadow,
-        props.addClassNames,
-      ])}
-    >
-      {props.children}
-    </button>
-  );
+  return <button className={cc([buttonClass, props.addClassNames])}>{props.children}</button>;
 };
