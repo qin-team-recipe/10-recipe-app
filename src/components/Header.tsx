@@ -24,7 +24,7 @@ export const Header: React.FC<Props> = (props) => {
     },
   ]);
   return (
-    <div className={cc(["flex items-center justify-between border-b border-lightGray p-4", props.addClassNames])}>
+    <div className={cc(["flex items-center justify-between  border-lightGray py-4", props.addClassNames])}>
       <div className="w-6">
         {props.browserBackHref && (
           <Link href={props.browserBackHref}>
