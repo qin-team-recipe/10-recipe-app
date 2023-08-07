@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 
+import { Button, ButtonToggle } from "@/components/button";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 type Mock = {
@@ -85,6 +86,23 @@ const Home: NextPage = () => {
         nameLabel="たけちゃんシェフ"
         ratio="3/4"
       />
+      <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入りから削除" isChecked />
+      <ButtonToggle initialText="フォローする" clickedText="フォロー中" />
+      <Button bgColor="black" fontSize="medium" hoverAction>
+        Appleログイン
+      </Button>
+      <Button fontSize="medium" width="medium">
+        登録する
+      </Button>
+      <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
+        ログアウト
+      </Button>
+      <Button fontSize="medium" width="medium" isRounded isShadow>
+        自作レシピを追加する
+      </Button>
+      <Button fontSize="large" width="large">
+        largeサンプル
+      </Button>
     </>
   );
 };
