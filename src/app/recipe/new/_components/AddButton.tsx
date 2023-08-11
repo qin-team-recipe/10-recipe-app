@@ -1,5 +1,7 @@
 "use client";
 
+import React from "react";
+
 import { Icon } from "@/components/icon/Icon";
 
 type Props = {
@@ -9,7 +11,7 @@ type Props = {
 
 export const AddButton: React.FC<Props> = (props) => {
   return (
-    <button onClick={props.onClick} className="ml-4 mt-2 flex items-center gap-1">
+    <button type="button" onClick={props.onClick} className="ml-4 mt-2 flex items-center gap-1">
       <Icon type="Plus" color="tomato" />
       <p className="text-tomato">{props.title}</p>
     </button>
