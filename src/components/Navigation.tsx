@@ -3,13 +3,13 @@
 import { usePathname } from "next/navigation";
 
 import { NavLink } from "@/components/button";
-import { Icon, IconType } from "@/components/icon/Icon";
+import { Icon } from "@/components/icon/Icon";
 
 const LABELS = [
   { href: "/search", label: "検索", icon: "Search" },
   { href: "/fav", label: "お気に入り", icon: "Heart" },
   { href: "/list", label: "買い物リスト", icon: "ShoppingCart" },
-];
+] as const;
 
 export const Navigation: React.FC = () => {
   const pathname = usePathname();
@@ -27,10 +27,8 @@ export const Navigation: React.FC = () => {
                 activeClassName={isActive ? "text-tomato" : ""}
                 activeColor={isActive ? "tomato" : "black"}
               >
-                <div className="mt-3 flex flex-row justify-start">
-                  <span className="">
-                    <Icon type={icon as IconType} size="large" color={isActive ? "tomato" : "black"} />
-                  </span>
+                <div className="mt-3 flex flex-row items-center justify-start">
+                  <Icon type={icon} size="large" color={isActive ? "tomato" : "black"} />
                   <span className="hidden px-3 pl-2 sm:block">{label}</span>
                 </div>
               </NavLink>
