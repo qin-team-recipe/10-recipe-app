@@ -70,7 +70,7 @@ const Fav: NextPage = () => {
             </div>
           </div>
           <div className="space-y-2">
-            <ImageGrid addClassNames="mb-8">
+            <ImageGrid isTwoColumns addClassNames="mb-8">
               {mockDataFav.slice(0, 10).map((data, index) => (
                 <ImageComponent
                   key={`grid-${index}`}

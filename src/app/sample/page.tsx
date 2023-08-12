@@ -1,5 +1,5 @@
 import { mockData } from "@/mock/SampleMockData";
-import { Chef } from "@/types/tableType";
+import { User } from "@prisma/client";
 
 import { Icon } from "@/components/icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
@@ -8,29 +8,27 @@ import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 const SamplePage = async () => {
   // サーバーコンポーネントの場合
   // revalidateは何秒キャッシュされたデータを使うかの設定
-  // 開発中はキャッシュが邪魔になるので0秒に設定
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 0 } });
-  if (!res.ok) {
-    throw new Error("データの取得に失敗しました");
-  }
-  const chefs: Chef[] = await res.json();
-
-  // クライアントコンポーネントの場合
-  // const [state, setState] = useState<Chef>();
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  /* { cache: "no-cache" }としないとSSGのような挙動になりデータがキャッシュされる
-   今後、データの追加を試したいときに、キャッシュされているとデータが追加されないのでこのようにすることでキャッシュを無効化して確認ができる */
-  //     const data = await fetch("http://localhost:3000/api/chef", { cache: "no-cache" });
-  //     const chef = await data.json();
-  //     setState(chef);
-  //   };
-  //   fetchData();
-  // }, []);
-  // console.log(state);
+  // 開発中はキャッシュが邪魔になるので1秒に設定
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
+  const chefs: User[] = await res.json();
 
   return (
     <>
+      <p className="mb-2 pl-4 text-large font-bold">GETしたデータをmapで表示させる場合</p>
+      <ImageCarousel>
+        {chefs.map((chef) => (
+          <ImageComponent
+            key={chef.id}
+            src={chef.image_url}
+            alt={`${chef.name}の画像`}
+            nameLabel={chef.name}
+            ratio="3/4"
+            width="large"
+            addClassNames="mb-4"
+          />
+        ))}
+      </ImageCarousel>
+      <hr className="mb-4" />
       <div className="m-4 rounded-md border border-black p-2">
         <h3 className="mb-2 text-large font-bold">アイコン</h3>
         <div className="rounded-md bg-gray p-4 text-white">
@@ -116,7 +114,7 @@ const SamplePage = async () => {
           />
         ))}
       </ImageCarousel>
-      <ImageGrid addClassNames="mb-8">
+      <ImageGrid isTwoColumns addClassNames="mb-8">
         {mockData.slice(0, 4).map((data, index) => (
           <ImageComponent
             key={`grid-${index}`}
@@ -137,18 +135,6 @@ const SamplePage = async () => {
         nameLabel="たけちゃんシェフ"
         ratio="3/4"
       />
-      {/* 取得してきたデータの使い方 */}
-      {chefs.map((chef) => (
-        <ImageComponent
-          key={chef.id}
-          src={chef.image_url}
-          alt={`${chef.name}の画像`}
-          nameLabel={chef.name}
-          ratio="3/4"
-          width="large"
-          addClassNames="mb-8"
-        />
-      ))}
     </>
   );
 };

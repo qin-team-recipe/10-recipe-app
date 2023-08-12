@@ -2,7 +2,7 @@ import { NavLink } from "@/components/button";
 import { Icon } from "@/components/icon/Icon";
 
 const labels = [
-  { href: "/", label: "話題を検索", icon: <Icon type="Search" /> },
+  { href: "/search", label: "話題を検索", icon: <Icon type="Search" /> },
   { href: "/fav", label: "お気に入り", icon: <Icon type="Heart" /> },
   { href: "/list", label: "買い物リスト", icon: <Icon type="ShoppingCart" /> },
 ];
