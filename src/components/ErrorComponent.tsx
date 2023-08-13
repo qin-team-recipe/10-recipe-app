@@ -7,7 +7,7 @@ type ErrorProps = {
   text: string;
   isHideImage?: boolean;
   reFetchText?: string;
-  reFetchFunc?: () => void;
+  reFetchFunc: () => void;
 };
 
 // NOTE: Errorのままだと呼び出し元のError.tsxで名前被りが発生するのでErrorComponentとする
@@ -19,7 +19,7 @@ export const ErrorComponent: React.FC<ErrorProps> = (props) => {
       <p>{props.text}</p>
       {/* TODO: ボタンコンポにイベントが渡せるようになったら実装 */}
       {/* <Button onClick={props.reFetch}>再読み込み</Button> */}
-      {props.reFetchText && props.reFetchFunc && <Button>{props.reFetchText}</Button>}
+      {props.reFetchText && <Button>{props.reFetchText}</Button>}
     </div>
   );
 };
