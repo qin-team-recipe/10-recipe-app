@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 
+import { UseFieldArrayRemove } from "react-hook-form";
+
 import { Icon } from "@/components/icon/Icon";
 
-export const InputMenu = () => {
+type Props = {
+  remove: UseFieldArrayRemove;
+  index: number;
+};
+
+export const InputMenu: React.FC<Props> = (props) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   return (
     <div className="relative h-6">
@@ -22,7 +29,7 @@ export const InputMenu = () => {
             </button>
           </div>
           <div className="flex flex-col gap-3 py-2 pl-3">
-            <button className="flex items-center gap-2">
+            <button className="flex items-center gap-2" onClick={() => props.remove(props.index)}>
               <Icon type="Trash" color="gray" size="small" />
               <span>リストから削除する</span>
             </button>
