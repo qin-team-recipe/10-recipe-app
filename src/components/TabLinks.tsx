@@ -1,12 +1,10 @@
-import { UrlObject } from "url";
-import { Route } from "next";
 import Link from "next/link";
 
 import cc from "classcat";
 
 export type Tab = {
   label: string;
-  href: UrlObject | Route<string>;
+  href: string;
   isActive?: boolean;
 };
 
@@ -28,7 +26,7 @@ export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
               },
             ]);
             return (
-              <Link href={tab.href} key={tab.label} className={tabClass}>
+              <Link href={{ pathname: tab.href }} key={tab.label} className={tabClass}>
                 {tab.label}
               </Link>
             );

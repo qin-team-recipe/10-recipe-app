@@ -15,12 +15,12 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
   const tabs: Tab[] = [
     {
       label: "作り方",
-      href: `http://localhost:3000/recipe/${id}`,
+      href: `/recipe/${id}`,
       isActive: true,
     },
     {
       label: "材料",
-      href: `http://localhost:3000/recipe/${id}/ingredients`,
+      href: `/recipe/${id}/ingredients`,
     },
   ];
   return (
