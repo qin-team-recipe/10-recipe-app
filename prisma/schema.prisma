@@ -7,130 +7,115 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-model chef {
-  id          Int      @id @default(autoincrement())
+model User {
+  id          String        @id @db.Uuid
   name        String
   description String
   image_url   String
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
-  recipes     recipe[]
-  follows     follow[]
-  links       link[]
+  is_chef     Boolean?
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @default(now()) @updatedAt
+  following   Follow[]      @relation("following")
+  followed    Follow[]      @relation("followed")
+  Link        Link[]
+  Favorite    Favorite[]
+  Recipe      Recipe[]
+  Ingredients Ingredients[]
+
+  @@map("users")
 }
 
-model link {
-  id         Int      @id @default(autoincrement())
-  site       String
-  url        String
-  site_id    String?
-  follower   String?
-  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
-  chef_id    Int
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
-}
-
-model user {
-  id           String         @id @db.Uuid
-  name         String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  shoppingList shoppingList[]
-  favorites    favorite[]
-  follows      follow[]
-  recipes      recipe[]
-}
-
-model recipe {
-  id           Int            @id @default(autoincrement())
+model Recipe {
+  id           Int           @id @default(autoincrement())
+  user         User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id      String        @db.Uuid
   title        String
   description  String?
-  servings     String
-  link         String?
-  image_url1   String
-  image_url2   String?
-  // statusはmyrecipeかpublished　バリデーションはサーバーアクションで行う？
-  status       String
-  chef         chef?          @relation(fields: [chef_id], references: [id], onDelete: Cascade)
-  chef_id      Int?
-  user         user?          @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id      String?        @db.Uuid
-  shoppingList shoppingList[]
-  instructions instruction[]
-  ingredients  ingredient[]
-  favorites    favorite[]
-  created_at   DateTime       @default(now())
-  updated_at   DateTime       @default(now()) @updatedAt
+  image_url    String?
+  status       RecipeStatus  @default(PRIVATE)
+  instructions String[]
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @default(now()) @updatedAt
+  Link         Link[]
+  Favorite     Favorite[]
+  Ingredients  Ingredients[]
+
+  @@map("recipes")
 }
 
-model instruction {
-  id          Int      @id @default(autoincrement())
-  step        Int
-  description String?
-  note        String?
-  recipe      recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id   Int
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now()) @updatedAt
+model Ingredients {
+  id         Int          @id @default(autoincrement())
+  recipe     Recipe?      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id  Int?
+  user       User?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String?      @db.Uuid
+  step       Int?
+  quantity   Int          @default(1)
+  created_at DateTime     @default(now())
+  updated_at DateTime     @default(now()) @updatedAt
+  ingredient Ingredient[]
+
+  @@map("ingredients_lists")
 }
 
-model ingredient {
-  id            Int            @id @default(autoincrement())
-  name          String
-  quantity      String?
-  recipe        recipe         @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id     Int
-  shoppingItems shoppingItem[]
-  created_at    DateTime       @default(now())
-  updated_at    DateTime       @default(now()) @updatedAt
+model Ingredient {
+  id               Int         @id @default(autoincrement())
+  ingredients      Ingredients @relation(fields: [ingredients_id], references: [id], onDelete: Cascade)
+  ingredients_id   Int
+  name             String?
+  step             Int?
+  is_checked       Boolean?
+  is_shopping_list Boolean?
+  created_at       DateTime    @default(now())
+  updated_at       DateTime    @default(now()) @updatedAt
+
+  @@map("ingredients")
 }
 
-model shoppingList {
-  id            Int            @id @default(autoincrement())
-  step          Int
-  user          user           @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id       String         @db.Uuid
-  recipe        recipe?        @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id     Int?
-  shoppingItems shoppingItem[]
-  created_at    DateTime       @default(now())
-  updated_at    DateTime       @default(now()) @updatedAt
+model Link {
+  id         Int      @id @default(autoincrement())
+  user       User?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String?  @db.Uuid
+  recipe     Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id  Int?
+  url        String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("links")
 }
 
-model shoppingItem {
-  id              Int          @id @default(autoincrement())
-  isChecked       Boolean
-  shoppingList    shoppingList @relation(fields: [shoppingList_id], references: [id], onDelete: Cascade)
-  shoppingList_id Int
-  ingredient      ingredient?  @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
-  ingredient_id   Int?
-  created_at      DateTime     @default(now())
-  updated_at      DateTime     @default(now()) @updatedAt
+model Follow {
+  following    User     @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
+  following_id String   @db.Uuid
+  followed     User     @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
+  followed_id  String   @db.Uuid
+  created_at   DateTime @default(now())
+  updated_at   DateTime @default(now()) @updatedAt
+
+  @@unique([following_id, followed_id])
+  @@map("follows")
 }
 
-model favorite {
-  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+model Favorite {
+  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String   @db.Uuid
-  recipe     recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe     Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id  Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  @@id([user_id, recipe_id])
+  @@unique([user_id, recipe_id])
+  @@map("favorites")
 }
 
-model follow {
-  user       user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id    String   @db.Uuid
-  chef       chef     @relation(fields: [chef_id], references: [id], onDelete: Cascade)
-  chef_id    Int
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
-
-  @@id([user_id, chef_id])
+enum RecipeStatus {
+  PUBLIC
+  LIMIT
+  PRIVATE
 }

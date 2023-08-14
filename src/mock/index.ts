@@ -1,4 +1,4 @@
 export { RecipeAppT10Chefs } from "./Chef";
 export { mockDataRecipe } from "./Recipe";
-//Fav用のmockデータを追加export
+export { mockDataNewRecipe } from "./NewRecipe";
 export { mockDataFav } from "./Fav";
