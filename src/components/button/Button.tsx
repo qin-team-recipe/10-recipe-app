@@ -10,6 +10,8 @@ type ButtonProps = {
   fontSize: "large" | "medium" | "small";
   // ボタン幅
   width?: "large" | "medium" | "small";
+  // ボタン高さ
+  height?: "large" | "medium" | "small";
   // 枠線の有無
   isBorder?: boolean;
   // ボタンの角を丸くするかどうか
@@ -39,13 +41,13 @@ export const Button: React.FC<ButtonProps> = (props) => {
     },
     {
       "w-1/5": props.width === "small",
-      "w-1/2": props.width === "medium",
+      "w-52": props.width === "medium",
       "w-full": props.width === "large",
     },
     {
-      "px-2 py-0.5": props.fontSize === "small",
-      "px-3.5 py-1.5": props.fontSize === "medium",
-      "px-4.5 py-2": props.fontSize === "large",
+      "px-2 py-0.5": props.height === "small",
+      "px-3.5 py-1.5": props.height === "medium" || !props.height,
+      "px-4.5 py-3": props.height === "large",
     },
     {
       "text-small": props.fontSize === "small",
@@ -55,6 +57,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
     {
       border: props.isBorder,
       "border-tomato": props.fontColor == "tomato",
+      "border-black": props.fontColor == "black",
     },
     {
       "hover:opacity-80": props.hoverAction,

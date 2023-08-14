@@ -87,22 +87,45 @@ const Home: NextPage = () => {
         ratio="3/4"
       />
       <div className="my-3">
-        <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入りから削除" />
+        <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入り追加済み" />
         <ButtonToggle initialText="フォローする" clickedText="フォロー中" />
-        <Button bgColor="black" fontSize="medium" hoverAction>
-          Appleログイン
+        <div className="flex justify-around">
+          <Button bgColor="blue" fontSize="medium" hoverAction>
+            Googleログイン
+          </Button>
+          <Button bgColor="black" fontSize="medium" hoverAction>
+            Appleログイン
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium" height="small">
+            お気に入りに追加
+          </Button>
+          <Button bgColor="none" fontColor="black" fontSize="medium" width="medium" height="small" isBorder>
+            レシピを編集
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium">
+            保存する
+          </Button>
+          <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
+            削除する
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium">
+            保存する
+          </Button>
+          <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
+            キャンセル
+          </Button>
+        </div>
+        <Button bgColor="none" fontColor="black" fontSize="medium" width="large" height="small" isBorder>
+          プロフィールを編集
         </Button>
-        <Button fontSize="medium" width="medium">
-          登録する
-        </Button>
-        <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
-          ログアウト
-        </Button>
-        <Button fontSize="medium" width="medium" isRounded isShadow>
-          自作レシピを追加する
-        </Button>
-        <Button fontSize="large" width="large">
-          largeサンプル
+        <Button fontSize="medium" width="medium" height="large" isRounded isShadow>
+          マイレシピを追加する
         </Button>
       </div>
     </>
