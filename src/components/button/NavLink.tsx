@@ -1,24 +1,24 @@
 "use client";
 
-import { cloneElement, type ReactElement } from "react";
-import Link, { type LinkProps } from "next/link";
+import React, { cloneElement, ReactElement } from "react";
+import Link, { LinkProps } from "next/link";
 import { usePathname } from "next/navigation";
 
-/**
- * @package
- */
-export type NavProps = LinkProps<any> & { children: ReactElement; activeClassName: string; activeStrokeColor: string };
-//  型がわからなくてanyになっています😅
+export type NavProps = LinkProps<any> & { children: ReactElement; activeClassName: string; activeColor?: string };
 
 export const NavLink = (props: NavProps) => {
-  const { activeClassName, children, activeStrokeColor, ...linkProps } = props;
+  const { activeClassName, activeColor, children, ...linkProps } = props;
   const router = usePathname();
   const pathname = router === "/root" ? "/" : router;
 
-  const className =
-    pathname === linkProps.href
-      ? `${activeClassName} ${children.props.className ?? ""} ${activeStrokeColor}`
-      : children.props.className ?? "";
+  const isActive = pathname === linkProps.href;
 
-  return <Link {...linkProps}>{cloneElement(children, { className })}</Link>;
+  const className = isActive ? `${activeClassName} ${children.props.className ?? ""}` : children.props.className ?? "";
+
+  const child = React.cloneElement(children, {
+    className,
+    color: isActive && activeColor ? activeColor : children.props.color,
+  });
+
+  return <Link {...linkProps}>{child}</Link>;
 };

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import { routeHandlerSupabase } from "@/lib/routeHandlerSupabase";
 
 export async function GET(request: Request) {
-  const supabase = routeHandlerSupabase;
+  const supabase = await routeHandlerSupabase;
   const { searchParams } = new URL(request.url);
   const id = searchParams.get("id");
 

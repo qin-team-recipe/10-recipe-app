@@ -72,16 +72,16 @@ export interface Database {
       };
       chef: {
         Insert: {
-          id?: string;
+          id?: number;
           name: string;
           created_at?: string;
           description: string;
           image_url: string;
-          updated_at: string;
+          updated_at?: string;
         };
         Relationships: [];
         Row: {
-          id: string;
+          id: number;
           name: string;
           created_at: string;
           description: string;
@@ -89,7 +89,7 @@ export interface Database {
           updated_at: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           name?: string;
           created_at?: string;
           description?: string;
@@ -100,8 +100,8 @@ export interface Database {
       favorite: {
         Insert: {
           created_at?: string;
-          recipe_id: string;
-          updated_at: string;
+          recipe_id: number;
+          updated_at?: string;
           user_id: string;
         };
         Relationships: [
@@ -120,22 +120,22 @@ export interface Database {
         ];
         Row: {
           created_at: string;
-          recipe_id: string;
+          recipe_id: number;
           updated_at: string;
           user_id: string;
         };
         Update: {
           created_at?: string;
-          recipe_id?: string;
+          recipe_id?: number;
           updated_at?: string;
           user_id?: string;
         };
       };
       follow: {
         Insert: {
-          chef_id: string;
+          chef_id: number;
           created_at?: string;
-          updated_at: string;
+          updated_at?: string;
           user_id: string;
         };
         Relationships: [
@@ -153,13 +153,13 @@ export interface Database {
           }
         ];
         Row: {
-          chef_id: string;
+          chef_id: number;
           created_at: string;
           updated_at: string;
           user_id: string;
         };
         Update: {
-          chef_id?: string;
+          chef_id?: number;
           created_at?: string;
           updated_at?: string;
           user_id?: string;
@@ -167,12 +167,12 @@ export interface Database {
       };
       ingredient: {
         Insert: {
-          id?: string;
+          id?: number;
           name: string;
           created_at?: string;
           quantity?: string | null;
-          recipe_id: string;
-          updated_at: string;
+          recipe_id: number;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -183,31 +183,31 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
+          id: number;
           name: string;
           created_at: string;
           quantity: string | null;
-          recipe_id: string;
+          recipe_id: number;
           updated_at: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           name?: string;
           created_at?: string;
           quantity?: string | null;
-          recipe_id?: string;
+          recipe_id?: number;
           updated_at?: string;
         };
       };
       instruction: {
         Insert: {
-          id?: string;
+          id?: number;
           created_at?: string;
           description?: string | null;
           note?: string | null;
-          recipe_id: string;
+          recipe_id: number;
           step: number;
-          updated_at: string;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -218,33 +218,33 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
+          id: number;
           created_at: string;
           description: string | null;
           note: string | null;
-          recipe_id: string;
+          recipe_id: number;
           step: number;
           updated_at: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           created_at?: string;
           description?: string | null;
           note?: string | null;
-          recipe_id?: string;
+          recipe_id?: number;
           step?: number;
           updated_at?: string;
         };
       };
       link: {
         Insert: {
-          id?: string;
-          chef_id: string;
+          id?: number;
+          chef_id: number;
           created_at?: string;
           follower?: string | null;
           site: string;
           site_id?: string | null;
-          updated_at: string;
+          updated_at?: string;
           url: string;
         };
         Relationships: [
@@ -256,8 +256,8 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
-          chef_id: string;
+          id: number;
+          chef_id: number;
           created_at: string;
           follower: string | null;
           site: string;
@@ -266,8 +266,8 @@ export interface Database {
           url: string;
         };
         Update: {
-          id?: string;
-          chef_id?: string;
+          id?: number;
+          chef_id?: number;
           created_at?: string;
           follower?: string | null;
           site?: string;
@@ -278,9 +278,9 @@ export interface Database {
       };
       recipe: {
         Insert: {
-          id?: string;
+          id?: number;
           title: string;
-          chef_id?: string | null;
+          chef_id?: number | null;
           created_at?: string;
           description?: string | null;
           image_url1: string;
@@ -288,7 +288,7 @@ export interface Database {
           link?: string | null;
           servings: string;
           status: string;
-          updated_at: string;
+          updated_at?: string;
           user_id?: string | null;
         };
         Relationships: [
@@ -306,9 +306,9 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
+          id: number;
           title: string;
-          chef_id: string | null;
+          chef_id: number | null;
           created_at: string;
           description: string | null;
           image_url1: string;
@@ -320,9 +320,9 @@ export interface Database {
           user_id: string | null;
         };
         Update: {
-          id?: string;
+          id?: number;
           title?: string;
-          chef_id?: string | null;
+          chef_id?: number | null;
           created_at?: string;
           description?: string | null;
           image_url1?: string;
@@ -336,12 +336,12 @@ export interface Database {
       };
       shoppingItem: {
         Insert: {
-          id?: string;
+          id?: number;
           created_at?: string;
-          ingredient_id?: string | null;
+          ingredient_id?: number | null;
           isChecked: boolean;
-          shoppingList_id: string;
-          updated_at: string;
+          shoppingList_id: number;
+          updated_at?: string;
         };
         Relationships: [
           {
@@ -358,29 +358,29 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
+          id: number;
           created_at: string;
-          ingredient_id: string | null;
+          ingredient_id: number | null;
           isChecked: boolean;
-          shoppingList_id: string;
+          shoppingList_id: number;
           updated_at: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           created_at?: string;
-          ingredient_id?: string | null;
+          ingredient_id?: number | null;
           isChecked?: boolean;
-          shoppingList_id?: string;
+          shoppingList_id?: number;
           updated_at?: string;
         };
       };
       shoppingList: {
         Insert: {
-          id?: string;
+          id?: number;
           created_at?: string;
-          recipe_id?: string | null;
+          recipe_id?: number | null;
           step: number;
-          updated_at: string;
+          updated_at?: string;
           user_id: string;
         };
         Relationships: [
@@ -398,17 +398,17 @@ export interface Database {
           }
         ];
         Row: {
-          id: string;
+          id: number;
           created_at: string;
-          recipe_id: string | null;
+          recipe_id: number | null;
           step: number;
           updated_at: string;
           user_id: string;
         };
         Update: {
-          id?: string;
+          id?: number;
           created_at?: string;
-          recipe_id?: string | null;
+          recipe_id?: number | null;
           step?: number;
           updated_at?: string;
           user_id?: string;
