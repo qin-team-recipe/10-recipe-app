@@ -1,23 +1,43 @@
-import { Button } from "@/components/button";
+"use client";
+
+import { useState } from "react";
+
+import cc from "classcat";
 
 type ButtonToggleProps = {
   // クリック前のボタン内テキスト
   initialText: string;
   // クリック後のボタン内テキスト
   clickedText: string;
-  // クリック済みかどうか
-  isChecked?: boolean;
 };
 
 export const ButtonToggle: React.FC<ButtonToggleProps> = (props) => {
+  const [checked, setChecked] = useState(false);
+
+  const handleClick = () => {
+    setChecked(!checked);
+  };
+
+  const buttonClass = cc([
+    "w-full",
+    "px-2 py-0.5",
+    "text-medium",
+    "border",
+    "border-tomato",
+    "rounded",
+    {
+      "bg-tomato": checked,
+      transparent: !checked,
+    },
+    {
+      "text-white": checked,
+      "text-tomato": !checked,
+    },
+  ]);
+
   return (
-    <Button
-      bgColor={props.isChecked ? "white" : "tomato"}
-      fontColor={props.isChecked ? "tomato" : "white"}
-      fontSize="small"
-      isBorder={props.isChecked}
-    >
-      {props.isChecked ? props.clickedText : props.initialText}
-    </Button>
+    <button className={buttonClass} onClick={handleClick}>
+      {checked ? props.clickedText : props.initialText}
+    </button>
   );
 };
