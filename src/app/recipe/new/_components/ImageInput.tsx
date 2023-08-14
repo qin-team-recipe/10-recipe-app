@@ -40,7 +40,7 @@ export const ImageInput: React.FC<Props> = (props) => {
   return (
     <div>
       <h3 className="mb-1 ml-4 font-bold text-black">画像（任意）</h3>
-      <label className="ml-4 flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-md border border-lightGray">
+      <label className="ml-4 flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-md border border-lightGray hover:cursor-pointer">
         {props.imageData ? (
           <div>
             <img src={props.imageData} />

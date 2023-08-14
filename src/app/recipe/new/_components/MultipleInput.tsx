@@ -29,7 +29,7 @@ export const MultipleInput: React.FC<Props> = (props) => {
 
   return (
     <div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 border-b border-lightGray">
         <label className="mb-1 ml-4 font-bold text-black">{props.label}</label>
         <div className="flex gap-1.5">
           <Icon type="Minus" size="small" color="tomato" backgrondColor="lightTomato" />
@@ -37,7 +37,7 @@ export const MultipleInput: React.FC<Props> = (props) => {
         </div>
       </div>
       {fields.map((field, index) => (
-        <div key={field.id} className="flex gap-4 border-y border-lightGray bg-white px-4 py-2">
+        <div key={field.id} className="flex gap-4 border-b border-lightGray bg-white px-4 py-2">
           <input
             type="text"
             {...register(`${props.schema}.${index}.title`, {
@@ -45,7 +45,7 @@ export const MultipleInput: React.FC<Props> = (props) => {
             })}
             className="w-full border-none outline-none"
           />
-          {watchInput[index].title && <InputMenu />}
+          {watchInput[index].title && <InputMenu remove={remove} index={index} />}
         </div>
       ))}
 

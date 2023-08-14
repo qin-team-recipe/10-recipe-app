@@ -22,11 +22,9 @@ export const Form = () => {
     resolver: zodResolver(newRecipeSchema),
   });
 
-  const { handleSubmit, register, reset, watch } = useFormMethods;
+  const { handleSubmit, register, reset } = useFormMethods;
 
   const onSubmit = (data: NewRecipeSchemaType) => {
-    // action(data)
-    console.log(data);
     reset();
     setImageData("");
   };
