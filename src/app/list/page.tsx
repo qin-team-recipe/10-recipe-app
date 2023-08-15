@@ -3,7 +3,8 @@ import Image from "next/image";
 
 import { MockMyList, MockRecipeList } from "@/mock";
 
-import { Icon } from "@/components/icon/Icon";
+import { ListShoppingHeader } from "@/components/list/ListShoppingHeader";
+import { ListShoppingItem } from "@/components/list/ListShoppingItem";
 
 const Page: NextPage = () => {
   const isLogin = true;
@@ -13,61 +14,21 @@ const Page: NextPage = () => {
       <p className="w-full border-b border-lightGray p-2 text-center font-bold">買い物リスト</p>
       {isLogin ? (
         <div>
-          <div className="mt-3 flex justify-between border-b border-solid border-lightGray px-4 py-3">
-            <p className="text-large font-bold">じぶんメモ</p>
-            <p className="flex w-16 cursor-pointer justify-between text-large">
-              <Icon type="Plus" />
-              <Icon type="DotsCircleHorizontal" addClassNames="rotate-90" />
-            </p>
+          <div>
+            <ListShoppingHeader title="じぶんメモ" />
+            <div>
+              {MockMyList.map((item) => (
+                <ListShoppingItem key={item.id} id={item.id} name={item.name} is_checked={item.is_checked} />
+              ))}
+            </div>
           </div>
           <div>
-            {MockMyList.map((item) => {
-              return (
-                <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
-                  <div className="flex">
-                    <button className="p-1">
-                      {item.is_checked ? (
-                        <Icon type="CircleCheck" color="white" fillColor="lightGray" />
-                      ) : (
-                        <Icon type="Circle" color="tomato" />
-                      )}
-                    </button>
-                    <p className={item.is_checked ? "p-1 text-lightGray" : "p-1"}>{item.name}</p>
-                  </div>
-                  <div className="cursor-pointer p-1">
-                    <Icon type="DotsVertical" />
-                  </div>
-                </div>
-              );
-            })}{" "}
-          </div>
-          <div className="mt-3 flex justify-between border-b border-solid border-lightGray px-4 py-3">
-            <p className="text-large font-bold">グラタン</p>
-            <p className="flex w-16 cursor-pointer justify-between text-large">
-              <Icon type="Plus" />
-              <Icon type="DotsCircleHorizontal" addClassNames="rotate-90" />
-            </p>
-          </div>
-          <div>
-            {MockRecipeList.map((item) => {
-              return (
-                <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
-                  <div className="flex">
-                    <button className="p-1">
-                      {item.is_checked ? (
-                        <Icon type="CircleCheck" color="white" fillColor="lightGray" />
-                      ) : (
-                        <Icon type="Circle" color="tomato" />
-                      )}
-                    </button>
-                    <p className={item.is_checked ? "p-1 text-lightGray" : "p-1"}>{item.name}</p>
-                  </div>
-                  <div className="cursor-pointer p-1">
-                    <Icon type="DotsVertical" />
-                  </div>
-                </div>
-              );
-            })}{" "}
+            <ListShoppingHeader title="長いレシピ名長いレシピ名長いレシピ名長いレシピ名長いレシピ名長いレシピ名" />
+            <div>
+              {MockRecipeList.map((item) => (
+                <ListShoppingItem key={item.id} id={item.id} name={item.name} is_checked={item.is_checked} />
+              ))}
+            </div>
           </div>
         </div>
       ) : (
