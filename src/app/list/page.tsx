@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import Image from "next/image";
 
+import { Icon } from "@/components/icon/Icon";
+
 const Page: NextPage = () => {
   const isLogin = true;
 
@@ -80,7 +82,7 @@ const Page: NextPage = () => {
     },
     {
       id: 1,
-      name: "トマト",
+      name: "複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる",
       created_at: "2023-06-20",
       quantity: 2,
       recipe_id: 0,
@@ -109,9 +111,12 @@ const Page: NextPage = () => {
       <p className="w-full border-b border-lightGray p-2 text-center font-bold">買い物リスト</p>
       {isLogin ? (
         <div>
-          <div className="mt-3 flex justify-between border-b border-solid border-lightGray p-3">
+          <div className="mt-3 flex justify-between border-b border-solid border-lightGray px-4 py-3">
             <p className="text-large font-bold">じぶんメモ</p>
-            <p className="w-8 cursor-pointer text-large">＋</p>
+            <p className="flex w-16 cursor-pointer justify-between text-large">
+              <Icon type="Plus" />
+              <Icon type="DotsCircleHorizontal" addClassNames="rotate-90" />
+            </p>
           </div>
           <div>
             {ingredient.map((item) => {
@@ -119,18 +124,25 @@ const Page: NextPage = () => {
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <Image className="w-6" src="/images/check_on.svg" width="25" height="25" alt="" />
+                      <Icon type="CircleCheck" color="white" fillColor="lightGray" />
+                      {/* <Icon type="CircleCheck" color="white" backgrondColor="lightGray"/> */}
+                      {/* <Image className="w-6" src="/images/check_on.svg" width="25" height="25" alt="" /> */}
                     </button>
                     <p className="p-1 text-lightGray">{item.name}</p>
                   </div>
-                  <p className="cursor-pointer p-1 text-tomato hover:underline">削除</p>
+                  <div className="cursor-pointer p-1">
+                    <Icon type="DotsVertical" />
+                  </div>
                 </div>
               );
             })}{" "}
           </div>
-          <div className="mt-3 flex justify-between border-b border-solid border-lightGray p-3">
+          <div className="mt-3 flex justify-between border-b border-solid border-lightGray px-4 py-3">
             <p className="text-large font-bold">グラタン</p>
-            <p className="w-8 cursor-pointer text-large">︙</p>
+            <p className="flex w-16 cursor-pointer justify-between text-large">
+              <Icon type="Plus" />
+              <Icon type="DotsCircleHorizontal" addClassNames="rotate-90" />
+            </p>
           </div>
           <div>
             {ingredient.map((item) => {
@@ -138,11 +150,13 @@ const Page: NextPage = () => {
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <Image className="w-6" src="/images/check_off.svg" width="25" height="25" alt="" />
+                      <Icon type="Circle" color="tomato" />
                     </button>
                     <p className="p-1">{item.name}</p>
                   </div>
-                  <p className="cursor-pointer p-1 text-tomato hover:underline">削除</p>
+                  <div className="cursor-pointer p-1">
+                    <Icon type="DotsVertical" />
+                  </div>
                 </div>
               );
             })}{" "}
