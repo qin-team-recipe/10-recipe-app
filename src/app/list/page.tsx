@@ -1,110 +1,12 @@
 import { NextPage } from "next";
 import Image from "next/image";
 
+import { MockMyList, MockRecipeList } from "@/mock";
+
 import { Icon } from "@/components/icon/Icon";
 
 const Page: NextPage = () => {
   const isLogin = true;
-
-  const recipe = [
-    {
-      id: 0,
-      title: "じぶんメモ",
-    },
-    {
-      id: 1,
-      title: "グラタン",
-    },
-  ];
-
-  const shopping_list = [
-    {
-      id: 0,
-      created_at: "2023-06-20",
-      recipe_id: 0,
-      step: 0,
-      updated_at: "2023-06-20",
-      user_id: 0,
-    },
-    {
-      id: 1,
-      created_at: "2023-06-20",
-      recipe_id: 1,
-      step: 1,
-      updated_at: "2023-06-20",
-      user_id: 0,
-    },
-  ];
-
-  const shopping_item = [
-    {
-      id: 0,
-      created_at: "2023-06-20",
-      ingredient_id: 0,
-      isChecked: false,
-      shopping_list_id: 0,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 1,
-      created_at: "2023-06-20",
-      ingredient_id: 1,
-      isChecked: false,
-      shopping_list_id: 0,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 2,
-      created_at: "2023-06-20",
-      ingredient_id: 2,
-      isChecked: false,
-      shopping_list_id: 1,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 3,
-      created_at: "2023-06-20",
-      ingredient_id: 3,
-      isChecked: false,
-      shopping_list_id: 1,
-      updated_at: "2023-06-20",
-    },
-  ];
-
-  const ingredient = [
-    {
-      id: 0,
-      name: "キャベツ",
-      created_at: "2023-06-20",
-      quantity: 1,
-      recipe_id: 0,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 1,
-      name: "複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる複数行の場合はこうなる",
-      created_at: "2023-06-20",
-      quantity: 2,
-      recipe_id: 0,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 2,
-      name: "きゅうり",
-      created_at: "2023-06-20",
-      quantity: 3,
-      recipe_id: 1,
-      updated_at: "2023-06-20",
-    },
-    {
-      id: 3,
-      name: "ピーマン",
-      created_at: "2023-06-20",
-      quantity: 5,
-      recipe_id: 1,
-      updated_at: "2023-06-20",
-    },
-  ];
 
   return (
     <>
@@ -119,16 +21,18 @@ const Page: NextPage = () => {
             </p>
           </div>
           <div>
-            {ingredient.map((item) => {
+            {MockMyList.map((item) => {
               return (
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <Icon type="CircleCheck" color="white" fillColor="lightGray" />
-                      {/* <Icon type="CircleCheck" color="white" backgrondColor="lightGray"/> */}
-                      {/* <Image className="w-6" src="/images/check_on.svg" width="25" height="25" alt="" /> */}
+                      {item.is_checked ? (
+                        <Icon type="CircleCheck" color="white" fillColor="lightGray" />
+                      ) : (
+                        <Icon type="Circle" color="tomato" />
+                      )}
                     </button>
-                    <p className="p-1 text-lightGray">{item.name}</p>
+                    <p className={item.is_checked ? "p-1 text-lightGray" : "p-1"}>{item.name}</p>
                   </div>
                   <div className="cursor-pointer p-1">
                     <Icon type="DotsVertical" />
@@ -145,14 +49,18 @@ const Page: NextPage = () => {
             </p>
           </div>
           <div>
-            {ingredient.map((item) => {
+            {MockRecipeList.map((item) => {
               return (
                 <div key={item.id} className="flex justify-between border-b border-solid border-lightGray px-3 py-2">
                   <div className="flex">
                     <button className="p-1">
-                      <Icon type="Circle" color="tomato" />
+                      {item.is_checked ? (
+                        <Icon type="CircleCheck" color="white" fillColor="lightGray" />
+                      ) : (
+                        <Icon type="Circle" color="tomato" />
+                      )}
                     </button>
-                    <p className="p-1">{item.name}</p>
+                    <p className={item.is_checked ? "p-1 text-lightGray" : "p-1"}>{item.name}</p>
                   </div>
                   <div className="cursor-pointer p-1">
                     <Icon type="DotsVertical" />
