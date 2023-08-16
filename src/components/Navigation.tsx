@@ -1,12 +1,12 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import cc from "classcat";
 
 import { Icon } from "@/components/icon/Icon";
-import Link from "next/link";
+import Image from "next/image";
 
 const LABELS = [
   { href: "/", label: "検索", icon: "Search" },
