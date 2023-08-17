@@ -7,6 +7,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   const data = await prisma.user.findMany({
     where: {
+      // ここでエラー
       is_chef: true,
     },
   });
