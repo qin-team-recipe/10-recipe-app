@@ -16,7 +16,7 @@ const SamplePage = async () => {
     <>
       <p className="mb-2 pl-4 text-large font-bold">GETしたデータをmapで表示させる場合</p>
       <ImageCarousel>
-        {chefs?.map((chef) => (
+        {chefs.map((chef) => (
           <ImageComponent
             key={chef.id}
             src={chef.image_url}
