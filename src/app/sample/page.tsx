@@ -9,9 +9,7 @@ const SamplePage = async () => {
   // サーバーコンポーネントの場合
   // revalidateは何秒キャッシュされたデータを使うかの設定
   // 開発中はキャッシュが邪魔になるので1秒に設定
-
-  // 確認終わったら元に戻す
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chefa`, { next: { revalidate: 1 } });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
   const chefs: User[] = await res.json();
 
   return (
