@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { NavLink } from "@/components/button";
@@ -17,7 +18,15 @@ export const Navigation: React.FC = () => {
   return (
     <nav className="pt-2">
       <ul className="flex w-screen justify-around sm:w-full sm:flex-col">
-        <li className="hidden sm:block">ロゴ</li>
+        <li className="hidden sm:block">
+          <Image
+            src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
+            alt="一流レシピロゴ"
+            width={1224}
+            height={789}
+            className="py-3 pr-6"
+          />
+        </li>
         {LABELS.map(({ href, label, icon }) => {
           const isActive = pathname === href;
           return (
