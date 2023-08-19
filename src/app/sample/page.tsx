@@ -1,6 +1,7 @@
 import { mockData } from "@/mock/SampleMockData";
 import { User } from "@prisma/client";
 
+import { Button, ButtonToggle } from "@/components/button";
 import { Icon } from "@/components/icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
@@ -135,6 +136,48 @@ const SamplePage = async () => {
         nameLabel="たけちゃんシェフ"
         ratio="3/4"
       />
+      <div className="my-3">
+        <ButtonToggle initialText="お気に入りに追加" clickedText="お気に入り追加済み" />
+        <ButtonToggle initialText="フォローする" clickedText="フォロー中" />
+        <div className="flex justify-around">
+          <Button bgColor="blue" fontSize="medium" hoverAction>
+            Googleログイン
+          </Button>
+          <Button bgColor="black" fontSize="medium" hoverAction>
+            Appleログイン
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium" height="small">
+            お気に入りに追加
+          </Button>
+          <Button bgColor="none" fontColor="black" fontSize="medium" width="medium" height="small" isBorder>
+            レシピを編集
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium">
+            保存する
+          </Button>
+          <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
+            削除する
+          </Button>
+        </div>
+        <div className="flex justify-around">
+          <Button fontSize="medium" width="medium">
+            保存する
+          </Button>
+          <Button bgColor="none" fontColor="tomato" fontSize="medium" width="medium" isBorder>
+            キャンセル
+          </Button>
+        </div>
+        <Button bgColor="none" fontColor="black" fontSize="medium" width="large" height="small" isBorder>
+          プロフィールを編集
+        </Button>
+        <Button fontSize="medium" width="medium" height="large" isRounded isShadow>
+          マイレシピを追加する
+        </Button>
+      </div>
     </>
   );
 };
