@@ -35,7 +35,7 @@ const Search: NextPage = () => {
         <div className="flex items-center justify-between px-4 font-bold">
           <p className="text-large">話題のレシピ</p>
           <div className="text-gray">
-            <Link href="/fav">
+            <Link href="/search/recipe">
               <p>もっと見る</p>
             </Link>
           </div>
@@ -62,7 +62,7 @@ const Search: NextPage = () => {
         <div className="flex items-center justify-between px-4 font-bold">
           <p className="text-large">シェフ</p>
           <div className="text-gray">
-            <Link href="/fav">
+            <Link href="/search/chef">
               <p>もっと見る</p>
             </Link>
           </div>
