@@ -12,14 +12,7 @@ const Error = ({ error, reset }: { error: Error; reset: () => void }) => {
     console.error(error);
   }, [error]);
 
-  return (
-    <ErrorComponent
-      title="データの取得に失敗しました。"
-      text="時間を置いて再度試していただくか再読み込みボタンで読み込み直しを行なってください。"
-      reFetchText="再読み込み"
-      reFetchFunc={reset}
-    />
-  );
+  return <p>エラーページです。</p>;
 };
 
 export default Error;
