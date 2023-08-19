@@ -1,13 +1,14 @@
-import { NextPage } from "next";
 import Link from "next/link";
 
-import { RecipeAppT10Chefs } from "@/mock";
+import { User } from "@prisma/client";
 
 import { Header } from "@/components/Header";
 import { ImageComponent, ImageGrid } from "@/components/image";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
-const ListChefPage: NextPage = () => {
+const ListChefPage = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
+  const chefs: User[] = await res.json();
   const tabs: Tab[] = [
     {
       label: "レシピ",
@@ -29,7 +30,7 @@ const ListChefPage: NextPage = () => {
         </div>
         <div className="space-y-2 ">
           <ImageGrid isTwoColumns={false} addClassNames="mb-8">
-            {RecipeAppT10Chefs.slice(0, 10).map((data, index) => (
+            {chefs.slice(0, 10).map((data, index) => (
               <Link href={{ pathname: `/chef/${index}` }} key={`grid-${index}`} className="flex gap-4">
                 <ImageComponent src={data.image_url} isRounded alt={`${data.name}の画像`} width="small" ratio="3/4" />
               </Link>
