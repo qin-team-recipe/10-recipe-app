@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { mockDataFav } from "@/mock";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Header/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 const Fav: NextPage = () => {
