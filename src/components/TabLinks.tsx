@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import cc from "classcat";
 
 export type Tab = {
@@ -24,9 +26,9 @@ export const TabLinks: React.FC<TabLinksProps> = ({ tabs }) => {
               },
             ]);
             return (
-              <div key={tab.href} className={tabClass}>
+              <Link href={{ pathname: tab.href }} key={tab.label} className={tabClass}>
                 {tab.label}
-              </div>
+              </Link>
             );
           })}
         </div>
