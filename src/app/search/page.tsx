@@ -4,7 +4,7 @@ import Link from "next/link";
 import { mockDataFav, mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 import { ToolsKitchen2 } from "tabler-icons-react";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/Header/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 const Search: NextPage = () => {
