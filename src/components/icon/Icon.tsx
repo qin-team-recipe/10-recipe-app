@@ -7,7 +7,9 @@ import {
   Circle,
   CircleCheck,
   Copy,
+  DotsCircleHorizontal,
   DotsVertical,
+  Edit,
   ExternalLink,
   Heart,
   Logout,
@@ -22,8 +24,6 @@ import {
   ZoomExclamation,
 } from "tabler-icons-react";
 
-import { CloseButton } from "@/components/icon/assets/CloseButton";
-import { Edit } from "@/components/icon/assets/Edit";
 import { SiteLogo } from "@/components/icon/assets/SiteLogo";
 
 export type IconType =
@@ -44,6 +44,7 @@ export type IconType =
   | "CloseButton"
   | "Edit"
   | "DotsVertical"
+  | "DotsCircleHorizontal"
   | "ChevronUp"
   | "ChevronDown"
   | "ExternalLink"
@@ -54,7 +55,8 @@ type IconProps = {
   type: IconType;
   // organicColorは、アイコンの色をそのままにしたい場合に使用してください。
   color?: "black" | "blue" | "gray" | "lightGray" | "tomato" | "white" | "organicColor";
-  backgrondColor?: "lightTomato";
+  backgrondColor?: "lightTomato" | "lightGray";
+  fillColor?: "lightGray";
   size?: "small" | "medium" | "large";
   addClassNames?: string;
   // https://tabler-icons-react.vercel.app/ にないアイコンでassetsに追加したものを使用する場合はtrueにしてください。
@@ -73,7 +75,12 @@ export const Icon: React.FC<IconProps> = (props) => {
       case "Circle":
         return <Circle className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CircleCheck":
-        return <CircleCheck className={cc([iconColor, iconSize, props.addClassNames])} />;
+        return (
+          <CircleCheck
+            className={cc([iconColor, iconBackGround, iconSize, props.addClassNames])}
+            fill={!props.fillColor ? "none" : props.fillColor}
+          />
+        );
       case "Copy":
         return <Copy className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Heart":
@@ -96,10 +103,12 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <Trash className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "DotsVertical":
         return <DotsVertical className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "DotsCircleHorizontal":
+        return <DotsCircleHorizontal className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CloseButton":
-        return <CloseButton />;
+        return <X className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Edit":
-        return <Edit />;
+        return <Edit className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ExternalLink":
         return <ExternalLink className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ChevronRight":
@@ -121,7 +130,13 @@ export const Icon: React.FC<IconProps> = (props) => {
     },
   ]);
 
-  const iconBackGround = cc([{ "bg-lightTomato": props.backgrondColor === "lightTomato" }]);
+  const iconBackGround = cc([
+    {
+      "fill-lightGray": props.backgrondColor === "lightGray",
+      "bg-lightTomato": props.backgrondColor === "lightTomato",
+      "bg-lightGray": props.backgrondColor === "lightGray",
+    },
+  ]);
 
   const iconSize = cc([
     {
