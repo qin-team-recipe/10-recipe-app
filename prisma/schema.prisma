@@ -31,13 +31,13 @@ model User {
 }
 
 model Recipe {
-  id           Int           @id @default(autoincrement())
+  id           String        @id @default(dbgenerated("uuid_generate_v4()"))
   user         User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id      String        @db.Uuid
   title        String
   description  String?
   image_url    String?
-  status       RecipeStatus  @default(PRIVATE)
+  status       RecipeStatus  @default(PUBLIC)
   instructions String[]
   created_at   DateTime      @default(now())
   updated_at   DateTime      @default(now()) @updatedAt
@@ -49,9 +49,9 @@ model Recipe {
 }
 
 model Ingredients {
-  id         Int          @id @default(autoincrement())
+  id         String       @id @default(dbgenerated("uuid_generate_v4()"))
   recipe     Recipe?      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id  Int?
+  recipe_id  String?
   user       User?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String?      @db.Uuid
   step       Int?
@@ -64,9 +64,9 @@ model Ingredients {
 }
 
 model Ingredient {
-  id               Int         @id @default(autoincrement())
+  id               String      @id @default(dbgenerated("uuid_generate_v4()"))
   ingredients      Ingredients @relation(fields: [ingredients_id], references: [id], onDelete: Cascade)
-  ingredients_id   Int
+  ingredients_id   String
   name             String?
   step             Int?
   is_checked       Boolean?
@@ -78,11 +78,11 @@ model Ingredient {
 }
 
 model Link {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(dbgenerated("uuid_generate_v4()"))
   user       User?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String?  @db.Uuid
   recipe     Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id  Int?
+  recipe_id  String?
   url        String
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
@@ -106,7 +106,7 @@ model Favorite {
   user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String   @db.Uuid
   recipe     Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id  Int
+  recipe_id  String
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
