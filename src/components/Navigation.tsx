@@ -22,8 +22,8 @@ export const Navigation: React.FC = () => {
           <Image
             src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
             alt="一流レシピロゴ"
-            width={1224}
-            height={789}
+            width={612}
+            height={123}
             className="py-3 pr-6"
           />
         </li>
