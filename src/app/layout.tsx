@@ -13,7 +13,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       <head>
         <link rel="icon" href="/images/logo/favicon/16×16px/IchiryuRecipe_Favicon_16×16px.png" type="image/png" />
       </head>
-      <body className="mx-auto flex max-w-2xl flex-col-reverse items-start font-serif sm:flex-row">
+      <body className="mx-auto flex max-w-2xl flex-col-reverse items-start sm:flex-row">
         <Navigation />
         <div className="flex flex-col">
           <main className="w-screen border-x border-lightGray sm:max-w-md">{children}</main>
