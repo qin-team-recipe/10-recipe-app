@@ -22,7 +22,7 @@ export const Navigation: React.FC = () => {
         <li className="hidden sm:block">ロゴ</li>
         {LABELS.map(({ href, label, icon }) => {
           const isActive = pathname === href;
-          const activeColorClass = cc([
+          const labelColorClass = cc([
             "hidden px-3 pl-2 sm:block",
             {
               "text-tomato": pathname === href,
@@ -34,7 +34,7 @@ export const Navigation: React.FC = () => {
               <Link href={href}>
                 <div className="mt-3 flex flex-row items-center justify-start">
                   <Icon type={icon} size="large" color={isActive ? "tomato" : "black"} />
-                  <span className={activeColorClass}>{label}</span>
+                  <span className={labelColorClass}>{label}</span>
                 </div>
               </Link>
             </div>
