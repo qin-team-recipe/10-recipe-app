@@ -8,7 +8,7 @@ import cc from "classcat";
 import { Icon } from "@/components/icon/Icon";
 
 const LABELS = [
-  { href: "/search", label: "検索", icon: "Search" },
+  { href: "/", label: "検索", icon: "Search" },
   { href: "/fav", label: "お気に入り", icon: "Heart" },
   { href: "/list", label: "買い物リスト", icon: "ShoppingCart" },
 ] as const;
