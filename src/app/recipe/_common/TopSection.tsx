@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
@@ -10,6 +13,11 @@ const favNumber = 1234;
 const chefName = RecipeAppT10Chefs[0].name;
 
 export const TopSection = () => {
+  const [isFavored, setIsFavored] = useState(false);
+  const toggleFavorite = () => {
+    setIsFavored(!isFavored);
+  };
+
   return (
     <div className="text-medium">
       <ImageComponent
@@ -43,7 +51,9 @@ export const TopSection = () => {
             <div className="">{favNumber} お気に入り</div>
           </div>
           <div>
-            <Button color="tomato">お気に入りに追加</Button>
+            <Button color={isFavored ? "tomato" : "gray"} onClick={toggleFavorite}>
+              {isFavored ? "お気に入りに追加" : "お気に入りから削除"}
+            </Button>
           </div>
         </div>
       </div>
