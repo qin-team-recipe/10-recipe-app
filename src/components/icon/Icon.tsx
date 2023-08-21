@@ -8,6 +8,7 @@ import {
   CircleCheck,
   Copy,
   DotsVertical,
+  Edit,
   ExternalLink,
   Heart,
   Logout,
@@ -22,8 +23,6 @@ import {
   ZoomExclamation,
 } from "tabler-icons-react";
 
-import { CloseButton } from "@/components/icon/assets/CloseButton";
-import { Edit } from "@/components/icon/assets/Edit";
 import { SiteLogo } from "@/components/icon/assets/SiteLogo";
 
 export type IconType =
@@ -97,9 +96,9 @@ export const Icon: React.FC<IconProps> = (props) => {
       case "DotsVertical":
         return <DotsVertical className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "CloseButton":
-        return <CloseButton />;
+        return <X className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Edit":
-        return <Edit />;
+        return <Edit className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ExternalLink":
         return <ExternalLink className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ChevronRight":
