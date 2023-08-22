@@ -10,9 +10,6 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="ja">
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body className="mx-auto flex max-w-2xl flex-col-reverse items-start sm:flex-row">
         <Navigation />
         <div className="flex flex-col">
