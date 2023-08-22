@@ -1,11 +1,12 @@
 "use client";
 
-import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import cc from "classcat";
 
 import { Icon } from "@/components/icon/Icon";
+import Link from "next/link";
 
 const LABELS = [
   { href: "/", label: "検索", icon: "Search" },
@@ -19,7 +20,15 @@ export const Navigation: React.FC = () => {
   return (
     <nav className="pt-2">
       <ul className="flex w-screen justify-around sm:w-full sm:flex-col">
-        <li className="hidden sm:block">ロゴ</li>
+        <li className="hidden sm:block">
+          <Image
+            src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
+            alt="一流レシピロゴ"
+            width={612}
+            height={123}
+            className="py-3 pr-6"
+          />
+        </li>
         {LABELS.map(({ href, label, icon }) => {
           const isActive = pathname === href;
           const labelColorClass = cc([
