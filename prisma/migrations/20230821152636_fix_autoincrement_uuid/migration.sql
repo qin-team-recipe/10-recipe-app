@@ -1,14 +1,5 @@
-/*
-  Warnings:
-
-  - You are about to drop the `tests` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
 CREATE TYPE "RecipeStatus" AS ENUM ('PUBLIC', 'LIMIT', 'PRIVATE');
-
--- DropTable
-DROP TABLE "public"."tests";
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -25,12 +16,12 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "recipes" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
     "user_id" UUID NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
     "image_url" TEXT,
-    "status" "RecipeStatus" NOT NULL DEFAULT 'PRIVATE',
+    "status" "RecipeStatus" NOT NULL DEFAULT 'PUBLIC',
     "instructions" TEXT[],
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -40,8 +31,8 @@ CREATE TABLE "recipes" (
 
 -- CreateTable
 CREATE TABLE "ingredients_lists" (
-    "id" SERIAL NOT NULL,
-    "recipe_id" INTEGER,
+    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "recipe_id" TEXT,
     "user_id" UUID,
     "step" INTEGER,
     "quantity" INTEGER NOT NULL DEFAULT 1,
@@ -53,8 +44,8 @@ CREATE TABLE "ingredients_lists" (
 
 -- CreateTable
 CREATE TABLE "ingredients" (
-    "id" SERIAL NOT NULL,
-    "ingredients_id" INTEGER NOT NULL,
+    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "ingredients_id" TEXT NOT NULL,
     "name" TEXT,
     "step" INTEGER,
     "is_checked" BOOLEAN,
@@ -67,9 +58,9 @@ CREATE TABLE "ingredients" (
 
 -- CreateTable
 CREATE TABLE "links" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
     "user_id" UUID,
-    "recipe_id" INTEGER,
+    "recipe_id" TEXT,
     "url" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -88,7 +79,7 @@ CREATE TABLE "follows" (
 -- CreateTable
 CREATE TABLE "favorites" (
     "user_id" UUID NOT NULL,
-    "recipe_id" INTEGER NOT NULL,
+    "recipe_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
