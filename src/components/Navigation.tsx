@@ -1,10 +1,13 @@
 "use client";
 
-import Image from "next/image";
+import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 
-import { NavLink } from "@/components/button";
+import cc from "classcat";
+
 import { Icon } from "@/components/icon/Icon";
+import Image from "next/image";
 
 const LABELS = [
   { href: "/", label: "検索", icon: "Search" },
@@ -29,18 +32,21 @@ export const Navigation: React.FC = () => {
         </li>
         {LABELS.map(({ href, label, icon }) => {
           const isActive = pathname === href;
+          const labelColorClass = cc([
+            "hidden px-3 pl-2 sm:block",
+            {
+              "text-tomato": pathname === href,
+              "text-black": pathname === href!,
+            },
+          ]);
           return (
             <div key={href}>
-              <NavLink
-                href={href}
-                activeClassName={isActive ? "text-tomato" : ""}
-                activeColor={isActive ? "tomato" : "black"}
-              >
+              <Link href={href}>
                 <div className="mt-3 flex flex-row items-center justify-start">
                   <Icon type={icon} size="large" color={isActive ? "tomato" : "black"} />
-                  <span className="hidden px-3 pl-2 sm:block">{label}</span>
+                  <span className={labelColorClass}>{label}</span>
                 </div>
-              </NavLink>
+              </Link>
             </div>
           );
         })}
