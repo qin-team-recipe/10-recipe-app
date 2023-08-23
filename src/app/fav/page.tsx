@@ -4,7 +4,7 @@ import Link from "next/link";
 import { mockDataFav } from "@/mock";
 
 import { Header } from "@/components/Header/Header";
-import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
+import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 
 const Fav: NextPage = () => {
   return (

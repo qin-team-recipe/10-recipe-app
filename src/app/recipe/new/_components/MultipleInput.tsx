@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 import { AddButton } from "@/app/recipe/new/_components/AddButton";
 
 type Props = {

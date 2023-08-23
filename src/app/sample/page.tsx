@@ -1,8 +1,8 @@
 import { mockData } from "@/mock/SampleMockData";
 import { User } from "@prisma/client";
 
-import { Icon } from "@/components/icon/Icon";
-import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
+import { Icon } from "@/components/Icon/Icon";
+import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 
 // fetchする場合はNextPage型は削除してasyncをつける
 const SamplePage = async () => {

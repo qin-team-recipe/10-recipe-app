@@ -1,6 +1,6 @@
 import { mockDataRecipe } from "@/mock";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 import { TabLinks, type Tab } from "@/components/TabLinks";
 import { TopSection } from "@/app/recipe/_common/TopSection";
 

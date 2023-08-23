@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Link from "next/link";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 const LinkTitle = [
   // TODO：プログラム的に外部リンクを判定させたい気持ちも...

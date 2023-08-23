@@ -24,7 +24,7 @@ import {
   ZoomExclamation,
 } from "tabler-icons-react";
 
-import { SiteLogo } from "@/components/icon/assets/SiteLogo";
+import { SiteLogo } from "@/components/Icon/assets/SiteLogo";
 
 export type IconType =
   | "ArrowLeft"

@@ -5,9 +5,9 @@ import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { Button } from "@/components/button";
-import { Icon } from "@/components/icon/Icon";
-import { ImageComponent } from "@/components/image";
+import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon/Icon";
+import { ImageComponent } from "@/components/Image";
 
 const favNumber = 1234;
 const chefName = RecipeAppT10Chefs[0].name;

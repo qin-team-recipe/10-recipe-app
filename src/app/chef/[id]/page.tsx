@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { Button } from "@/components/button";
-import { Icon } from "@/components/icon/Icon";
-import { ImageComponent, ImageGrid } from "@/components/image";
+import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon/Icon";
+import { ImageComponent, ImageGrid } from "@/components/Image";
 import { TabLinks, type Tab } from "@/components/TabLinks";
 
 /* eslint-disable import/first */

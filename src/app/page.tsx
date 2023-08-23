@@ -5,7 +5,7 @@ import { mockDataFav, mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 import { ToolsKitchen2 } from "tabler-icons-react";
 
 import { Header } from "@/components/Header/Header";
-import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
+import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 
 const Page: NextPage = () => {
   return (

@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 
-import { ImageComponent } from "@/components/image";
+import { ImageComponent } from "@/components/Image";
 
 const RouteSamplePage = async ({ params }: { params: { id: string } }) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${params.id}`, { next: { revalidate: 1 } });

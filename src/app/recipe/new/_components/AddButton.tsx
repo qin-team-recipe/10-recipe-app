@@ -1,6 +1,6 @@
 "use client";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 type Props = {
   title: string;
