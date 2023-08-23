@@ -1,95 +1,90 @@
-import { NextPage } from "next";
 import Link from "next/link";
 
-import { mockDataFav, mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
-import { ToolsKitchen2 } from "tabler-icons-react";
+import { Recipe, User } from "@prisma/client";
 
 import { Header } from "@/components/Header/Header";
+import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
+import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
-const Page: NextPage = () => {
+const Home = async () => {
+  const chefsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
+  const chefs: User[] = await chefsResponse.json();
+
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { next: { revalidate: 1 } });
+  const recipes: Recipe[] = await recipesResponse.json();
+
   return (
     <div>
       <Header isSearchBar />
-      <div className="space-y-2">
-        <div className="flex items-center justify-between px-4 font-bold">
-          <div className="text-large">注目のシェフ</div>
-        </div>
-        <ImageCarousel>
-          {mockDataFav.map((data, index) => (
-            <ImageComponent
-              key={`bottom-carousel-${index}`}
-              alt={`${data.nameLabel || data.title}の画像`}
-              nameLabel={data.nameLabel}
-              src={data.src}
-              isRounded
-              ratio="1/1"
-              width="medium"
-              addClassNames="mb-8"
-            />
-          ))}
-        </ImageCarousel>
-      </div>
 
-      <div className="space-y-2">
-        <div className="flex items-center justify-between px-4 font-bold">
-          <p className="text-large">話題のレシピ</p>
-          <div className="text-gray">
-            <Link href="/fav">
-              <p>もっと見る</p>
-            </Link>
-          </div>
+      {chefs.length > 0 && (
+        <div className="mb-8 space-y-2">
+          <SectionTitle title="注目のシェフ" isTitleFontSerif />
+          <ImageCarousel>
+            {chefs.map((chef) => (
+              <Link href={`/chef/${chef.id}`} key={chef.id}>
+                <ImageComponent
+                  alt={`${chef.name}の画像`}
+                  nameLabel={chef.name}
+                  src={chef.image_url}
+                  isRounded
+                  ratio="1/1"
+                  width="medium"
+                />
+              </Link>
+            ))}
+          </ImageCarousel>
         </div>
+      )}
 
-        <ImageCarousel>
-          {mockDataRecipe.map((data, index) => (
-            <ImageComponent
-              key={`top-carousel-${index}`}
-              title={data.title}
-              alt={`${data.title}の画像`}
-              description={data.description}
-              src={data.image_url1}
-              isRounded
-              ratio="1/1"
-              width="large"
-              addClassNames="mb-8"
-            />
-          ))}
-        </ImageCarousel>
-      </div>
-
-      <div className="space-y-2">
-        <div className="flex items-center justify-between px-4 font-bold">
-          <p className="text-large">シェフ</p>
-          <div className="text-gray">
-            <Link href="/fav">
-              <p>もっと見る</p>
-            </Link>
-          </div>
+      {recipes.length > 0 && (
+        <div className="mb-8 space-y-2">
+          <SectionTitle title="話題のレシピ" moreText="もっと見る" moreLink="/search/recipe" isTitleFontSerif />
+          <ImageCarousel>
+            {recipes.map((recipe) => (
+              <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
+                <ImageComponent
+                  key={recipe.id}
+                  title={recipe.title}
+                  alt={`${recipe.title}の画像`}
+                  description={recipe.description ? recipe.description : undefined}
+                  src={recipe.image_url || "https://source.unsplash.com/random"}
+                  isRounded
+                  ratio="1/1"
+                  width="large"
+                />
+              </Link>
+            ))}
+          </ImageCarousel>
         </div>
-        <div className="space-y-2 ">
-          <ImageGrid isTwoColumns={false} addClassNames="mb-8">
-            {RecipeAppT10Chefs.slice(0, 10).map((data, index) => (
-              <div key={`grid-${index}`} className="flex gap-4">
-                <ImageComponent src={data.image_url} isRounded alt={`${data.name}の画像`} width="small" ratio="3/4" />
-                <div className="flex flex-col space-y-2">
-                  <p className="text-large font-bold">{data.name}</p>
-                  <p className="text-small text-gray">{data.description}</p>
-                  <div className="flex space-x-2">
-                    <p>
-                      <ToolsKitchen2 />
-                    </p>
-                    <p>{data.favNum}</p>
-                    <p>レシピ</p>
+      )}
+
+      {/* TODO: この部分用に新しいエンドポイントを作成する。（それまではシェフデータを改変して対応） */}
+      {chefs.length > 0 && (
+        <div className="mb-8 space-y-2">
+          <SectionTitle title="シェフ" moreText="もっと見る" moreLink="/search/chef" isTitleFontSerif />
+          <ImageGrid>
+            {chefs.slice(-10).map((chef) => (
+              <Link href={`/chef/${chef.id}`} key={chef.id}>
+                <div className="flex gap-4">
+                  <ImageComponent alt={`${chef.name}の画像`} src={chef.image_url} isRounded ratio="3/4" width="small" />
+                  <div>
+                    <p className="font-bold">{chef.name}</p>
+                    <p className="line-clamp-3 text-medium text-gray">{chef.description}</p>
+                    <span className="flex items-center text-medium">
+                      <Icon type="ToolsKitchen2" size="small" />
+                      {` ${Math.floor(Math.random() * 10)} レシピ`}
+                    </span>
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </ImageGrid>
         </div>
-      </div>
+      )}
     </div>
   );
 };
 
-export default Page;
+export default Home;

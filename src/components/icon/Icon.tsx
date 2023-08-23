@@ -18,6 +18,7 @@ import {
   Plus,
   Search,
   ShoppingCart,
+  ToolsKitchen2,
   Trash,
   UserCircle,
   X,
@@ -49,6 +50,7 @@ export type IconType =
   | "ChevronDown"
   | "ExternalLink"
   | "Logout"
+  | "ToolsKitchen2"
   | "ZoomExclamation";
 
 type IconProps = {
@@ -115,6 +117,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <ChevronRight className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "Logout":
         return <Logout className={cc([iconColor, iconSize, props.addClassNames])} />;
+      case "ToolsKitchen2":
+        return <ToolsKitchen2 className={cc([iconColor, iconSize, props.addClassNames])} />;
       case "ZoomExclamation":
         return <ZoomExclamation className={cc([iconColor, iconSize, props.addClassNames])} />;
     }

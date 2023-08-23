@@ -24,10 +24,11 @@ type ImageComponentProps = {
   // 画像のアスペクト比
   ratio: "1/1" | "3/4";
   // 画像の代替テキスト
-  // TODO: DB参照できるようになったら必須に変更する
-  src?: string;
+  src: string;
   // 画像の幅
   width: "full" | "large" | "medium" | "small" | "xSmall" | "xxSmall";
+  // 遷移先のURL
+  url?: string;
 };
 
 // next/imageと区別するために、ImageComponentで定義
@@ -78,6 +79,7 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
           className={imageOptionClass}
           priority={props.width === "full"}
           quality={props.width === "full" ? 100 : 80}
+          sizes="20vw"
         />
         {props.nameLabel && (
           <p className="absolute bottom-3 left-3 text-large font-bold text-white">{props.nameLabel}</p>
