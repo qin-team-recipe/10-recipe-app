@@ -27,8 +27,6 @@ type ImageComponentProps = {
   src: string;
   // 画像の幅
   width: "full" | "large" | "medium" | "small" | "xSmall" | "xxSmall";
-  // 遷移先のURL
-  url?: string;
 };
 
 // next/imageと区別するために、ImageComponentで定義
