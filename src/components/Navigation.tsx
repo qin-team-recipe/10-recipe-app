@@ -1,32 +1,51 @@
-import { NavLink } from "@/components/button";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+import cc from "classcat";
+
 import { Icon } from "@/components/icon/Icon";
 
-const labels = [
-  { href: "/search", label: "話題を検索", icon: <Icon type="Search" /> },
-  { href: "/fav", label: "お気に入り", icon: <Icon type="Heart" /> },
-  { href: "/list", label: "買い物リスト", icon: <Icon type="ShoppingCart" /> },
-];
+const LABELS = [
+  { href: "/", label: "検索", icon: "Search" },
+  { href: "/fav", label: "お気に入り", icon: "Heart" },
+  { href: "/list", label: "買い物リスト", icon: "ShoppingCart" },
+] as const;
 
-// TODO: 仮の左カラム兼、フッターなので、後で対応お願いします。
+export const Navigation: React.FC = () => {
+  const pathname = usePathname();
 
-type navigationProps = {
-  pathname?: "/" | "/fav" | "list";
-};
-
-export const Navigation: React.FC<navigationProps> = (props) => {
   return (
     <nav className="pt-2">
       <ul className="flex w-screen justify-around sm:w-full sm:flex-col">
-        <li className="hidden sm:block">ロゴ</li>
-        {labels.map(({ href, label, icon }) => {
+        <li className="hidden sm:block">
+          <Image
+            src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
+            alt="一流レシピロゴ"
+            width={612}
+            height={123}
+            className="py-3 pr-6"
+          />
+        </li>
+        {LABELS.map(({ href, label, icon }) => {
+          const isActive = pathname === href;
+          const labelColorClass = cc([
+            "hidden px-3 pl-2 sm:block",
+            {
+              "text-tomato": pathname === href,
+              "text-black": pathname === href!,
+            },
+          ]);
           return (
             <div key={href}>
-              <NavLink href={href} activeClassName="text-tomato" activeStrokeColor="tomato">
-                <div className="mt-3 flex flex-row justify-start">
-                  <span className="">{icon}</span>
-                  <span className="hidden px-3 pl-2 sm:block">{label}</span>
+              <Link href={href}>
+                <div className="mt-3 flex flex-row items-center justify-start">
+                  <Icon type={icon} size="large" color={isActive ? "tomato" : "black"} />
+                  <span className={labelColorClass}>{label}</span>
                 </div>
-              </NavLink>
+              </Link>
             </div>
           );
         })}

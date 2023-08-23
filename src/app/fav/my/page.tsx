@@ -44,7 +44,7 @@ const MyPage: NextPage = () => {
         <div className="space-y-6">
           <TabLinks tabs={tabs} />
           <div className="relative">
-            <ImageGrid addClassNames="mb-8">
+            <ImageGrid isTwoColumns addClassNames="mb-8">
               {mockDataRecipe.slice(0, 10).map((data, index) => (
                 <ImageComponent
                   key={`grid-${index}`}
@@ -58,7 +58,7 @@ const MyPage: NextPage = () => {
               ))}
             </ImageGrid>
             <button className="absolute bottom-52 left-[33%] rounded-full bg-tomato px-2 py-1 text-medium text-white">
-              <Link href="recipe/new">マイレシピを追加する</Link>
+              <Link href="/recipe/new">マイレシピを追加する</Link>
             </button>
           </div>
         </div>

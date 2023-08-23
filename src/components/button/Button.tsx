@@ -1,3 +1,5 @@
+"use client";
+
 import cc from "classcat";
 
 type ButtonProps = {
@@ -6,7 +8,7 @@ type ButtonProps = {
   color?: "tomato" | "white" | "gray";
   // クライアントコンポーネントになると思うのでその内下を実装
   // clickEvent
-  // onClick?: () => void;
+  onClick?: () => void;
 };
 export const Button: React.FC<ButtonProps> = (props) => {
   const buttonColor = cc([
@@ -16,5 +18,9 @@ export const Button: React.FC<ButtonProps> = (props) => {
       "bg-tomato": props.color === "tomato",
     },
   ]);
-  return <button className={buttonColor}>{props.children}</button>;
+  return (
+    <button className={buttonColor} onClick={props.onClick}>
+      {props.children}
+    </button>
+  );
 };
