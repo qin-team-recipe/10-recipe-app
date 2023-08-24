@@ -8,10 +8,10 @@ import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
 const Home = async () => {
-  const chefsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { next: { revalidate: 1 } });
+  const chefsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`);
   const chefs: User[] = await chefsResponse.json();
 
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { next: { revalidate: 1 } });
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`);
   const recipes: Recipe[] = await recipesResponse.json();
 
   return (
