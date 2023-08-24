@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from "next";
 import Link from "next/link";
 
@@ -8,6 +10,51 @@ import { Header } from "@/components/Header/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
 const Page: NextPage = () => {
+  const handleCreate = async () => {
+    try {
+      await fetch("/api/recipe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "post test title",
+          description: "post test description",
+          image_url: "post test image_url",
+          status: "PUBLIC",
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleDelete = async () => {
+    try {
+      await fetch("/api/recipe/222f2635-61a5-4763-a1ae-cb5a162b3566", {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleUpdate = async () => {
+    try {
+      await fetch("/api/recipe/222f2635-61a5-4763-a1ae-cb5a162b3566", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "put test title",
+          description: "put test description",
+          image_url: "put test image_url",
+          status: "PUBLIC",
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <Header isSearchBar />
@@ -15,6 +62,9 @@ const Page: NextPage = () => {
         <div className="flex items-center justify-between px-4 font-bold">
           <div className="text-large">注目のシェフ</div>
         </div>
+        <button onClick={() => handleCreate()}>post</button>
+        <button onClick={() => handleDelete()}>delete</button>
+        <button onClick={() => handleUpdate()}>put</button>
         <ImageCarousel>
           {mockDataFav.map((data, index) => (
             <ImageComponent
