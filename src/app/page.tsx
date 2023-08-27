@@ -1,34 +1,43 @@
 import Link from "next/link";
 
-import { Recipe, User } from "@prisma/client";
+import { RecipeAndFavCount, UserAndRelationCount } from "@/types";
+import { User } from "@prisma/client";
 
-import { Header } from "@/components/Header/Header";
 import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
+import { SearchBar } from "@/components/SearchBar/SearchBar";
 import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
 const Home = async () => {
-  const chefsResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { cache: "no-store" });
-  const chefs: User[] = await chefsResponse.json();
+  const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`, {
+    next: { revalidate: 10 },
+  });
+  const chefsSortFav: User[] = await chefsSortFavResponse.json();
 
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
-  const recipes: Recipe[] = await recipesResponse.json();
+  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, {
+    next: { revalidate: 10 },
+  });
+  const chefsSortName: UserAndRelationCount[] = await chefsSortNameResponse.json();
+
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { next: { revalidate: 10 } });
+  const recipes: RecipeAndFavCount[] = await recipesResponse.json();
 
   return (
     <div>
-      <Header isSearchBar />
+      <SearchBar />
 
-      {chefs.length > 0 && (
+      {chefsSortFav.length > 0 && (
         <div className="mb-8 space-y-2">
           <SectionTitle title="注目のシェフ" isTitleFontSerif />
           <ImageCarousel>
-            {chefs.map((chef) => (
+            {chefsSortFav.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <ImageComponent
                   alt={`${chef.name}の画像`}
                   nameLabel={chef.name}
                   src={chef.image_url}
                   isRounded
+                  isShadow
                   ratio="1/1"
                   width="medium"
                 />
@@ -48,11 +57,13 @@ const Home = async () => {
                   key={recipe.id}
                   title={recipe.title}
                   alt={`${recipe.title}の画像`}
-                  description={recipe.description ? recipe.description : undefined}
-                  src={recipe.image_url || "https://source.unsplash.com/random"}
+                  description={recipe.description || undefined}
+                  src={recipe.image_url || undefined}
                   isRounded
+                  isShadow
                   ratio="1/1"
                   width="large"
+                  favNum={recipe._count.Favorite}
                 />
               </Link>
             ))}
@@ -60,21 +71,27 @@ const Home = async () => {
         </div>
       )}
 
-      {/* TODO: この部分用に新しいエンドポイントを作成する。（それまではシェフデータを改変して対応） */}
-      {chefs.length > 0 && (
+      {chefsSortName.length > 0 && (
         <div className="mb-8 space-y-2">
           <SectionTitle title="シェフ" moreText="もっと見る" moreLink="/search/chef" isTitleFontSerif />
           <ImageGrid>
-            {chefs.slice(-10).map((chef) => (
+            {chefsSortName.map((chef) => (
               <Link href={`/chef/${chef.id}`} key={chef.id}>
                 <div className="flex gap-4">
-                  <ImageComponent alt={`${chef.name}の画像`} src={chef.image_url} isRounded ratio="3/4" width="small" />
+                  <ImageComponent
+                    alt={`${chef.name}の画像`}
+                    src={chef.image_url}
+                    isRounded
+                    isShadow
+                    ratio="3/4"
+                    width="small"
+                  />
                   <div>
                     <p className="font-bold">{chef.name}</p>
                     <p className="line-clamp-3 text-medium text-gray">{chef.description}</p>
                     <span className="flex items-center text-medium">
                       <Icon type="ToolsKitchen2" size="small" />
-                      {` ${Math.floor(Math.random() * 10)} レシピ`}
+                      {` ${chef._count.Recipe} レシピ`}
                     </span>
                   </div>
                 </div>

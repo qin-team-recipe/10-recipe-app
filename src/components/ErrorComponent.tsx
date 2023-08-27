@@ -7,7 +7,7 @@ type ErrorProps = {
   text: string;
   isHideImage?: boolean;
   reFetchText?: string;
-  reFetchFunc: () => void;
+  reFetchFunc?: () => void;
 };
 
 // NOTE: Errorのままだと呼び出し元のError.tsxで名前被りが発生するのでErrorComponentとする

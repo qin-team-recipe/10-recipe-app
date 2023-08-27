@@ -1,5 +1,4 @@
 import { mockData } from "@/mock/SampleMockData";
-import { User } from "@prisma/client";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
@@ -9,13 +8,13 @@ const SamplePage = async () => {
   // サーバーコンポーネントの場合
   // revalidateは何秒キャッシュされたデータを使うかの設定
   // 開発中はキャッシュが邪魔になるので1秒に設定
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { cache: "no-store" });
-  const chefs: User[] = await res.json();
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, { cache: "no-store" });
+  // const chefs: User[] = await res.json();
 
   return (
     <>
       <p className="mb-2 pl-4 text-large font-bold">GETしたデータをmapで表示させる場合</p>
-      <ImageCarousel>
+      {/* <ImageCarousel>
         {chefs.map((chef) => (
           <ImageComponent
             key={chef.id}
@@ -27,7 +26,7 @@ const SamplePage = async () => {
             addClassNames="mb-4"
           />
         ))}
-      </ImageCarousel>
+      </ImageCarousel> */}
       <hr className="mb-4" />
       <div className="m-4 rounded-md border border-black p-2">
         <h3 className="mb-2 text-large font-bold">アイコン</h3>
