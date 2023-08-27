@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { UseFieldArrayRemove } from "react-hook-form";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 type Props = {
   remove: UseFieldArrayRemove;

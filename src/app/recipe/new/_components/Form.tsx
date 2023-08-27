@@ -8,7 +8,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { AddButton } from "@/app/recipe/new/_components/AddButton";
 import { ImageInput } from "@/app/recipe/new/_components/ImageInput";
 import { MultipleInput } from "@/app/recipe/new/_components/MultipleInput";
-import { action } from "@/app/recipe/new/action";
 import { newRecipeSchema, NewRecipeSchemaType } from "@/app/recipe/new/type";
 
 export const Form = () => {
@@ -24,7 +23,7 @@ export const Form = () => {
 
   const { handleSubmit, register, reset } = useFormMethods;
 
-  const onSubmit = (data: NewRecipeSchemaType) => {
+  const onSubmit = () => {
     reset();
     setImageData("");
   };

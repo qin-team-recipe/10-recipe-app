@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction, useRef, useState } from "react";
+import React, { Dispatch, SetStateAction, useRef } from "react";
 
 import { useFormContext } from "react-hook-form";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 type Props = {
   imageData: string;
@@ -12,10 +12,7 @@ type Props = {
 export const ImageInput: React.FC<Props> = (props) => {
   const fileInput = useRef<HTMLInputElement | null>(null);
 
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
+  const { register } = useFormContext();
 
   const deployment = (files: FileList) => {
     const file = files[0];
@@ -43,7 +40,7 @@ export const ImageInput: React.FC<Props> = (props) => {
       <label className="ml-4 flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-md border border-lightGray hover:cursor-pointer">
         {props.imageData ? (
           <div>
-            <img src={props.imageData} />
+            <img src={props.imageData} alt="" />
           </div>
         ) : (
           <div className="text-center">

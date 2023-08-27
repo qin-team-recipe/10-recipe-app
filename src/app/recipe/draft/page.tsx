@@ -1,6 +1,6 @@
 import { mockDataDraftRecipe } from "@/mock/NewRecipe";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 
 const Page = () => {
   return (

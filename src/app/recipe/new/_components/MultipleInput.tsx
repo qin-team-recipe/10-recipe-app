@@ -2,7 +2,7 @@
 
 import { useFieldArray, useFormContext } from "react-hook-form";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 import { AddButton } from "@/app/recipe/new/_components/AddButton";
 import { InputMenu } from "@/app/recipe/new/_components/InputMenu";
 
@@ -13,12 +13,7 @@ type Props = {
 };
 
 export const MultipleInput: React.FC<Props> = (props) => {
-  const {
-    register,
-    control,
-    watch,
-    formState: { errors },
-  } = useFormContext();
+  const { register, control, watch } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
     name: props.schema,

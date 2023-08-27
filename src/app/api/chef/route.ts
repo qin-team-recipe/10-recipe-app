@@ -1,14 +1,31 @@
 import { NextResponse } from "next/server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
+type GetOption = { name: "asc" } | { created_at: "desc" };
 
-export async function GET() {
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const sortType = searchParams.get("sort");
+  const getOption: GetOption = sortType === "fav" ? { created_at: "desc" } : { name: "asc" };
+
   const data = await prisma.user.findMany({
     where: {
       is_chef: true,
     },
+    select: {
+      id: true,
+      name: true,
+      description: true,
+      image_url: true,
+      _count: {
+        select: {
+          followed: true,
+          Recipe: true,
+        },
+      },
+    },
+    orderBy: { ...getOption },
   });
   return NextResponse.json(data);
 }

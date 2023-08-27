@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { Icon } from "@/components/icon/Icon";
+import { Icon } from "@/components/Icon/Icon";
 import { Form } from "@/app/recipe/new/_components/Form";
 
 const Page = () => {
