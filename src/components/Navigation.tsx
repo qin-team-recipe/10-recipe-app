@@ -1,13 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-
 import { usePathname } from "next/navigation";
 
 import cc from "classcat";
 
-import { Icon } from "@/components/icon/Icon";
-import Image from "next/image";
+import { Icon } from "@/components/Icon/Icon";
 
 const LABELS = [
   { href: "/", label: "検索", icon: "Search" },
@@ -22,13 +21,15 @@ export const Navigation: React.FC = () => {
     <nav className="pt-2">
       <ul className="flex w-screen justify-around sm:w-full sm:flex-col">
         <li className="hidden sm:block">
-          <Image
-            src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
-            alt="一流レシピロゴ"
-            width={612}
-            height={123}
-            className="py-3 pr-6"
-          />
+          <Link href="/">
+            <Image
+              src="/images/logo/png/yoko/IchiryuRecipe_yoko.png"
+              alt="一流レシピロゴ"
+              width={612}
+              height={123}
+              className="py-3 pr-6"
+            />
+          </Link>
         </li>
         {LABELS.map(({ href, label, icon }) => {
           const isActive = pathname === href;

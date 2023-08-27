@@ -1,17 +1,16 @@
-import { mockDataRecipe } from "@/mock";
+import Image from "next/image";
 
-import { Icon } from "@/components/icon/Icon";
-import { TabLinks, type Tab } from "@/components/TabLinks";
-import { TopSection } from "@/app/recipe/_common/TopSection";
+import { Recipe } from "@prisma/client";
 
-export const generateStaticParams = () => {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
-};
-// https://nextjs.org/docs/app/api-reference/functions/generate-static-params
-// 上記参考に動的ルーティングに対応しておりますが、DBと合わせた際の挙動まで考えて実装していません。
+import { type Tab } from "@/components/TabLinks";
 
-const RecipePage = ({ params }: { params: { id: string } }) => {
+import { RecipeBottomSection } from "./_component/RecipeBottomSection";
+
+const RecipePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe/${id}`, { next: { revalidate: 10 } });
+  const recipe: Recipe = await res.json();
+
   const tabs: Tab[] = [
     {
       label: "作り方",
@@ -23,28 +22,27 @@ const RecipePage = ({ params }: { params: { id: string } }) => {
       href: `/recipe/${id}/ingredients`,
     },
   ];
+
   return (
-    <div className="relative mx-auto pb-16">
-      <TopSection />
-      <TabLinks tabs={tabs} />
-      <ul className="mb-3">
-        {mockDataRecipe.map((recipe) => {
-          return (
-            <li key={recipe.pk} className="flex gap-x-2 border-y border-lightGray  px-4 py-2">
-              <div className="mr-3 grid h-5 w-5 place-items-center rounded-full bg-tomato text-small text-white">
-                {recipe.id}
-              </div>
-              <p className="w-full text-medium leading-snug">{recipe.description}</p>
+    <RecipeBottomSection tabs={tabs}>
+      {recipe.instructions.length ? (
+        <ul>
+          {recipe.instructions.map((instruction, i) => (
+            <li key={i} className="flex items-start border-b border-lightGray px-4 py-2">
+              <span className="mr-2 flex h-5 w-5 items-center justify-center rounded-full bg-tomato text-small text-white">
+                {i + 1}
+              </span>
+              <p className="w-full">{instruction}</p>
             </li>
-          );
-        })}
-      </ul>
-      <div className="flex h-4 flex-row-reverse">
-        <button className="flex items-center px-4 text-blue">
-          <Icon type="Copy" color="blue" /> コピーする
-        </button>
-      </div>
-    </div>
+          ))}
+        </ul>
+      ) : (
+        <div className="text-center">
+          <Image src="/images/error.png" width={300} height={300} alt="" className="mx-auto" />
+          <p>作り方が登録されていません。</p>
+        </div>
+      )}
+    </RecipeBottomSection>
   );
 };
 

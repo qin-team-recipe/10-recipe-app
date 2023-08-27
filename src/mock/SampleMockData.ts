@@ -20,6 +20,8 @@ export const mockData: Mock[] = [
     nameLabel: "武田シェフ",
     src: "/images/sample_chef.jpg",
   },
+
+  // eslint-disable-next-line no-unused-vars
   ...[...Array(10)].map((_) => ({
     title: "トマトとルッコラのマルゲリータトマトとルッコラのマルゲリータトマトとルッコラのマルゲリータ",
     src: "/images/sample_chef.jpg",
