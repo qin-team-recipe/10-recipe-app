@@ -6,9 +6,7 @@ import { RecipeBottomSection } from "../_component/RecipeBottomSection";
 
 const RecipeIngredientsPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ingredients?recipe_id=${id}`, {
-    next: { revalidate: 10 },
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ingredients?recipe_id=${id}`, { cache: "no-store" });
   const jsonData = await res.json();
   // NOTE: recipe_idで絞り込んだ材料リスト（ユニーク）を配列で取得しているので、0番目の要素を取得する
   const ingredients: IngredientsAndIngredient = jsonData[0];
