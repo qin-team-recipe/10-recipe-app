@@ -10,16 +10,14 @@ import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
 const Home = async () => {
   const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`, {
-    next: { revalidate: 10 },
+    cache: "no-store",
   });
   const chefsSortFav: User[] = await chefsSortFavResponse.json();
 
-  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, {
-    next: { revalidate: 10 },
-  });
+  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
   const chefsSortName: UserAndRelationCount[] = await chefsSortNameResponse.json();
 
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { next: { revalidate: 10 } });
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
   const recipes: RecipeAndFavCount[] = await recipesResponse.json();
 
   return (
