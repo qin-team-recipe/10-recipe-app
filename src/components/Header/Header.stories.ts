@@ -16,9 +16,3 @@ export const Default: Story = {
     isUserIcon: true,
   },
 };
-
-export const SearchBar: Story = {
-  args: {
-    isSearchBar: true,
-  },
-};
