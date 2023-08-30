@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { Icon } from "@/components/icon/Icon";
-import { ImageComponent, ImageGrid } from "@/components/image";
+import { Icon } from "@/components/Icon/Icon";
+import { ImageComponent, ImageGrid } from "@/components/Image";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
 const MyPage: NextPage = () => {

@@ -1,50 +1,44 @@
-import { mockDataIngredient } from "@/mock/Recipe";
+import { IngredientsAndIngredient } from "@/types";
 
-import { Icon } from "@/components/icon/Icon";
-import { TabLinks, type Tab } from "@/components/TabLinks";
-import { TopSection } from "@/app/recipe/_common/TopSection";
+import { type Tab } from "@/components/TabLinks";
 
-export const generateStaticParams = () => {
-  return [{ id: "1" }, { id: "2" }, { id: "3" }];
-};
-// https://nextjs.org/docs/app/api-reference/functions/generate-static-params
-// 上記参考に動的ルーティングに対応しておりますが、DBと合わせた際の挙動まで考えて実装していません。
+import { RecipeBottomSection } from "../_component/RecipeBottomSection";
 
-const IngredientsPages = ({ params }: { params: { id: string } }) => {
+const RecipeIngredientsPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/ingredients?recipe_id=${id}`, {
+    next: { revalidate: 10 },
+  });
+  const jsonData = await res.json();
+  // NOTE: recipe_idで絞り込んだ材料リスト（ユニーク）を配列で取得しているので、0番目の要素を取得する
+  const ingredients: IngredientsAndIngredient = jsonData[0];
+
   const tabs: Tab[] = [
     {
       label: "作り方",
       href: `/recipe/${id}`,
-      isActive: true,
     },
     {
       label: "材料",
       href: `/recipe/${id}/ingredients`,
+      isActive: true,
     },
   ];
+
   return (
-    <div className="relative mx-auto pb-16">
-      <TopSection />
-      <TabLinks tabs={tabs} />
-      <div className="mx-3 my-4 flex justify-between">
-        <p className="text-large font-bold">2人前</p>
-        <button>まとめてお買い物に追加</button>
+    <RecipeBottomSection tabs={tabs}>
+      <div className="flex items-center border-b border-lightGray px-4 py-2">
+        <p className="font-bold">{`${ingredients.quantity}人前`}</p>
       </div>
-      <ul className="mb-3 text-medium">
-        {mockDataIngredient.map((i: any) => {
-          return (
-            <li key={i.id} className="flex justify-between gap-x-2 border-y border-lightGray  px-4 py-2">
-              {i.name}
-              <div>
-                <Icon type={"ShoppingCart"} color="gray" />
-              </div>
-            </li>
-          );
-        })}
+      <ul>
+        {ingredients.ingredient.map((ingredient) => (
+          <li key={ingredient.id} className="border-b border-lightGray px-4 py-2">
+            {ingredient.name}
+          </li>
+        ))}
       </ul>
-    </div>
+    </RecipeBottomSection>
   );
 };
 
-export default IngredientsPages;
+export default RecipeIngredientsPage;
