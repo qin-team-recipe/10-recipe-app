@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { Icon, IconType } from "@/components/Icon/Icon";
 
+// 多分ここでonClickも渡して条件分岐させるのかな。。
 export type PopoverLabelsProps = {
   className?: string;
   text: string;
