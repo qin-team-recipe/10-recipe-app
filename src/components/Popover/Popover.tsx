@@ -1,18 +1,13 @@
 "use client";
 
-import { useState, type FC } from "react";
+import { useState } from "react";
 
 import { Icon } from "@/components/Icon/Icon";
 
-import { PopoverLabelsProps } from "./PopoverLabels";
-
-// TODOコピーはonClickで渡すべき。しかもこれは呼び出し側で渡す
-// const items = [
-//   { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
-//   { href: "", text: "コピーする", icon: "Copy" },
-// ];
-
-export const Popover: FC<PopoverLabelsProps> = (/*props*/) => {
+type PopoverProps = {
+  children: React.ReactNode;
+};
+export const Popover: React.FC<PopoverProps> = (props) => {
   const handlePopOverOpen = () => {
     return setIsNavbarOpen(!isNavbarOpen);
   };
@@ -24,12 +19,9 @@ export const Popover: FC<PopoverLabelsProps> = (/*props*/) => {
         <button type="button" aria-label="Toggle Menu" onClick={handlePopOverOpen}>
           <Icon type="DotsCircleHorizontal" color="black" />
         </button>
-        <div className={`absolute right-3 top-10  ${isNavbarOpen ? "hidden" : "block"}`}>
+        <div className={`absolute right-3 top-10  ${isNavbarOpen ? "block" : "hidden"}`}>
           <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
-          {/* イメージとしては次のようにしたい */}
-          {/* {items.map((item) => {
-            return <PopoverLabels {...item} key={props.href} />;
-          })} */}
+          <ul>{props.children}</ul>
         </div>
       </div>
     </div>

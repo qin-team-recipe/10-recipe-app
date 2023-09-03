@@ -5,6 +5,8 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
+import { Popover } from "@/components/Popover";
+import PopoverLabels from "@/components/Popover/PopoverLabels";
 // import { Popover } from "@/components/Popover/Popover";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
@@ -22,10 +24,10 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
-  // const items = [
-  //   { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
-  //   { href: "", text: "コピーする", icon: "Copy" },
-  // ];
+  const items = [
+    { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
+    { href: "", text: "コピーする", icon: "Copy" },
+  ] as const;
   return (
     <div className="relative">
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
@@ -33,7 +35,11 @@ const MyPage: NextPage = () => {
           <Icon type="ArrowLeft" color="black" />
         </Link>
       </button>
-      {/* <Popover {...items} /> */}
+      <Popover>
+        {items.map((item, i) => (
+          <PopoverLabels {...item} key={i} />
+        ))}
+      </Popover>
       <div className="py-16">
         <div className="space-y-2">
           <div className="flex flex-col px-4 ">
