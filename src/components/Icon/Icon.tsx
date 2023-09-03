@@ -1,6 +1,8 @@
 import cc from "classcat";
 import {
   ArrowLeft,
+  BrandApple,
+  BrandGoogle,
   ChevronDown,
   ChevronRight,
   ChevronUp,
@@ -29,6 +31,8 @@ import { SiteLogo } from "@/components/Icon/assets/SiteLogo";
 
 export type IconType =
   | "ArrowLeft"
+  | "BrandApple"
+  | "BrandGoogle"
   | "Circle"
   | "CircleCheck"
   | "ChevronRight"
@@ -70,6 +74,10 @@ export const Icon: React.FC<IconProps> = (props) => {
     switch (type) {
       case "ArrowLeft":
         return <ArrowLeft className={cc([iconColor, iconSize])} />;
+      case "BrandApple":
+        return <BrandApple className={cc([iconColor, iconSize])} />;
+      case "BrandGoogle":
+        return <BrandGoogle className={cc([iconColor, iconSize])} />;
       case "ChevronUp":
         return <ChevronUp className={cc([iconColor, iconSize])} />;
       case "ChevronDown":

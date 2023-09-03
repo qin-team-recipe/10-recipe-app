@@ -10,10 +10,12 @@ module.exports = {
       lightGray6: "#E4E2E4",
       gray: "#6F6E77",
       lightGray: "#DCDBDD",
+      inputGray: "#F9F8F9",
       tomato: "#CA3214",
       lightTomato: "#FFF0EE",
       white: "#FFFFFF",
       blue: "#006ADC",
+      red: "#FF0000",
     },
     extend: {
       aspectRatio: {

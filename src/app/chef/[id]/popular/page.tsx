@@ -1,13 +1,12 @@
-import { RecipeAndFavCount } from "@/types";
-
-import { type Tab } from "@/components/TabLinks";
+import { type Tab } from "@/components/TabLinks/TabLinks";
+import { type RecipeList } from "@/app/api/recipe/route";
 
 import { ChefBottomSection } from "../_component/ChefBottomSection";
 
 const ChefPopularPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe?id=${id}&sort=fav`, { cache: "no-store" });
-  const recipes: RecipeAndFavCount[] = await res.json();
+  const recipes: RecipeList = await res.json();
 
   const tabs: Tab[] = [
     {

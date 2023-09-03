@@ -5,7 +5,7 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
-import { Tab, TabLinks } from "@/components/TabLinks";
+import { Tab, TabLinks } from "@/components/TabLinks/TabLinks";
 
 const MyPage: NextPage = () => {
   const chefName = RecipeAppT10Chefs[0].name;
