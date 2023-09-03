@@ -3,7 +3,8 @@
 import { useState, type FC } from "react";
 
 import { Icon } from "@/components/Icon/Icon";
-import { PopoverLabelsProps } from "@/components/Popover/PopoverLabels";
+
+import { PopoverLabelsProps } from "./PopoverLabels";
 
 // TODOコピーはonClickで渡すべき。しかもこれは呼び出し側で渡す
 // const items = [
