@@ -8,7 +8,7 @@ import { RecipeBottomSection } from "./_component/RecipeBottomSection";
 
 const RecipePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe/${id}`, { next: { revalidate: 10 } });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe/${id}`, { cache: "no-store" });
   const recipe: Recipe = await res.json();
 
   const tabs: Tab[] = [

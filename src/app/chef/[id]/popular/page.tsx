@@ -6,9 +6,7 @@ import { ChefBottomSection } from "../_component/ChefBottomSection";
 
 const ChefPopularPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe?id=${id}&sort=fav`, {
-    next: { revalidate: 10 },
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe?id=${id}&sort=fav`, { cache: "no-store" });
   const recipes: RecipeAndFavCount[] = await res.json();
 
   const tabs: Tab[] = [
