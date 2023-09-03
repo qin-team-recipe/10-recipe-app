@@ -1,105 +1,145 @@
+"use client";
+
+import { NextPage } from "next";
 import Link from "next/link";
 
-import { RecipeAndFavCount, UserAndRelationCount } from "@/types";
-import { User } from "@prisma/client";
+import { mockDataFav, mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
+import { ToolsKitchen2 } from "tabler-icons-react";
 
-import { Icon } from "@/components/Icon/Icon";
-import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
-import { SearchBar } from "@/components/SearchBar/SearchBar";
-import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
+import { Header } from "@/components/Header/Header";
+import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/image";
 
-const Home = async () => {
-  const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`, {
-    cache: "no-store",
-  });
-  const chefsSortFav: User[] = await chefsSortFavResponse.json();
-
-  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
-  const chefsSortName: UserAndRelationCount[] = await chefsSortNameResponse.json();
-
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
-  const recipes: RecipeAndFavCount[] = await recipesResponse.json();
-
+const Page: NextPage = () => {
+  const handleCreate = async () => {
+    try {
+      await fetch("/api/recipe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "post test title",
+          description: "post test description",
+          image_url: "post test image_url",
+          status: "PUBLIC",
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleDelete = async () => {
+    try {
+      await fetch("/api/recipe/222f2635-61a5-4763-a1ae-cb5a162b3566", {
+        method: "DELETE",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleUpdate = async () => {
+    try {
+      await fetch("/api/recipe/222f2635-61a5-4763-a1ae-cb5a162b3566", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: "put test title",
+          description: "put test description",
+          image_url: "put test image_url",
+          status: "PUBLIC",
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
-      <SearchBar />
-
-      {chefsSortFav.length > 0 && (
-        <div className="mb-8 space-y-2">
-          <SectionTitle title="注目のシェフ" isTitleFontSerif />
-          <ImageCarousel>
-            {chefsSortFav.map((chef) => (
-              <Link href={`/chef/${chef.id}`} key={chef.id}>
-                <ImageComponent
-                  alt={`${chef.name}の画像`}
-                  nameLabel={chef.name}
-                  src={chef.image_url}
-                  isRounded
-                  isShadow
-                  ratio="1/1"
-                  width="medium"
-                />
-              </Link>
-            ))}
-          </ImageCarousel>
+      <Header isSearchBar />
+      <div className="space-y-2">
+        <div className="flex items-center justify-between px-4 font-bold">
+          <div className="text-large">注目のシェフ</div>
         </div>
-      )}
+        <button onClick={() => handleCreate()}>post</button>
+        <button onClick={() => handleDelete()}>delete</button>
+        <button onClick={() => handleUpdate()}>put</button>
+        <ImageCarousel>
+          {mockDataFav.map((data, index) => (
+            <ImageComponent
+              key={`bottom-carousel-${index}`}
+              alt={`${data.nameLabel || data.title}の画像`}
+              nameLabel={data.nameLabel}
+              src={data.src}
+              isRounded
+              ratio="1/1"
+              width="medium"
+              addClassNames="mb-8"
+            />
+          ))}
+        </ImageCarousel>
+      </div>
 
-      {recipes.length > 0 && (
-        <div className="mb-8 space-y-2">
-          <SectionTitle title="話題のレシピ" moreText="もっと見る" moreLink="/search/recipe" isTitleFontSerif />
-          <ImageCarousel>
-            {recipes.map((recipe) => (
-              <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
-                <ImageComponent
-                  key={recipe.id}
-                  title={recipe.title}
-                  alt={`${recipe.title}の画像`}
-                  description={recipe.description || undefined}
-                  src={recipe.image_url || undefined}
-                  isRounded
-                  isShadow
-                  ratio="1/1"
-                  width="large"
-                  favNum={recipe._count.Favorite}
-                />
-              </Link>
-            ))}
-          </ImageCarousel>
+      <div className="space-y-2">
+        <div className="flex items-center justify-between px-4 font-bold">
+          <p className="text-large">話題のレシピ</p>
+          <div className="text-gray">
+            <Link href="/fav">
+              <p>もっと見る</p>
+            </Link>
+          </div>
         </div>
-      )}
 
-      {chefsSortName.length > 0 && (
-        <div className="mb-8 space-y-2">
-          <SectionTitle title="シェフ" moreText="もっと見る" moreLink="/search/chef" isTitleFontSerif />
-          <ImageGrid>
-            {chefsSortName.map((chef) => (
-              <Link href={`/chef/${chef.id}`} key={chef.id}>
-                <div className="flex gap-4">
-                  <ImageComponent
-                    alt={`${chef.name}の画像`}
-                    src={chef.image_url}
-                    isRounded
-                    isShadow
-                    ratio="3/4"
-                    width="small"
-                  />
-                  <div>
-                    <p className="font-bold">{chef.name}</p>
-                    <p className="line-clamp-3 text-medium text-gray">{chef.description}</p>
-                    <span className="flex items-center text-medium">
-                      <Icon type="ToolsKitchen2" size="small" />
-                      {` ${chef._count.Recipe} レシピ`}
-                    </span>
+        <ImageCarousel>
+          {mockDataRecipe.map((data, index) => (
+            <ImageComponent
+              key={`top-carousel-${index}`}
+              title={data.title}
+              alt={`${data.title}の画像`}
+              description={data.description}
+              src={data.image_url1}
+              isRounded
+              ratio="1/1"
+              width="large"
+              addClassNames="mb-8"
+            />
+          ))}
+        </ImageCarousel>
+      </div>
+
+      <div className="space-y-2">
+        <div className="flex items-center justify-between px-4 font-bold">
+          <p className="text-large">シェフ</p>
+          <div className="text-gray">
+            <Link href="/fav">
+              <p>もっと見る</p>
+            </Link>
+          </div>
+        </div>
+        <div className="space-y-2 ">
+          <ImageGrid isTwoColumns={false} addClassNames="mb-8">
+            {RecipeAppT10Chefs.slice(0, 10).map((data, index) => (
+              <div key={`grid-${index}`} className="flex gap-4">
+                <ImageComponent src={data.image_url} isRounded alt={`${data.name}の画像`} width="small" ratio="3/4" />
+                <div className="flex flex-col space-y-2">
+                  <p className="text-large font-bold">{data.name}</p>
+                  <p className="text-small text-gray">{data.description}</p>
+                  <div className="flex space-x-2">
+                    <p>
+                      <ToolsKitchen2 />
+                    </p>
+                    <p>{data.favNum}</p>
+                    <p>レシピ</p>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </ImageGrid>
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default Page;

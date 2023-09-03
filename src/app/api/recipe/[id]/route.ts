@@ -1,30 +1,44 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-import { prisma } from "@/lib/prisma";
+import { PrismaClient } from "@prisma/client";
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+const prisma = new PrismaClient();
+
+export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+  const { searchParams } = new URL(request.url);
+  const id = searchParams.get("id");
   const data = await prisma.recipe.findUnique({
+    where: {
+      id: id as string,
+    },
+  });
+  return NextResponse.json(data);
+}
+
+export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+  const { title, description, image_url, status, instruction } = await request.json();
+  const body = {
+    title,
+    description,
+    image_url,
+    status,
+    instruction,
+  };
+  const data = await prisma.recipe.update({
     where: {
       id: params.id,
     },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      image_url: true,
-      instructions: true,
-      _count: {
-        select: {
-          Favorite: true,
-        },
-      },
-      user: {
-        select: {
-          id: true,
-          name: true,
-          image_url: true,
-        },
-      },
+    data: {
+      ...body,
+    },
+  });
+  return NextResponse.json(data);
+}
+
+export async function DELETE({ params }: { params: { id: string } }) {
+  const data = await prisma.recipe.delete({
+    where: {
+      id: params.id,
     },
   });
   return NextResponse.json(data);
