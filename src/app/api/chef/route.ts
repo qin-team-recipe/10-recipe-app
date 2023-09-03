@@ -1,6 +1,16 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { User } from "@prisma/client";
+
+export type ChefList = Array<
+  Pick<User, "id" | "name" | "description" | "image_url"> & {
+    _count: {
+      followed: number;
+      Recipe: number;
+    };
+  }
+>;
 
 type GetOption = { name: "asc" } | { created_at: "desc" };
 

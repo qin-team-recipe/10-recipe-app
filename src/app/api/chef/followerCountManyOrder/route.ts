@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { User } from "@prisma/client";
+
+export type FollowCountManyOrderChefList = Pick<User, "id" | "name" | "image_url">[];
 
 // 直近三日間で獲得したフォロワー数が多い順に10人までシェフを取得する
 export async function GET() {

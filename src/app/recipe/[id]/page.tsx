@@ -1,9 +1,8 @@
-import Image from "next/image";
-
 import { Recipe } from "@prisma/client";
 
-import { type Tab } from "@/components/TabLinks";
+import { type Tab } from "@/components/TabLinks/TabLinks";
 
+import { Empty } from "./_component/Empty";
 import { RecipeBottomSection } from "./_component/RecipeBottomSection";
 
 const RecipePage = async ({ params }: { params: { id: string } }) => {
@@ -37,10 +36,7 @@ const RecipePage = async ({ params }: { params: { id: string } }) => {
           ))}
         </ul>
       ) : (
-        <div className="text-center">
-          <Image src="/images/error.png" width={300} height={300} alt="" className="mx-auto" />
-          <p>作り方が登録されていません。</p>
-        </div>
+        <Empty text="作り方が登録されていません" />
       )}
     </RecipeBottomSection>
   );

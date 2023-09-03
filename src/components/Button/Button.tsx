@@ -2,22 +2,29 @@ import cc from "classcat";
 
 type ButtonProps = {
   children: React.ReactNode;
-  // ボタンの色
-  color?: "tomato" | "white" | "gray";
-  // clickEvent
+  buttonColor: "tomato" | "gray" | "blue" | "black" | "white";
   onClick?: () => void;
+  addClassNames?: string;
+  type?: "button" | "submit";
+  isDisabled?: boolean;
 };
 
 export const Button: React.FC<ButtonProps> = (props) => {
   const buttonColor = cc([
-    "rounded-lg px-3 py-1 text-medium text-white",
+    "rounded px-3 py-1 text-medium",
     {
-      "bg-gray": props.color === "gray",
-      "bg-tomato": props.color === "tomato",
+      "bg-gray text-white": props.buttonColor === "gray",
+      "bg-tomato text-white": props.buttonColor === "tomato",
+      "bg-blue text-white": props.buttonColor === "blue",
+      "bg-black text-white": props.buttonColor === "black",
+      "bg-white text-tomato border border-tomato": props.buttonColor === "white",
+      "bg-gray text-white opacity-50 pointer-events-none": props.isDisabled,
     },
+    props.addClassNames,
   ]);
+
   return (
-    <button className={buttonColor} onClick={props.onClick}>
+    <button className={buttonColor} onClick={props.onClick} type={props.type}>
       {props.children}
     </button>
   );

@@ -1,13 +1,12 @@
 import Link from "next/link";
 
-import { RecipeAndFavCount } from "@/types";
-
 import { ImageComponent, ImageGrid } from "@/components/Image";
-import { TabLinks, type Tab } from "@/components/TabLinks";
+import { TabLinks, type Tab } from "@/components/TabLinks/TabLinks";
+import { type RecipeList } from "@/app/api/recipe/route";
 
 type ChefBottomSectionProps = {
   tabs: Tab[];
-  recipes: RecipeAndFavCount[];
+  recipes: RecipeList;
 };
 
 export const ChefBottomSection: React.FC<ChefBottomSectionProps> = (props) => {

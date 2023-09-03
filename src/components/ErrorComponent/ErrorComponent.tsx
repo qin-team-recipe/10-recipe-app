@@ -19,7 +19,7 @@ export const ErrorComponent: React.FC<ErrorProps> = (props) => {
       <p>{props.text}</p>
       {/* TODO: ボタンコンポにイベントが渡せるようになったら実装 */}
       {/* <Button onClick={props.reFetch}>再読み込み</Button> */}
-      {props.reFetchText && <Button>{props.reFetchText}</Button>}
+      {props.reFetchText && <Button buttonColor="tomato">{props.reFetchText}</Button>}
     </div>
   );
 };
