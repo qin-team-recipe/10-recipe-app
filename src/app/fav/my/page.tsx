@@ -29,7 +29,7 @@ const MyPage: NextPage = () => {
   return (
     <div className="relative">
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href="/fav">
+        <Link href={{ pathname: "/fav" }}>
           <Icon type="ArrowLeft" color="black" />
         </Link>
       </button>
