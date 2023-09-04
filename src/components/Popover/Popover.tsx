@@ -19,7 +19,10 @@ export const Popover: React.FC<PopoverProps> = (props) => {
         <button type="button" aria-label="Toggle Menu" onClick={handlePopOverOpen}>
           <Icon type="DotsCircleHorizontal" color="black" />
         </button>
-        <div className={`absolute right-3 top-10  ${isNavbarOpen ? "block" : "hidden"}`}>
+        <div
+          className={`absolute right-3 top-10  rounded-lg bg-white
+         py-2 pl-2 pr-4 text-center shadow-lg drop-shadow-lg ${isNavbarOpen ? "block" : "hidden"}`}
+        >
           <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
           <ul>{props.children}</ul>
         </div>

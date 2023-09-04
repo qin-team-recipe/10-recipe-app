@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import { Icon, IconType } from "@/components/Icon/Icon";
 
-// 多分ここでonClickも渡して条件分岐させるのかな。。
 export type PopoverLabelsProps = {
   className?: string;
   text: string;
@@ -11,13 +10,15 @@ export type PopoverLabelsProps = {
   icon: IconType;
 };
 
-const PopoverLabels: React.FC<PopoverLabelsProps> = (props) => {
+export const PopoverLabels: React.FC<PopoverLabelsProps> = (props) => {
   return (
-    <Link href={{ pathname: props.href }} className="flex whitespace-nowrap" key={props.href}>
-      <Icon color="black" type={props.icon} />
+    <Link
+      href={{ pathname: props.href }}
+      className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
+      key={props.href}
+    >
+      <Icon color="gray" type={props.icon} />
       {props.text}
     </Link>
   );
 };
-
-export default PopoverLabels;
