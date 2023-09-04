@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { Icon, IconType } from "@/components/Icon/Icon";
 
-export type PopoverLinksProps = {
+export type PopoverItemsProps = {
   className?: string;
   text: string;
   href?: string;
@@ -12,7 +12,7 @@ export type PopoverLinksProps = {
   isTopBorder?: boolean;
 };
 
-export const PopoverLinks: React.FC<PopoverLinksProps> = (props) => {
+export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
   return props.href ? (
     <Link
       href={{ pathname: props.href }}

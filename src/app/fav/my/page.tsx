@@ -6,7 +6,7 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
 import { Popover } from "@/components/Popover";
-import { PopoverLinks, PopoverLinksProps } from "@/components/Popover/PopoverLinks";
+import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverItems";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
 const MyPage: NextPage = () => {
@@ -27,7 +27,7 @@ const MyPage: NextPage = () => {
   const handleOnClick = () => {
     alert("copied!");
   };
-  const items: PopoverLinksProps[] = [
+  const items: PopoverItemsProps[] = [
     { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" },
     // { onClick: handleOnClick, text: "削除する", icon: "", isTopBorder: true },
@@ -42,7 +42,7 @@ const MyPage: NextPage = () => {
       </button>
       <Popover>
         {items.map((item, i) => (
-          <PopoverLinks {...item} key={i} isTopBorder={i === items.length} />
+          <PopoverItems {...item} key={i} isTopBorder={i === items.length} />
         ))}
       </Popover>
       <div className="py-16">
