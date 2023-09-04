@@ -12,7 +12,7 @@ export type PopoverButtonProps = {
 export const PopoverButtons: React.FC<PopoverButtonProps> = (props) => {
   return (
     <button
-      // onClick={props.onClick}
+      onClick={props.onClick}
       className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
       key={props.text}
     >

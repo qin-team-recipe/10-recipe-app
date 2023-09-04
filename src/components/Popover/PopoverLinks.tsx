@@ -6,12 +6,14 @@ import { Icon, IconType } from "@/components/Icon/Icon";
 export type PopoverLinksProps = {
   className?: string;
   text: string;
-  href: string;
+  href?: string;
   icon: IconType;
+  onClick?: () => void;
+  isTopBorder?: boolean;
 };
 
 export const PopoverLinks: React.FC<PopoverLinksProps> = (props) => {
-  return (
+  return props.href ? (
     <Link
       href={{ pathname: props.href }}
       className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
@@ -20,5 +22,14 @@ export const PopoverLinks: React.FC<PopoverLinksProps> = (props) => {
       <Icon color="gray" type={props.icon} />
       {props.text}
     </Link>
+  ) : (
+    <button
+      onClick={props.onClick}
+      className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
+      key={props.text}
+    >
+      <Icon color="gray" type={props.icon} />
+      {props.text}
+    </button>
   );
 };
