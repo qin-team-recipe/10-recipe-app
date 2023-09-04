@@ -1,3 +1,5 @@
+"use client";
+
 import { NextPage } from "next";
 import Link from "next/link";
 
@@ -23,7 +25,7 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
-  // ここでmiddlewareから取得したurlをクリップボードに貼り付ける処理
+  // ここでurlをクリップボードに貼り付ける処理
   const handleOnClick = () => {
     alert("copied!");
   };
