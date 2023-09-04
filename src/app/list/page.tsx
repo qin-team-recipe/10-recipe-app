@@ -1,18 +1,21 @@
-import { NextPage } from "next";
 import Image from "next/image";
 
+import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
 import { MockMyList, MockRecipeList } from "@/mock";
 
+import { Header } from "@/components/Header/Header";
 import { ListShoppingHeader } from "@/components/list/ListShoppingHeader";
 import { ListShoppingItem } from "@/components/list/ListShoppingItem";
 
-const Page: NextPage = () => {
-  const isLogin = true;
+const ListPage = async () => {
+  const {
+    data: { session },
+  } = await serverComponentSupabase.auth.getSession();
 
   return (
     <>
-      <p className="w-full border-b border-lightGray p-2 text-center font-bold">買い物リスト</p>
-      {isLogin ? (
+      <Header position="center" title="買い物リスト" isMenuIcon={!!session} />
+      {session ? (
         <div>
           <div>
             <ListShoppingHeader title="じぶんメモ" />
@@ -51,4 +54,4 @@ const Page: NextPage = () => {
   );
 };
 
-export default Page;
+export default ListPage;
