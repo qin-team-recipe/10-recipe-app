@@ -7,7 +7,7 @@ import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
 import { Popover, PopoverButtons } from "@/components/Popover";
 import { PopoverButtonProps } from "@/components/Popover/PopoverButtons";
-import { PopoverLabels, PopoverLabelsProps } from "@/components/Popover/PopoverLabels";
+import { PopoverLinks, PopoverLinksProps } from "@/components/Popover/PopoverLinks";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
 const MyPage: NextPage = () => {
@@ -28,7 +28,7 @@ const MyPage: NextPage = () => {
   const handleOnClick = () => {
     alert("copied!");
   };
-  const items1: PopoverLabelsProps[] = [{ href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" }];
+  const items1: PopoverLinksProps[] = [{ href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" }];
   const items2: PopoverButtonProps[] = [{ onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" }];
 
   return (
@@ -40,7 +40,7 @@ const MyPage: NextPage = () => {
       </button>
       <Popover>
         {items1.map((item, i) => (
-          <PopoverLabels {...item} key={i} />
+          <PopoverLinks {...item} key={i} />
         ))}
         {items2.map((item, i) => (
           <PopoverButtons {...item} key={i} />

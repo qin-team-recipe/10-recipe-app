@@ -3,14 +3,14 @@ import Link from "next/link";
 
 import { Icon, IconType } from "@/components/Icon/Icon";
 
-export type PopoverLabelsProps = {
+export type PopoverLinksProps = {
   className?: string;
   text: string;
   href: string;
   icon: IconType;
 };
 
-export const PopoverLabels: React.FC<PopoverLabelsProps> = (props) => {
+export const PopoverLinks: React.FC<PopoverLinksProps> = (props) => {
   return (
     <Link
       href={{ pathname: props.href }}
