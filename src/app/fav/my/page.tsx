@@ -5,9 +5,9 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
-import { Popover } from "@/components/Popover";
-import PopoverLabels from "@/components/Popover/PopoverLabels";
-// import { Popover } from "@/components/Popover/Popover";
+import { Popover, PopoverButtons } from "@/components/Popover";
+import { PopoverButtonProps } from "@/components/Popover/PopoverButtons";
+import { PopoverLabels, PopoverLabelsProps } from "@/components/Popover/PopoverLabels";
 import { Tab, TabLinks } from "@/components/TabLinks";
 
 const MyPage: NextPage = () => {
@@ -24,10 +24,13 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
-  const items = [
-    { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
-    { href: "", text: "コピーする", icon: "Copy" },
-  ] as const;
+  // ここでmiddlewareから取得したurlをクリップボードに貼り付ける処理
+  const handleOnClick = () => {
+    alert("copied!");
+  };
+  const items1: PopoverLabelsProps[] = [{ href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" }];
+  const items2: PopoverButtonProps[] = [{ onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" }];
+
   return (
     <div className="relative">
       <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
@@ -36,8 +39,11 @@ const MyPage: NextPage = () => {
         </Link>
       </button>
       <Popover>
-        {items.map((item, i) => (
+        {items1.map((item, i) => (
           <PopoverLabels {...item} key={i} />
+        ))}
+        {items2.map((item, i) => (
+          <PopoverButtons {...item} key={i} />
         ))}
       </Popover>
       <div className="py-16">
