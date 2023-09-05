@@ -36,17 +36,17 @@ const MyPage: NextPage = () => {
   ];
 
   return (
-    <div className="relative">
-      <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href={{ pathname: "/fav" }}>
+    <>
+      <div className="relative flex justify-between p-4">
+        <Link href="/fav">
           <Icon type="ArrowLeft" color="black" />
         </Link>
-      </button>
-      <Popover>
-        {items.map((item, i) => (
-          <PopoverItems {...item} key={i} />
-        ))}
-      </Popover>
+        <Popover>
+          {items.map((item, i) => (
+            <PopoverItems {...item} key={i} />
+          ))}
+        </Popover>
+      </div>
       <div className="py-16">
         <div className="space-y-2">
           <div className="flex flex-col px-4 ">
@@ -82,7 +82,7 @@ const MyPage: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

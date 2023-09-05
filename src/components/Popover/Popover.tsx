@@ -12,19 +12,16 @@ export const Popover: React.FC<PopoverProps> = (props) => {
   const handlePopOverOpen = () => setIsPopoverOpen(!isPopoverOpen);
 
   return (
-    <div className="group relative">
-      <div className="absolute right-3 top-3 cursor-pointer rounded-full p-1.5">
-        <button type="button" aria-label="Toggle Menu" onClick={handlePopOverOpen}>
-          <Icon type="DotsCircleHorizontal" color="black" />
-        </button>
-        <div
-          className={`absolute right-3 top-10  rounded-lg bg-white
-         text-center shadow-lg drop-shadow-lg ${isPopoverOpen ? "block" : "hidden"}`}
-        >
-          <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
-          <ul>{props.children}</ul>
-        </div>
-      </div>
+    <div className="relative">
+      <button type="button" aria-label="Toggle Menu" onClick={handlePopOverOpen}>
+        <Icon type="DotsCircleHorizontal" color="black" />
+      </button>
+      <ul
+        className={`absolute right-3 top-10 rounded bg-white shadow drop-shadow ${isPopoverOpen ? "block" : "hidden"}`}
+      >
+        <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
+        {props.children}
+      </ul>
     </div>
   );
 };
