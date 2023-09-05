@@ -1,4 +1,4 @@
-import { TabLinks, type Tab } from "@/components/TabLinks";
+import { TabLinks, type Tab } from "@/components/TabLinks/TabLinks";
 
 type RecipeBottomSectionProps = {
   tabs: Tab[];

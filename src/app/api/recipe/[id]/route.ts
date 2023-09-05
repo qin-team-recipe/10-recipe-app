@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { Recipe, User } from "@prisma/client";
+
+export type RecipeRelationUser = Pick<Recipe, "id" | "title" | "description" | "image_url" | "instructions"> & {
+  _count: { Favorite: number };
+} & { user: Pick<User, "id" | "name" | "image_url"> };
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const data = await prisma.recipe.findUnique({

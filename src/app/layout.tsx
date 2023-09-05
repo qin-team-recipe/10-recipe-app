@@ -1,6 +1,7 @@
 import "./style/globals.css";
 
-import { Navigation } from "@/components/Navigation";
+import { Navigation } from "@/components/Navigation/Navigation";
+import { Provider } from "@/components/Provider/Provider";
 
 export const metadata = {
   title: "一流レシピ",
@@ -14,12 +15,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <div className="mx-auto flex max-w-2xl flex-col-reverse items-start sm:flex-row">
-          <Navigation />
-          <div className="flex flex-col">
-            <main className="min-h-screen w-screen border-x border-lightGray sm:max-w-md">{children}</main>
+        <Provider>
+          <div className="mx-auto flex max-w-2xl flex-col-reverse items-start sm:flex-row">
+            <Navigation />
+            <div className="flex flex-col">
+              <main className="min-h-screen w-screen border-x border-lightGray sm:max-w-md">{children}</main>
+            </div>
           </div>
-        </div>
+        </Provider>
       </body>
     </html>
   );

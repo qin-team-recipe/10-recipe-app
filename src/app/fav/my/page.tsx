@@ -7,6 +7,7 @@ import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
+
 import { Popover } from "@/components/Popover";
 import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverItems";
 import { Tab, TabLinks } from "@/components/TabLinks";

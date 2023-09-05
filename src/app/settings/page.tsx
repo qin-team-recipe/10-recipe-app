@@ -3,6 +3,8 @@ import Link from "next/link";
 
 import { Icon } from "@/components/Icon/Icon";
 
+import { LogOut } from "./_component/LogOut";
+
 const LinkTitle = [
   // TODO：プログラム的に外部リンクを判定させたい気持ちも...
   // 運営会社・お問い合わせの外部リンクは後日提供
@@ -17,8 +19,7 @@ const SettingsPage: NextPage = () => {
     <div className="min-h-screen">
       <div className="flex border-b border-lightGray p-1.5">
         <div className="h-4">
-          {/* pathname:このやり方でないとBuildエラーになる... */}
-          <Link href={{ pathname: "/fav" }}>
+          <Link href="/fav">
             <Icon type="ArrowLeft" color="black" />
           </Link>
         </div>
@@ -44,9 +45,8 @@ const SettingsPage: NextPage = () => {
         <div>
           <p className="pb-4 pt-8 font-semibold ">アカウントの操作</p>
           <ul className="flex flex-col gap-4">
-            <li className="flex justify-between">
-              <Link href="/settings/logout">ログアウト</Link>
-              <Icon type={"Logout"} color="gray" />
+            <li>
+              <LogOut />
             </li>
           </ul>
         </div>

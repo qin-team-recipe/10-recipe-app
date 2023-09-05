@@ -1,6 +1,13 @@
 import { NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
+import { Ingredient, Ingredients } from "@prisma/client";
+
+export type IngredientsList = Array<
+  Pick<Ingredients, "id" | "quantity" | "step"> & {
+    ingredient: Pick<Ingredient, "id" | "name" | "step" | "is_checked">[];
+  }
+>;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);

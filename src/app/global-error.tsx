@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-import { ErrorComponent } from "@/components/ErrorComponent";
+import { ErrorComponent } from "@/components/ErrorComponent/ErrorComponent";
 
 // NOTE: 何度も同じ物を書く必要があるのでpropsの型は例外で外で定義しない
 const Error = ({ error, reset }: { error: Error; reset: () => void }) => {

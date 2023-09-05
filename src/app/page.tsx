@@ -1,24 +1,40 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-import { RecipeAndFavCount, UserAndRelationCount } from "@/types";
-import { User } from "@prisma/client";
+import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
 import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
+import { type FollowCountManyOrderChefList } from "@/app/api/chef/followerCountManyOrder/route";
+import { type ChefList } from "@/app/api/chef/route";
+import { type RecipeList } from "@/app/api/recipe/route";
 
 const Home = async () => {
   const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`, {
     cache: "no-store",
   });
-  const chefsSortFav: User[] = await chefsSortFavResponse.json();
+  const chefsSortFav: FollowCountManyOrderChefList = await chefsSortFavResponse.json();
 
   const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
-  const chefsSortName: UserAndRelationCount[] = await chefsSortNameResponse.json();
+  const chefsSortName: ChefList = await chefsSortNameResponse.json();
 
   const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
-  const recipes: RecipeAndFavCount[] = await recipesResponse.json();
+  const recipes: RecipeList = await recipesResponse.json();
+
+  // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
+  const {
+    data: { session },
+  } = await serverComponentSupabase.auth.getSession();
+  if (session && session.user.id) {
+    const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${session.user.id}`, { cache: "no-store" });
+    const userJson = await user.json();
+
+    if (userJson === null) {
+      redirect("/signUp");
+    }
+  }
 
   return (
     <div>
