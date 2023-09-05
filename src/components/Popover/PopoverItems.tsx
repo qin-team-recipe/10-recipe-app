@@ -8,6 +8,7 @@ import { Icon, IconType } from "@/components/Icon/Icon";
 export type PopoverItemsProps = {
   className?: string;
   text: string;
+  subText?: string;
   href?: string;
   icon: IconType;
   onClick?: () => void;
@@ -31,7 +32,10 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
       key={props.text}
     >
       <Icon color="gray" type={props.icon} />
-      {props.text}
+      <div className="flex flex-col items-start leading-3">
+        <span>{props.text}</span>
+        {props.subText ? <span className="">{props.subText}</span> : null}
+      </div>
     </button>
   );
 };
