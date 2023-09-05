@@ -3,6 +3,8 @@
 import React from "react";
 import Link from "next/link";
 
+import cc from "classcat";
+
 import { Icon, IconType } from "@/components/Icon/Icon";
 
 export type PopoverItemsProps = {
@@ -16,29 +18,28 @@ export type PopoverItemsProps = {
 };
 
 export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
-  return props.href ? (
-    <Link
-      href={{ pathname: props.href }}
-      className="flex items-center whitespace-nowrap py-2 pb-1 pl-2 pr-4 text-small text-gray "
-      key={props.href}
-    >
-      <Icon color="gray" type={props.icon} />
-      {props.text}
-    </Link>
-  ) : (
-    <>
-      {props.isTopBorder ? <div className="border-b-2 border-lightGray" /> : null}
-      <button
-        onClick={props.onClick}
-        className="flex items-center whitespace-nowrap py-2 pb-1 pl-2 pr-4 text-small text-gray"
-        key={props.text}
-      >
-        <Icon color="gray" type={props.icon} />
-        <div className="flex flex-col items-start leading-3">
-          <span>{props.text}</span>
-          {props.subText ? <span className="">{props.subText}</span> : null}
-        </div>
-      </button>
-    </>
+  const itemClass = cc([
+    "whitespace-nowrap p-2 text-medium text-gray",
+    {
+      "border-t border-lightGray": props.isTopBorder,
+    },
+  ]);
+  return (
+    <li key={props.text} className={itemClass}>
+      {props.href ? (
+        <Link href={{ pathname: props.href }} className="flex items-center gap-1">
+          <Icon color="gray" type={props.icon} size="small" />
+          {props.text}
+        </Link>
+      ) : (
+        <button onClick={props.onClick} className="flex items-center gap-1">
+          <Icon color="gray" type={props.icon} size="small" />
+          <div className="flex flex-col items-start leading-3">
+            <span>{props.text}</span>
+            {props.subText ? <span className="">{props.subText}</span> : null}
+          </div>
+        </button>
+      )}
+    </li>
   );
 };
