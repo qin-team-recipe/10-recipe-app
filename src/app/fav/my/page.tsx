@@ -32,7 +32,6 @@ const MyPage: NextPage = () => {
   const items: PopoverItemsProps[] = [
     { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" },
-    // { onClick: handleOnClick, text: "削除する", icon: "", isTopBorder: true },
   ];
 
   return (
