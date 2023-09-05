@@ -44,7 +44,7 @@ const MyPage: NextPage = () => {
       </button>
       <Popover>
         {items.map((item, i) => (
-          <PopoverItems {...item} key={i} isTopBorder={i === items.length} />
+          <PopoverItems {...item} key={i} />
         ))}
       </Popover>
       <div className="py-16">

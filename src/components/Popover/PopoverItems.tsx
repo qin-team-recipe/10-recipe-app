@@ -19,23 +19,26 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
   return props.href ? (
     <Link
       href={{ pathname: props.href }}
-      className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
+      className="flex items-center whitespace-nowrap py-2 pb-1 pl-2 pr-4 text-small text-gray "
       key={props.href}
     >
       <Icon color="gray" type={props.icon} />
       {props.text}
     </Link>
   ) : (
-    <button
-      onClick={props.onClick}
-      className="flex items-center whitespace-nowrap pb-1 text-small text-gray"
-      key={props.text}
-    >
-      <Icon color="gray" type={props.icon} />
-      <div className="flex flex-col items-start leading-3">
-        <span>{props.text}</span>
-        {props.subText ? <span className="">{props.subText}</span> : null}
-      </div>
-    </button>
+    <>
+      {props.isTopBorder ? <div className="border-b-2 border-lightGray" /> : null}
+      <button
+        onClick={props.onClick}
+        className="flex items-center whitespace-nowrap py-2 pb-1 pl-2 pr-4 text-small text-gray"
+        key={props.text}
+      >
+        <Icon color="gray" type={props.icon} />
+        <div className="flex flex-col items-start leading-3">
+          <span>{props.text}</span>
+          {props.subText ? <span className="">{props.subText}</span> : null}
+        </div>
+      </button>
+    </>
   );
 };
