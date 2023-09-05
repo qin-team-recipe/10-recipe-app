@@ -1,15 +1,11 @@
-"use client";
-
 import { NextPage } from "next";
 import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
-import { Popover } from "@/components/Popover";
-import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverItems";
 import { Tab, TabLinks } from "@/components/TabLinks/TabLinks";
+import { TopBar } from "@/app/fav/my/_component/TopBar";
 
 const MyPage: NextPage = () => {
   const chefName = RecipeAppT10Chefs[0].name;
@@ -25,27 +21,10 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
-  // ここでurlをクリップボードに貼り付ける処理
-  const handleOnClick = () => {
-    alert("copied!");
-  };
-  const items: PopoverItemsProps[] = [
-    { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
-    { onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" },
-  ];
 
   return (
     <>
-      <div className="relative flex justify-between p-4">
-        <Link href="/fav">
-          <Icon type="ArrowLeft" color="black" />
-        </Link>
-        <Popover>
-          {items.map((item, i) => (
-            <PopoverItems {...item} key={i} />
-          ))}
-        </Popover>
-      </div>
+      <TopBar />
       <div className="py-16">
         <div className="space-y-2">
           <div className="flex flex-col px-4 ">
