@@ -8,10 +8,8 @@ type PopoverProps = {
   children: React.ReactNode;
 };
 export const Popover: React.FC<PopoverProps> = (props) => {
-  const handlePopOverOpen = () => {
-    return setIsPopoverOpen(!isPopoverOpen);
-  };
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const handlePopOverOpen = () => setIsPopoverOpen(!isPopoverOpen);
 
   return (
     <div className="group relative">
