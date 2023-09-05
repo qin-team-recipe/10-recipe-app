@@ -9,9 +9,9 @@ type PopoverProps = {
 };
 export const Popover: React.FC<PopoverProps> = (props) => {
   const handlePopOverOpen = () => {
-    return setIsNavbarOpen(!isNavbarOpen);
+    return setIsPopoverOpen(!isPopoverOpen);
   };
-  const [isNavbarOpen, setIsNavbarOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
 
   return (
     <div className="group relative">
@@ -21,7 +21,7 @@ export const Popover: React.FC<PopoverProps> = (props) => {
         </button>
         <div
           className={`absolute right-3 top-10  rounded-lg bg-white
-         text-center shadow-lg drop-shadow-lg ${isNavbarOpen ? "block" : "hidden"}`}
+         text-center shadow-lg drop-shadow-lg ${isPopoverOpen ? "block" : "hidden"}`}
         >
           <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
           <ul>{props.children}</ul>
