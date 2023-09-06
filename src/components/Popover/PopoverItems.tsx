@@ -25,7 +25,7 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
     },
   ]);
   return (
-    <li key={props.text} className={itemClass}>
+    <li className={itemClass}>
       {props.href ? (
         <Link href={{ pathname: props.href }} className="flex items-center gap-1">
           <Icon color="gray" type={props.icon} size="small" />
@@ -36,7 +36,6 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
           <Icon color="gray" type={props.icon} size="small" />
           <div className="flex flex-col items-start leading-3">
             <span>{props.text}</span>
-            {props.subText ? <span className="">{props.subText}</span> : null}
           </div>
         </button>
       )}

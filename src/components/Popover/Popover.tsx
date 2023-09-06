@@ -19,7 +19,6 @@ export const Popover: React.FC<PopoverProps> = (props) => {
       <ul
         className={`absolute right-3 top-10 rounded bg-white shadow drop-shadow ${isPopoverOpen ? "block" : "hidden"}`}
       >
-        <button type="button" aria-label="toggle modal" className="fixed top-0" onClick={handlePopOverOpen}></button>
         {props.children}
       </ul>
     </div>
