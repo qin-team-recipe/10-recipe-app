@@ -3,9 +3,9 @@ import Link from "next/link";
 
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
-import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent, ImageGrid } from "@/components/Image";
 import { Tab, TabLinks } from "@/components/TabLinks/TabLinks";
+import { TopBar } from "@/app/fav/my/_component/TopBar";
 
 const MyPage: NextPage = () => {
   const chefName = RecipeAppT10Chefs[0].name;
@@ -21,13 +21,10 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
+
   return (
-    <div className="relative">
-      <button type="button" className="absolute left-3 top-3 cursor-pointer rounded-full p-1.5">
-        <Link href="/fav">
-          <Icon type="ArrowLeft" color="black" />
-        </Link>
-      </button>
+    <>
+      <TopBar />
       <div className="py-16">
         <div className="space-y-2">
           <div className="flex flex-col px-4 ">
@@ -63,7 +60,7 @@ const MyPage: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
