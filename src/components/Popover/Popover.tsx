@@ -17,7 +17,7 @@ export const Popover: React.FC<PopoverProps> = (props) => {
         <Icon type="DotsCircleHorizontal" color="black" />
       </button>
       <ul
-        className={`absolute right-3 top-10 rounded bg-white shadow drop-shadow ${isPopoverOpen ? "block" : "hidden"}`}
+        className={`absolute right-0 top-7 rounded bg-white shadow drop-shadow ${isPopoverOpen ? "block" : "hidden"}`}
       >
         {props.children}
       </ul>
