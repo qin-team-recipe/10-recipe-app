@@ -55,7 +55,7 @@ const MyPage: NextPage = () => {
               ))}
             </ImageGrid>
             <button className="absolute bottom-52 left-[33%] rounded-full bg-tomato px-2 py-1 text-medium text-white">
-              <Link href={{ pathname: "/recipe/new" }}>マイレシピを追加する</Link>
+              <Link href="/recipe/new">マイレシピを追加する</Link>
             </button>
           </div>
         </div>
