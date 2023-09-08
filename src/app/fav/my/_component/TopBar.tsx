@@ -1,20 +1,26 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Icon } from "@/components/Icon/Icon";
 import { Popover } from "@/components/Popover";
 import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverItems";
 
-// ここでurlをクリップボードに貼り付ける処理
-const handleOnClick = () => {
-  alert("copied!");
-};
-const items: PopoverItemsProps[] = [
-  { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
-  { onClick: handleOnClick, text: "URLをコピーする", icon: "Copy" },
-];
 export const TopBar = () => {
+  const pathname = usePathname();
+  async function copyToClipboard() {
+    try {
+      await navigator.clipboard.writeText(pathname);
+      alert(`${pathname} パスをクリップボードにコピーしました！`);
+    } catch (error) {
+      alert(error || "コピーに失敗しました");
+    }
+  }
+  const items: PopoverItemsProps[] = [
+    { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
+    { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
+  ];
   return (
     <div className="relative flex justify-between p-4">
       <Link href="/fav">
