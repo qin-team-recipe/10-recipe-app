@@ -14,7 +14,7 @@ export const TopBar = () => {
     try {
       const fullpath = `${process.env.NEXT_PUBLIC_API_URL}${pathname}`;
       await navigator.clipboard.writeText(fullpath);
-      alert(`${fullpath} パスをクリップボードにコピーしました！`);
+      alert(`${fullpath} パスをコピーしました！`);
     } catch (error) {
       alert(error || "コピーに失敗しました");
     }
