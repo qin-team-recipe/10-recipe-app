@@ -9,10 +9,12 @@ import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverIte
 
 export const TopBar = () => {
   const pathname = usePathname();
+
   async function copyToClipboard() {
     try {
-      await navigator.clipboard.writeText(pathname);
-      alert(`${pathname} パスをクリップボードにコピーしました！`);
+      const fullpath = `${process.env.NEXT_PUBLIC_API_URL}${pathname}`;
+      await navigator.clipboard.writeText(fullpath);
+      alert(`${fullpath} パスをクリップボードにコピーしました！`);
     } catch (error) {
       alert(error || "コピーに失敗しました");
     }
