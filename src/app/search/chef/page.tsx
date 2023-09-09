@@ -8,8 +8,8 @@ import { TabLinks, type Tab } from "@/components/TabLinks/TabLinks";
 import { type ChefList } from "@/app/api/chef/route";
 
 const SearchChefPage = async () => {
-  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
-  const chefsSortName: ChefList = await chefsSortNameResponse.json();
+  const chefNamesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
+  const chefs: ChefList = await chefNamesResponse.json();
 
   const tabs: Tab[] = [
     {
@@ -28,11 +28,11 @@ const SearchChefPage = async () => {
       <SearchBar />
       <TabLinks tabs={tabs} />
       <div className="mt-5">
-        {chefsSortName.length > 0 && (
+        {chefs.length > 0 && (
           <div className="mb-8 space-y-2">
             <SectionTitle title="シェフ一覧" isTitleFontSerif />
             <ImageGrid>
-              {chefsSortName.map((chef) => (
+              {chefs.map((chef) => (
                 <Link href={`/chef/${chef.id}`} key={chef.id}>
                   <div className="flex gap-4">
                     <ImageComponent
