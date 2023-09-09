@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
-
-import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
 
 import { ImageComponent, ImageGrid } from "@/components/Image";
 import { SearchBar } from "@/components/SearchBar/SearchBar";
@@ -12,19 +9,6 @@ import { type RecipeList } from "@/app/api/recipe/route";
 const SearchRecipePage = async () => {
   const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
   const recipes: RecipeList = await recipesResponse.json();
-
-  // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
-  const {
-    data: { session },
-  } = await serverComponentSupabase.auth.getSession();
-  if (session && session.user.id) {
-    const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${session.user.id}`, { cache: "no-store" });
-    const userJson = await user.json();
-
-    if (userJson === null) {
-      redirect("/signUp");
-    }
-  }
 
   const tabs: Tab[] = [
     {
