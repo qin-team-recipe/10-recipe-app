@@ -10,7 +10,7 @@ import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverIte
 export const TopBar = () => {
   const pathname = usePathname();
 
-  async function copyToClipboard() {
+  const copyToClipboard = async () => {
     try {
       const fullpath = `${process.env.NEXT_PUBLIC_API_URL}${pathname}`;
       await navigator.clipboard.writeText(fullpath);
@@ -18,7 +18,7 @@ export const TopBar = () => {
     } catch (error) {
       alert(error || "コピーに失敗しました");
     }
-  }
+  };
   const items: PopoverItemsProps[] = [
     { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
