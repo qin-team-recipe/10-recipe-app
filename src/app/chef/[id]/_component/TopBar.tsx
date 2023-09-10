@@ -24,7 +24,7 @@ export const TopBar = () => {
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
   ];
   return (
-    <div className="relative flex justify-between p-4">
+    <div className="relative z-20 flex justify-between p-4">
       <Link href="/fav">
         <Icon type="ArrowLeft" color="black" />
       </Link>
