@@ -1,13 +1,14 @@
-import { NextPage } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
+import { getAuthData } from "@/lib/getAuthData";
 import { mockDataRecipe, RecipeAppT10Chefs } from "@/mock";
 
 import { ImageComponent, ImageGrid } from "@/components/Image";
 import { Tab, TabLinks } from "@/components/TabLinks/TabLinks";
 import { TopBar } from "@/app/fav/my/_component/TopBar";
 
-const MyPage: NextPage = () => {
+const MyPage = async () => {
   const chefName = RecipeAppT10Chefs[0].name;
   const favNum = RecipeAppT10Chefs[0].favNum;
   const tabs: Tab[] = [
@@ -21,6 +22,17 @@ const MyPage: NextPage = () => {
       href: `/fav/my/popular`,
     },
   ];
+
+  const { session, userData } = await getAuthData();
+
+  // セッション情報がなければトップにリダイレクト
+  if (!session) {
+    redirect("/");
+  }
+  // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
+  if (session && !userData) {
+    redirect("/signUp");
+  }
 
   return (
     <>

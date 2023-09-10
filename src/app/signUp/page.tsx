@@ -9,25 +9,35 @@ import { z, ZodError } from "zod";
 import { Button } from "@/components/Button";
 import { InputText } from "@/components/Form";
 import { Header } from "@/components/Header/Header";
+import { Chef } from "@/app/api/chef/[id]/route";
 
-const schema = z
+const inputNameSchema = z
   .string()
   .min(1, "ニックネームは一文字以上で入力してください")
   .max(20, "ニックネームは20文字以下で入力してください");
 
 const SignUpPage = () => {
   const router = useRouter();
-  // ログイン済みでユーザー登録済みの場合はトップページにリダイレクト
+  const [userId, setUserId] = useState("");
+
   useEffect(() => {
     const getSession = async () => {
       const {
         data: { session },
       } = await clientComponentSupabase.auth.getSession();
+
+      // セッション情報がなければトップにリダイレクト
+      if (!session) {
+        router.push("/");
+      }
+
+      // ログイン済みでユーザー登録済みの場合はトップページにリダイレクト
       if (session && session.user.id) {
         const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${session.user.id}`, {
           cache: "no-store",
         });
-        const userJson = await user.json();
+        const userJson: Chef = await user.json();
+        setUserId(session.user.id);
 
         if (userJson) {
           router.push("/");
@@ -48,7 +58,7 @@ const SignUpPage = () => {
 
     // バリデーション
     try {
-      schema.parse(name);
+      inputNameSchema.parse(name);
       setErrorMessage("");
     } catch (e) {
       if (e instanceof ZodError) {
@@ -57,7 +67,26 @@ const SignUpPage = () => {
       return;
     }
 
+    const postData: Pick<Chef, "id" | "name" | "description" | "image_url"> = {
+      id: userId,
+      name,
+      image_url: "",
+      description: "",
+    };
+
     // ユーザー登録
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef`, {
+        method: "POST",
+        body: JSON.stringify(postData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      router.push(`/chef/${userId}`);
+    } catch (e) {
+      setErrorMessage("ユーザー登録に失敗しました。時間を置いて再度お試しいただくか、お問い合わせください。");
+    }
   };
 
   return (

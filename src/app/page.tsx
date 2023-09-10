@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
+import { getAuthData } from "@/lib/getAuthData";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
@@ -23,17 +23,11 @@ const Home = async () => {
   const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
   const recipes: RecipeList = await recipesResponse.json();
 
-  // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
-  const {
-    data: { session },
-  } = await serverComponentSupabase.auth.getSession();
-  if (session && session.user.id) {
-    const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${session.user.id}`, { cache: "no-store" });
-    const userJson = await user.json();
+  const { session, userData } = await getAuthData();
 
-    if (userJson === null) {
-      redirect("/signUp");
-    }
+  // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
+  if (session && !userData) {
+    redirect("/signUp");
   }
 
   return (
