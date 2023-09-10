@@ -39,3 +39,16 @@ export async function GET(request: Request) {
   });
   return NextResponse.json(data);
 }
+
+export async function POST(request: Request) {
+  const { id, name, description, image_url } = await request.json();
+  const user = await prisma.user.create({
+    data: {
+      id,
+      name,
+      description,
+      image_url,
+    },
+  });
+  return NextResponse.json(user);
+}
