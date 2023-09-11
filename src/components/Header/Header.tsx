@@ -38,7 +38,7 @@ export const Header: React.FC<Props> = (props) => {
       <h1 className={titleClass}>{props.title}</h1>
       <div className="w-6">
         {props.isUserIcon && (
-          <Link href="/fav/my">
+          <Link href="/fav">
             <IconUserCircle className="w-6" />
           </Link>
         )}
