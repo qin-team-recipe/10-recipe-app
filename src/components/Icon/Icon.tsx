@@ -2,7 +2,11 @@ import cc from "classcat";
 import {
   ArrowLeft,
   BrandApple,
+  BrandFacebook,
   BrandGoogle,
+  BrandInstagram,
+  BrandTiktok,
+  BrandYoutube,
   ChevronDown,
   ChevronRight,
   ChevronUp,
@@ -14,6 +18,7 @@ import {
   Edit,
   ExternalLink,
   Heart,
+  HomeShare,
   Logout,
   Menu,
   Minus,
@@ -32,12 +37,17 @@ import { SiteLogo } from "@/components/Icon/assets/SiteLogo";
 export type IconType =
   | "ArrowLeft"
   | "BrandApple"
+  | "BrandFacebook"
   | "BrandGoogle"
+  | "BrandInstagram"
+  | "BrandTiktok"
+  | "BrandYoutube"
   | "Circle"
   | "CircleCheck"
   | "ChevronRight"
   | "Copy"
   | "Heart"
+  | "HomeShare"
   | "Menu"
   | "Plus"
   | "Minus"
@@ -78,6 +88,16 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <BrandApple className={cc([iconColor, iconSize])} />;
       case "BrandGoogle":
         return <BrandGoogle className={cc([iconColor, iconSize])} />;
+      case "BrandTiktok":
+        return <BrandTiktok className={cc([iconColor, iconSize])} />;
+      case "BrandFacebook":
+        return <BrandFacebook className={cc([iconColor, iconSize])} />;
+      case "BrandYoutube":
+        return <BrandYoutube className={cc([iconColor, iconSize])} />;
+      case "HomeShare":
+        return <HomeShare className={cc([iconColor, iconSize])} />;
+      case "BrandInstagram":
+        return <BrandInstagram className={cc([iconColor, iconSize])} />;
       case "ChevronUp":
         return <ChevronUp className={cc([iconColor, iconSize])} />;
       case "ChevronDown":
