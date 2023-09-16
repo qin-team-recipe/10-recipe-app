@@ -3,7 +3,7 @@ import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 import { Button } from "@/components/Button";
 import { ImageComponent } from "@/components/Image";
 import { type Chef } from "@/app/api/chef/[id]/route";
-import { TopBar } from "@/app/chef/[id]/_component/TopBar";
+import { TopBarEdit } from "@/app/chef/[id]/_component/TopBarEdit";
 
 import { ChefFollowButton } from "./_component/ChefFollowButton";
 
@@ -19,7 +19,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   return (
     <div>
       <div className="space-y-2 p-4">
-        {isSelfUser && <TopBar />}
+        <TopBarEdit />
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <h3 className="text-title font-bold">{chef.name}</h3>
