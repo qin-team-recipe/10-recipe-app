@@ -7,7 +7,7 @@ import { Icon } from "@/components/Icon/Icon";
 import { Popover } from "@/components/Popover";
 import { PopoverItems, PopoverItemsProps } from "@/components/Popover/PopoverItems";
 
-export const TopBarEdit = () => {
+export const TopBar = () => {
   const pathname = usePathname();
 
   const copyToClipboard = async () => {
