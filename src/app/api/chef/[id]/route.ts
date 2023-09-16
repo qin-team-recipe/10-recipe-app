@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { prisma } from "@/lib/prisma";
-import { User } from "@prisma/client";
+import { Link, User } from "@prisma/client";
 
 export type Chef = Pick<User, "id" | "name" | "description" | "image_url"> & {
   _count: {
     followed: number;
     Recipe: number;
-  };
+  } & { link: Pick<Link, "id" | "user_id" | "url" | "recipe_id"> };
 };
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
@@ -24,6 +24,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         select: {
           followed: true,
           Recipe: true,
+        },
+      },
+      Link: {
+        select: {
+          id: true,
+          url: true,
+          user: true,
         },
       },
     },
