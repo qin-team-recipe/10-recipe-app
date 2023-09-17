@@ -36,6 +36,5 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
       },
     },
   });
-  console.log(data?.Link);
   return NextResponse.json(data);
 }
