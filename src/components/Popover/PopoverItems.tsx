@@ -27,6 +27,7 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
   return (
     <li className={itemClass}>
       {props.href ? (
+        // target={props.href.includes(`${process.env.NEXT_PUBLIC_API_URL})?"_self":"_blank"}みたいなことしたいが躓き中
         <Link href={{ pathname: props.href }} className="flex items-center gap-1">
           <Icon color="gray" type={props.icon} size="small" />
           {props.text}
