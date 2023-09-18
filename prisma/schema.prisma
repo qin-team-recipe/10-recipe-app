@@ -27,17 +27,23 @@ model User {
   @@map("users")
 }
 
+model Recipe_status {
+  status  String   @unique
+  recipes Recipe[]
+}
+
 model Recipe {
-  id           String        @id @default(uuid())
-  user         User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id      String        @db.Uuid
+  id           String         @id @default(uuid())
+  user         User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id      String         @db.Uuid
   title        String
   description  String?
   image_url    String?
-  status       String        @default("PUBLIC")
+  statusenum   Recipe_status? @relation(fields: [status], references: [status])
+  status       String         @default("PUBLIC")
   instructions String[]
-  created_at   DateTime      @default(now())
-  updated_at   DateTime      @default(now()) @updatedAt
+  created_at   DateTime       @default(now())
+  updated_at   DateTime       @default(now()) @updatedAt
   Link         Link[]
   Favorite     Favorite[]
   Ingredients  Ingredients[]
