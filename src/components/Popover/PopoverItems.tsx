@@ -24,22 +24,69 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
       "border-t border-lightGray": props.isTopBorder,
     },
   ]);
-  return (
-    <li className={itemClass}>
-      {props.href ? (
-        // target={props.href.includes(`${process.env.NEXT_PUBLIC_API_URL})?"_self":"_blank"}みたいなことしたいが躓き中
-        <Link href={{ pathname: props.href }} className="flex items-center gap-1">
+
+  const isYouTube = props.href && props.href.startsWith("https://www.youtube.com/");
+  const isInstagram = props.href && props.href.startsWith("https://www.instagram.com/");
+  const isTiktok = props.href && props.href.startsWith("https://www.tiktok.com/");
+  const isTwitter = props.href && props.href.startsWith("https://www.twitter.com/");
+  const isTFacebook = props.href && props.href.startsWith("https://www.facebook.com/");
+  const isInternal = props.href && props.href.includes(`${process.env.NEXT_PUBLIC_API_URL}`);
+
+  if (isYouTube || isInstagram) return null;
+  if (props.href || isInternal)
+    return (
+      <li className={itemClass}>
+        <Link href={props.href} className="flex items-center gap-1">
           <Icon color="gray" type={props.icon} size="small" />
           {props.text}
         </Link>
-      ) : (
+      </li>
+    );
+  if (!props.href)
+    return (
+      <li className={itemClass}>
         <button onClick={props.onClick} className="flex items-center gap-1">
           <Icon color="gray" type={props.icon} size="small" />
           <div className="flex flex-col items-start leading-3">
             <span>{props.text}</span>
           </div>
         </button>
-      )}
+      </li>
+    );
+  if (isTiktok)
+    return (
+      <li className={itemClass}>
+        <Link href={props.href} className="flex items-center gap-1" target="_blank">
+          <Icon color="gray" type="BrandTiktok" size="small" />
+          TikTok
+        </Link>
+      </li>
+    );
+  if (isTwitter)
+    return (
+      <li className={itemClass}>
+        <Link href={props.href} className="flex items-center gap-1" target="_blank">
+          <Icon color="gray" type="BrandTwitter" size="small" />
+          Twitter
+        </Link>
+      </li>
+    );
+  if (isTFacebook)
+    return (
+      <li className={itemClass}>
+        <Link href={props.href} className="flex items-center gap-1" target="_blank">
+          <Icon color="gray" type="BrandFacebook" size="small" />
+          Facebook
+        </Link>
+      </li>
+    );
+  // brandでも内部リンクでもない場合はホームページ
+  return (
+    <li className={itemClass}>
+      <Link href={props.href} className="flex items-center gap-1" target="_blank">
+        <Icon color="gray" type="HomeShare" size="small" />
+        {props.text}
+      </Link>
     </li>
   );
 };

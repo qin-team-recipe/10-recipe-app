@@ -24,12 +24,16 @@ export const TopBar = () => {
   };
   // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
+    // TODO SNS Linkから取得するロジック
+    { href: "https://www.youtube.com/", text: "YouTube", icon: "BrandYoutube" },
+    { href: "https://www.instagram.com/", text: "Instagram", icon: "BrandInstagram" },
+    { href: "https://www.tiktok.com/", text: "TikTok", icon: "BrandTiktok" },
+    { href: "https://www.twitter.com/", text: "Twitter", icon: "BrandTwitter" },
+    { href: "https://www.facebook.com/", text: "Facebook", icon: "BrandFacebook" },
+    { href: "https://www.homepage.com/", text: "homepage.com", icon: "HomeShare", isTopBorder: true },
     { href: "/", text: "プロフィールを編集する", icon: "Edit" },
-    { href: "/", text: "TikTok", icon: "BrandTiktok" },
-    { href: "/", text: "Twitter", icon: "BrandTwitter" },
-    { href: "/", text: "Facebook", icon: "BrandFacebook" },
-    { href: "/", text: "homepage.com", icon: "HomeShare" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
+    { onClick: copyToClipboard, text: "レシピを非公開にする", icon: "Lock" },
     { onClick: removeItem, text: "削除する", icon: "Trash", isTopBorder: true },
   ];
   return (
