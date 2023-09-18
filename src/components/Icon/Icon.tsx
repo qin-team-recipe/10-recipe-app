@@ -6,6 +6,7 @@ import {
   BrandGoogle,
   BrandInstagram,
   BrandTiktok,
+  BrandTwitter,
   BrandYoutube,
   ChevronDown,
   ChevronRight,
@@ -41,6 +42,7 @@ export type IconType =
   | "BrandGoogle"
   | "BrandInstagram"
   | "BrandTiktok"
+  | "BrandTwitter"
   | "BrandYoutube"
   | "Circle"
   | "CircleCheck"
@@ -90,6 +92,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <BrandGoogle className={cc([iconColor, iconSize])} />;
       case "BrandTiktok":
         return <BrandTiktok className={cc([iconColor, iconSize])} />;
+      case "BrandTwitter":
+        return <BrandTwitter className={cc([iconColor, iconSize])} />;
       case "BrandFacebook":
         return <BrandFacebook className={cc([iconColor, iconSize])} />;
       case "BrandYoutube":
