@@ -19,20 +19,40 @@ export const TopBar = () => {
       alert(error || "コピーに失敗しました");
     }
   };
+  const removeItem = () => {
+    alert("削除しました");
+  };
+  // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
     { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
+    { href: "/", text: "TikTok", icon: "BrandTiktok" },
+    { href: "https://twitter.com/yokoiwasaki6", text: "Twitter", icon: "BrandTwitter" },
+    { href: "/", text: "Facebook", icon: "BrandFacebook" },
+    // ここでisTobBorderを指定するとundefinedになるのはなぜ？？
+    { href: "/", text: "homepage.com", icon: "HomeShare" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
+    // ここでisTobBorderを指定するとundefinedになるのはなぜ？？
+    { onClick: removeItem, text: "削除する", icon: "Trash" },
   ];
   return (
     <div className="relative z-20 flex justify-between p-4">
       <Link href="/fav">
         <Icon type="ArrowLeft" color="black" />
       </Link>
-      <Popover>
-        {items.map((item, i) => (
-          <PopoverItems {...item} key={i} />
-        ))}
-      </Popover>
+      <div className="flex w-1/4 justify-between">
+        {/* login userのLinkを取得 */}
+        <Link href="https://www.youtube.com/channel/UCPc9dv6sP5JyiE32QCAneZA" target="_blank">
+          <Icon type="BrandYoutube" color="black" />
+        </Link>
+        <Link href="https://www.instagram.com/yoko_and_kotaro/" target="_blank">
+          <Icon type="BrandInstagram" size="medium" />
+        </Link>
+        <Popover>
+          {items.map((item, i) => (
+            <PopoverItems {...item} key={i} />
+          ))}
+        </Popover>
+      </div>
     </div>
   );
 };
