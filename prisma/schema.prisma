@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["multiSchema"]
@@ -31,13 +28,13 @@ model User {
 }
 
 model Recipe {
-  id           String        @id @default(dbgenerated("uuid_generate_v4()"))
+  id           String        @id @default(uuid())
   user         User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id      String        @db.Uuid
   title        String
   description  String?
   image_url    String?
-  status       RecipeStatus  @default(PUBLIC)
+  status       String        @default("PUBLIC")
   instructions String[]
   created_at   DateTime      @default(now())
   updated_at   DateTime      @default(now()) @updatedAt
@@ -49,7 +46,7 @@ model Recipe {
 }
 
 model Ingredients {
-  id         String       @id @default(dbgenerated("uuid_generate_v4()"))
+  id         String       @id @default(uuid())
   recipe     Recipe?      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id  String?
   user       User?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
@@ -64,7 +61,7 @@ model Ingredients {
 }
 
 model Ingredient {
-  id               String      @id @default(dbgenerated("uuid_generate_v4()"))
+  id               String      @id @default(uuid())
   ingredients      Ingredients @relation(fields: [ingredients_id], references: [id], onDelete: Cascade)
   ingredients_id   String
   name             String?
@@ -78,7 +75,7 @@ model Ingredient {
 }
 
 model Link {
-  id         String   @id @default(dbgenerated("uuid_generate_v4()"))
+  id         String   @id @default(uuid())
   user       User?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id    String?  @db.Uuid
   recipe     Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
@@ -112,10 +109,4 @@ model Favorite {
 
   @@unique([user_id, recipe_id])
   @@map("favorites")
-}
-
-enum RecipeStatus {
-  PUBLIC
-  LIMIT
-  PRIVATE
 }

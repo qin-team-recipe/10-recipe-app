@@ -1,5 +1,65 @@
--- CreateEnum
-CREATE TYPE "RecipeStatus" AS ENUM ('PUBLIC', 'LIMIT', 'PRIVATE');
+/*
+  Warnings:
+
+  - You are about to drop the `favorites` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `follows` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ingredients` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `ingredients_lists` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `links` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `recipes` table. If the table is not empty, all the data it contains will be lost.
+  - You are about to drop the `users` table. If the table is not empty, all the data it contains will be lost.
+
+*/
+-- DropForeignKey
+ALTER TABLE "public"."favorites" DROP CONSTRAINT "favorites_recipe_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."favorites" DROP CONSTRAINT "favorites_user_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."follows" DROP CONSTRAINT "follows_followed_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."follows" DROP CONSTRAINT "follows_following_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."ingredients" DROP CONSTRAINT "ingredients_ingredients_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."ingredients_lists" DROP CONSTRAINT "ingredients_lists_recipe_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."ingredients_lists" DROP CONSTRAINT "ingredients_lists_user_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."links" DROP CONSTRAINT "links_recipe_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."links" DROP CONSTRAINT "links_user_id_fkey";
+
+-- DropForeignKey
+ALTER TABLE "public"."recipes" DROP CONSTRAINT "recipes_user_id_fkey";
+
+-- DropTable
+DROP TABLE "public"."favorites";
+
+-- DropTable
+DROP TABLE "public"."follows";
+
+-- DropTable
+DROP TABLE "public"."ingredients";
+
+-- DropTable
+DROP TABLE "public"."ingredients_lists";
+
+-- DropTable
+DROP TABLE "public"."links";
+
+-- DropTable
+DROP TABLE "public"."recipes";
+
+-- DropTable
+DROP TABLE "public"."users";
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -16,12 +76,12 @@ CREATE TABLE "users" (
 
 -- CreateTable
 CREATE TABLE "recipes" (
-    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "id" TEXT NOT NULL,
     "user_id" UUID NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
     "image_url" TEXT,
-    "status" "RecipeStatus" NOT NULL DEFAULT 'PUBLIC',
+    "status" TEXT NOT NULL DEFAULT 'PUBLIC',
     "instructions" TEXT[],
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -31,7 +91,7 @@ CREATE TABLE "recipes" (
 
 -- CreateTable
 CREATE TABLE "ingredients_lists" (
-    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "id" TEXT NOT NULL,
     "recipe_id" TEXT,
     "user_id" UUID,
     "step" INTEGER,
@@ -44,7 +104,7 @@ CREATE TABLE "ingredients_lists" (
 
 -- CreateTable
 CREATE TABLE "ingredients" (
-    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "id" TEXT NOT NULL,
     "ingredients_id" TEXT NOT NULL,
     "name" TEXT,
     "step" INTEGER,
@@ -58,7 +118,7 @@ CREATE TABLE "ingredients" (
 
 -- CreateTable
 CREATE TABLE "links" (
-    "id" TEXT NOT NULL DEFAULT uuid_generate_v4(),
+    "id" TEXT NOT NULL,
     "user_id" UUID,
     "recipe_id" TEXT,
     "url" TEXT NOT NULL,
