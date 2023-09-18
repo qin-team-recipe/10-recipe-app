@@ -24,7 +24,7 @@ export const TopBar = () => {
   };
   // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
-    { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
+    { href: "/", text: "プロフィールを編集する", icon: "Edit" },
     { href: "/", text: "TikTok", icon: "BrandTiktok" },
     { href: "https://twitter.com/yokoiwasaki6", text: "Twitter", icon: "BrandTwitter" },
     { href: "/", text: "Facebook", icon: "BrandFacebook" },
