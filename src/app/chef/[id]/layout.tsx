@@ -1,18 +1,10 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 import { ImageComponent } from "@/components/Image";
 import { type Chef } from "@/app/api/chef/[id]/route";
-import { ChefEditButton } from "@/app/chef/[id]/_component/ChefEditButton";
 import { TopBar } from "@/app/chef/[id]/_component/TopBar";
-import { TopBarLink } from "@/app/chef/[id]/_component/TopBarLink";
 
 import { ChefFollowButton } from "./_component/ChefFollowButton";
 
 const ChefLayout = async ({ children, params }: { children: React.ReactNode; params: { id: string } }) => {
-  const pathname = usePathname();
-
   const { id } = params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${id}`, { cache: "no-store" });
   const chef: Chef = await res.json();
@@ -20,8 +12,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   return (
     <div>
       <div className="space-y-2 p-4">
-        {pathname.includes("edit") ? <TopBarLink /> : <TopBar />}
-
+        <TopBar />
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <h3 className="text-title font-bold">{chef.name}</h3>
@@ -42,7 +33,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
           <span className="mr-2">{chef._count.Recipe} レシピ</span>
           <span>{chef._count.followed} フォロワー</span>
         </div>
-        {pathname.includes("edit") ? <ChefEditButton /> : <ChefFollowButton />}
+        <ChefFollowButton />
       </div>
       {children}
     </div>
