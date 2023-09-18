@@ -30,7 +30,6 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
         select: {
           id: true,
           url: true,
-          user_id: true,
         },
       },
     },
