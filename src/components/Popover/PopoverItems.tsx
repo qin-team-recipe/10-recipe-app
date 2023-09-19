@@ -34,26 +34,6 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
 
   // TODO ブランド系はpropsでなくapiから取得する
   if (isYouTube || isInstagram) return null;
-  if (props.href || isInternal)
-    return (
-      <li className={itemClass}>
-        <Link href={props.href} className="flex items-center gap-1">
-          <Icon color="gray" type={props.icon} size="small" />
-          {props.text}
-        </Link>
-      </li>
-    );
-  if (!props.href)
-    return (
-      <li className={itemClass}>
-        <button onClick={props.onClick} className="flex items-center gap-1">
-          <Icon color="gray" type={props.icon} size="small" />
-          <div className="flex flex-col items-start leading-3">
-            <span>{props.text}</span>
-          </div>
-        </button>
-      </li>
-    );
   if (isTiktok)
     return (
       <li className={itemClass}>
@@ -79,6 +59,26 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
           <Icon color="gray" type="BrandFacebook" size="small" />
           Facebook
         </Link>
+      </li>
+    );
+  if (isInternal)
+    return (
+      <li className={itemClass}>
+        <Link href={props.href} className="flex items-center gap-1">
+          <Icon color="gray" type={props.icon} size="small" />
+          {props.text}
+        </Link>
+      </li>
+    );
+  if (!props.href)
+    return (
+      <li className={itemClass}>
+        <button onClick={props.onClick} className="flex items-center gap-1">
+          <Icon color="gray" type={props.icon} size="small" />
+          <div className="flex flex-col items-start leading-3">
+            <span>{props.text}</span>
+          </div>
+        </button>
       </li>
     );
   // brandでも内部リンクでもない場合はホームページ
