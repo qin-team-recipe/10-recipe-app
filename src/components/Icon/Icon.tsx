@@ -21,6 +21,7 @@ import {
   Heart,
   HomeShare,
   Lock,
+  LockOpen,
   Logout,
   Menu,
   Minus,
@@ -53,6 +54,7 @@ export type IconType =
   | "HomeShare"
   | "Menu"
   | "Lock"
+  | "LockOpen"
   | "Plus"
   | "Minus"
   | "Search"
@@ -125,6 +127,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <Heart className={cc([iconColor, iconSize])} />;
       case "Lock":
         return <Lock className={cc([iconColor, iconSize])} />;
+      case "LockOpen":
+        return <LockOpen className={cc([iconColor, iconSize])} />;
       case "Menu":
         return <Menu className={cc([iconColor, iconBackGround, iconSize])} />;
       case "Plus":

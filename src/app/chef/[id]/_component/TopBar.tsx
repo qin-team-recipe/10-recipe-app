@@ -22,6 +22,9 @@ export const TopBar = () => {
   const removeItem = () => {
     alert("削除しました");
   };
+  const makeRecipePrivate = () => {
+    alert("非公開にしました！");
+  };
   // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
     // TODO SNS Linkから取得するロジック
@@ -33,7 +36,8 @@ export const TopBar = () => {
     { href: "https://www.homepage.com/", text: "homepage.com", icon: "HomeShare", isTopBorder: true },
     { href: "/", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
-    { onClick: copyToClipboard, text: "レシピを非公開にする", icon: "Lock" },
+    // TODO レシピを非公開にする、公開するトグルの実装 iconもLock LockOpenを出し分ける
+    { onClick: makeRecipePrivate, text: "レシピを非公開にする", icon: "Lock" },
     { onClick: removeItem, text: "削除する", icon: "Trash", isTopBorder: true },
   ];
   return (
