@@ -32,6 +32,7 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
   const isTFacebook = props.href && props.href.startsWith("https://www.facebook.com/");
   const isInternal = props.href && props.href.includes(`${process.env.NEXT_PUBLIC_API_URL}`);
 
+  // TODO ブランド系はpropsでなくapiから取得する
   if (isYouTube || isInstagram) return null;
   if (props.href || isInternal)
     return (
