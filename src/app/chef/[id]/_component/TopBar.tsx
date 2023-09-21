@@ -19,12 +19,14 @@ export const TopBar = () => {
       alert(error || "コピーに失敗しました");
     }
   };
+
   const items: PopoverItemsProps[] = [
     { href: "/fav/my/edit", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
   ];
+
   return (
-    <div className="relative z-20 flex justify-between p-4">
+    <div className="relative z-20 flex justify-between">
       <Link href="/fav">
         <Icon type="ArrowLeft" color="black" />
       </Link>

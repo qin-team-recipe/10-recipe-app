@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { getAuthData } from "@/lib/getAuthData";
+import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 
 import { Icon } from "@/components/Icon/Icon";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
@@ -23,7 +23,7 @@ const Home = async () => {
   const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
   const recipes: RecipeList = await recipesResponse.json();
 
-  const { session, userData } = await getAuthData();
+  const { session, userData } = await getAuthDataForServer();
 
   // セッション情報はあるが、ユーザー情報がない場合はユーザー登録画面にリダイレクト
   if (session && !userData) {

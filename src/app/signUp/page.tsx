@@ -3,73 +3,44 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { clientComponentSupabase } from "@/lib/clientComponentSupabase";
-import { z, ZodError } from "zod";
+import { getAuthDataForClient } from "@/lib/getAuthData/getAuthDataForClient";
+import { InputNameSchema, InputNameSchemaType } from "@/types/zodSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 import { Button } from "@/components/Button";
 import { InputText } from "@/components/Form";
 import { Header } from "@/components/Header/Header";
-import { Chef } from "@/app/api/chef/[id]/route";
-
-const inputNameSchema = z
-  .string()
-  .min(1, "ニックネームは一文字以上で入力してください")
-  .max(20, "ニックネームは20文字以下で入力してください");
+import { CreateUserPostParams } from "@/app/api/chef/route";
 
 const SignUpPage = () => {
   const router = useRouter();
   const [userId, setUserId] = useState("");
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<InputNameSchemaType>({ resolver: zodResolver(InputNameSchema) });
+
   useEffect(() => {
     const getSession = async () => {
-      const {
-        data: { session },
-      } = await clientComponentSupabase.auth.getSession();
+      const { session, userData } = await getAuthDataForClient();
 
-      // セッション情報がなければトップにリダイレクト
-      if (!session) {
+      // セッション情報がない、またはユーザー登録データがあればトップにリダイレクト
+      if (!session?.user.id || userData) {
         router.push("/");
       }
-
-      // ログイン済みでユーザー登録済みの場合はトップページにリダイレクト
-      if (session && session.user.id) {
-        const user = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${session.user.id}`, {
-          cache: "no-store",
-        });
-        const userJson: Chef = await user.json();
-        setUserId(session.user.id);
-
-        if (userJson) {
-          router.push("/");
-        }
-      }
+      setUserId(session?.user.id || "");
     };
 
     getSession();
   }, [router]);
 
-  const [name, setName] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // バリデーション
-    try {
-      inputNameSchema.parse(name);
-      setErrorMessage("");
-    } catch (e) {
-      if (e instanceof ZodError) {
-        setErrorMessage(e.errors[0].message);
-      }
-      return;
-    }
-
-    const postData: Pick<Chef, "id" | "name" | "description" | "image_url"> = {
+  const onSubmit: SubmitHandler<InputNameSchemaType> = async (data) => {
+    const postData: CreateUserPostParams = {
       id: userId,
-      name,
+      name: data.name,
       image_url: "",
       description: "",
     };
@@ -85,20 +56,19 @@ const SignUpPage = () => {
       });
       router.push(`/chef/${userId}`);
     } catch (e) {
-      setErrorMessage("ユーザー登録に失敗しました。時間を置いて再度お試しいただくか、お問い合わせください。");
+      throw new Error();
     }
   };
 
   return (
     <div>
       <Header title="新規登録" position="center" />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <InputText
           label="ニックネーム"
-          onChange={handleChange}
           addClassNames="my-4"
-          value={name}
-          errorText={errorMessage}
+          errorText={errors["name"]?.message}
+          register={register("name")}
         />
         <div className="flex gap-4 px-4">
           <Button buttonColor="tomato" addClassNames="w-full" type="submit">
