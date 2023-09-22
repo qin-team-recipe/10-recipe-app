@@ -40,8 +40,9 @@ export const TopBar = () => {
     { onClick: makeRecipePrivate, text: "レシピを非公開にする", icon: "Lock" },
     { onClick: removeItem, text: "削除する", icon: "Trash", isTopBorder: true },
   ];
+
   return (
-    <div className="relative z-20 flex justify-between p-4">
+    <div className="relative z-20 flex justify-between">
       <Link href="/fav">
         <Icon type="ArrowLeft" color="black" />
       </Link>

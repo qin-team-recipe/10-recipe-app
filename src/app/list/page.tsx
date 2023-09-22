@@ -1,4 +1,4 @@
-import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
+import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 import { MockMyList, MockRecipeList } from "@/mock";
 
 import { Header } from "@/components/Header/Header";
@@ -7,9 +7,7 @@ import { ListShoppingItem } from "@/components/list/ListShoppingItem";
 import { Login } from "@/components/Login/Login";
 
 const ListPage = async () => {
-  const {
-    data: { session },
-  } = await serverComponentSupabase.auth.getSession();
+  const { session } = await getAuthDataForServer();
 
   return (
     <>
