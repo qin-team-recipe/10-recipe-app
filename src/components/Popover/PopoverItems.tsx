@@ -10,7 +10,6 @@ import { Icon, IconType } from "@/components/Icon/Icon";
 export type PopoverItemsProps = {
   className?: string;
   text: string;
-  subText?: string;
   href?: string;
   icon: IconType;
   onClick?: () => void;
@@ -25,69 +24,36 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
     },
   ]);
 
-  const isYouTube = props.href && props.href.startsWith("https://www.youtube.com/");
-  const isInstagram = props.href && props.href.startsWith("https://www.instagram.com/");
-  const isTiktok = props.href && props.href.startsWith("https://www.tiktok.com/");
-  const isTwitter = props.href && props.href.startsWith("https://www.twitter.com/");
-  const isTFacebook = props.href && props.href.startsWith("https://www.facebook.com/");
-  const isInternal = props.href && props.href.includes(`${process.env.NEXT_PUBLIC_API_URL}`);
-
-  // TODO ブランド系はpropsでなくapiから取得する
-  if (isYouTube || isInstagram) return null;
-  if (isTiktok)
-    return (
-      <li className={itemClass}>
-        <Link href={props.href} className="flex items-center gap-1" target="_blank">
-          <Icon color="gray" type="BrandTiktok" size="small" />
-          TikTok
+  const generateLinkObject = (href: string): { text: string | undefined; icon: IconType | undefined } => {
+    if (href.startsWith("https://www.youtube.com/")) {
+      return { text: "YouTube", icon: "BrandYoutube" };
+    } else if (href.startsWith("https://www.instagram.com/")) {
+      return { text: "Instagram", icon: "BrandInstagram" };
+    } else if (href.startsWith("https://www.tiktok.com/")) {
+      return { text: "TikTok", icon: "BrandTiktok" };
+    } else if (href.startsWith("https://www.twitter.com/")) {
+      return { text: "Twitter", icon: "BrandTwitter" };
+    } else if (href.startsWith("https://www.facebook.com/")) {
+      return { text: "Facebook", icon: "BrandFacebook" };
+    } else {
+      return { text: undefined, icon: undefined };
+    }
+  };
+  return (
+    <li className={itemClass}>
+      {props.href ? (
+        <Link href={{ pathname: props.href }} className="flex items-center gap-1">
+          <Icon color="gray" type={props.icon || generateLinkObject(props.href).icon || "Link"} size="small" />
+          {props.text || generateLinkObject(props.href).text || props.href}
         </Link>
-      </li>
-    );
-  if (isTwitter)
-    return (
-      <li className={itemClass}>
-        <Link href={props.href} className="flex items-center gap-1" target="_blank">
-          <Icon color="gray" type="BrandTwitter" size="small" />
-          Twitter
-        </Link>
-      </li>
-    );
-  if (isTFacebook)
-    return (
-      <li className={itemClass}>
-        <Link href={props.href} className="flex items-center gap-1" target="_blank">
-          <Icon color="gray" type="BrandFacebook" size="small" />
-          Facebook
-        </Link>
-      </li>
-    );
-  if (isInternal)
-    return (
-      <li className={itemClass}>
-        <Link href={props.href} className="flex items-center gap-1">
-          <Icon color="gray" type={props.icon} size="small" />
-          {props.text}
-        </Link>
-      </li>
-    );
-  if (!props.href)
-    return (
-      <li className={itemClass}>
+      ) : (
         <button onClick={props.onClick} className="flex items-center gap-1">
-          <Icon color="gray" type={props.icon} size="small" />
+          <Icon color="gray" type={props.icon || "Link"} size="small" />
           <div className="flex flex-col items-start leading-3">
             <span>{props.text}</span>
           </div>
         </button>
-      </li>
-    );
-  // brandでも内部リンクでもない場合はホームページ
-  return (
-    <li className={itemClass}>
-      <Link href={props.href} className="flex items-center gap-1" target="_blank">
-        <Icon color="gray" type="HomeShare" size="small" />
-        {props.text}
-      </Link>
+      )}
     </li>
   );
 };
