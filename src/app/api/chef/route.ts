@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { User } from "@prisma/client";
 
+// GETの際に使う型
 export type ChefList = Array<
   Pick<User, "id" | "name" | "description" | "image_url"> & {
     _count: {
@@ -11,7 +12,6 @@ export type ChefList = Array<
     };
   }
 >;
-
 type GetOption = { name: "asc" } | { created_at: "desc" };
 
 export async function GET(request: Request) {
@@ -40,14 +40,39 @@ export async function GET(request: Request) {
   return NextResponse.json(data);
 }
 
+// CREATEの際に使う型（TODO:schemaでdescriptionとimage_urlが必須になってしまっているので修正したい）
+export type CreateUserPostParams = Pick<User, "id" | "name" | "description" | "image_url">;
+
 export async function POST(request: Request) {
-  const { id, name, description, image_url } = await request.json();
+  const reqBody: CreateUserPostParams = await request.json();
+  const { id, name, description, image_url } = reqBody;
   const user = await prisma.user.create({
     data: {
       id,
       name,
       description,
       image_url,
+    },
+  });
+  return NextResponse.json(user);
+}
+
+// UPDATEの際に使う型
+export type UpdateUserPostParams = Pick<User, "id" | "name" | "description" | "image_url"> & { link?: string[] };
+
+export async function PUT(request: Request) {
+  const reqBody: UpdateUserPostParams = await request.json();
+  const { id, name, description, image_url, link } = reqBody;
+  const linkData = link ? { Link: { create: link?.map((url) => ({ url, id: crypto.randomUUID() })) } } : undefined;
+  const user = await prisma.user.update({
+    where: {
+      id,
+    },
+    data: {
+      name,
+      description,
+      image_url,
+      ...linkData,
     },
   });
   return NextResponse.json(user);

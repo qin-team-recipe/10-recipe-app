@@ -61,7 +61,7 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
     {
       "rounded-2xl": props.isRounded,
       "rounded-full": props.isCircle,
-      "drop-shadow-md": props.isShadow,
+      "drop-shadow-md shadow": props.isShadow,
     },
   ]);
 

@@ -1,9 +1,12 @@
+import Link from "next/link";
+
 import cc from "classcat";
 
 type ButtonProps = {
   children: React.ReactNode;
   buttonColor: "tomato" | "gray" | "blue" | "black" | "white";
   onClick?: () => void;
+  href?: string;
   addClassNames?: string;
   type?: "button" | "submit";
   isDisabled?: boolean;
@@ -23,7 +26,11 @@ export const Button: React.FC<ButtonProps> = (props) => {
     props.addClassNames,
   ]);
 
-  return (
+  return props.href ? (
+    <Link href={{ pathname: props.href }} className={buttonColor}>
+      {props.children}
+    </Link>
+  ) : (
     <button className={buttonColor} onClick={props.onClick} type={props.type}>
       {props.children}
     </button>
