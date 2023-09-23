@@ -19,7 +19,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   return (
     <div>
       <div className="space-y-2 p-4">
-        <TopBar />
+        {isSelfUser && <TopBar />}
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <h3 className="text-title font-bold">{chef.name}</h3>

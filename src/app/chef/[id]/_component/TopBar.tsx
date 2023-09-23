@@ -19,12 +19,14 @@ export const TopBar = () => {
       alert(error || "コピーに失敗しました");
     }
   };
+
   const removeItem = () => {
     alert("削除しました");
   };
   const makeRecipePrivate = () => {
     alert("非公開にしました！");
   };
+  
   // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
     // TODO SNS Linkから取得するロジック
