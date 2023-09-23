@@ -2,7 +2,12 @@ import cc from "classcat";
 import {
   ArrowLeft,
   BrandApple,
+  BrandFacebook,
   BrandGoogle,
+  BrandInstagram,
+  BrandTiktok,
+  BrandTwitter,
+  BrandYoutube,
   ChevronDown,
   ChevronRight,
   ChevronUp,
@@ -14,6 +19,10 @@ import {
   Edit,
   ExternalLink,
   Heart,
+  HomeShare,
+  Link,
+  Lock,
+  LockOpen,
   Logout,
   Menu,
   Minus,
@@ -32,13 +41,22 @@ import { SiteLogo } from "@/components/Icon/assets/SiteLogo";
 export type IconType =
   | "ArrowLeft"
   | "BrandApple"
+  | "BrandFacebook"
   | "BrandGoogle"
+  | "BrandInstagram"
+  | "BrandTiktok"
+  | "BrandTwitter"
+  | "BrandYoutube"
   | "Circle"
   | "CircleCheck"
   | "ChevronRight"
   | "Copy"
   | "Heart"
+  | "HomeShare"
   | "Menu"
+  | "Link"
+  | "Lock"
+  | "LockOpen"
   | "Plus"
   | "Minus"
   | "Search"
@@ -78,6 +96,22 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <BrandApple className={cc([iconColor, iconSize])} />;
       case "BrandGoogle":
         return <BrandGoogle className={cc([iconColor, iconSize])} />;
+      case "BrandTiktok":
+        return <BrandTiktok className={cc([iconColor, iconSize])} />;
+      case "BrandTwitter":
+        return <BrandTwitter className={cc([iconColor, iconSize])} />;
+      case "BrandFacebook":
+        return <BrandFacebook className={cc([iconColor, iconSize])} />;
+      case "BrandYoutube":
+        return <BrandYoutube className={cc([iconColor, iconSize])} />;
+      case "HomeShare":
+        return <HomeShare className={cc([iconColor, iconSize])} />;
+      case "Link":
+        return <Link className={cc([iconColor, iconSize])} />;
+      case "Lock":
+        return <Lock className={cc([iconColor, iconSize])} />;
+      case "BrandInstagram":
+        return <BrandInstagram className={cc([iconColor, iconSize])} />;
       case "ChevronUp":
         return <ChevronUp className={cc([iconColor, iconSize])} />;
       case "ChevronDown":
@@ -95,6 +129,10 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <Copy className={cc([iconColor, iconSize])} />;
       case "Heart":
         return <Heart className={cc([iconColor, iconSize])} />;
+      case "Lock":
+        return <Lock className={cc([iconColor, iconSize])} />;
+      case "LockOpen":
+        return <LockOpen className={cc([iconColor, iconSize])} />;
       case "Menu":
         return <Menu className={cc([iconColor, iconBackGround, iconSize])} />;
       case "Plus":
