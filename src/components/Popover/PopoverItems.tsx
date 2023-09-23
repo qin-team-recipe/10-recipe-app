@@ -40,7 +40,7 @@ export const PopoverItems: React.FC<PopoverItemsProps> = (props) => {
     }
   };
 
-return (
+  return (
     <li className={itemClass}>
       {props.href ? (
         <Link href={{ pathname: props.href }} className="flex items-center gap-1">
@@ -57,3 +57,4 @@ return (
       )}
     </li>
   );
+};
