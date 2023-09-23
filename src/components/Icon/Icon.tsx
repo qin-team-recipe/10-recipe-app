@@ -20,6 +20,7 @@ import {
   ExternalLink,
   Heart,
   HomeShare,
+  Link,
   Lock,
   LockOpen,
   Logout,
@@ -53,6 +54,7 @@ export type IconType =
   | "Heart"
   | "HomeShare"
   | "Menu"
+  | "Link"
   | "Lock"
   | "LockOpen"
   | "Plus"
@@ -104,6 +106,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <BrandYoutube className={cc([iconColor, iconSize])} />;
       case "HomeShare":
         return <HomeShare className={cc([iconColor, iconSize])} />;
+      case "Link":
+        return <Link className={cc([iconColor, iconSize])} />;
       case "Lock":
         return <Lock className={cc([iconColor, iconSize])} />;
       case "BrandInstagram":
