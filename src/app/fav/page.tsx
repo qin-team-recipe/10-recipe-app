@@ -1,26 +1,23 @@
 import Link from "next/link";
 
-import { serverComponentSupabase } from "@/lib/serverComponentSupabase";
+import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 import { mockDataFav } from "@/mock";
 
 import { Header } from "@/components/Header/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 import { Login } from "@/components/Login/Login";
+import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
 const FavPage = async () => {
-  const {
-    data: { session },
-  } = await serverComponentSupabase.auth.getSession();
+  const { session } = await getAuthDataForServer();
 
   return (
     <div>
       <Header position="center" title="お気に入り" isMenuIcon={!!session} />
       {session ? (
-        <div className="py-5">
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-4 font-bold">
-              <div className="text-large">シェフ</div>
-            </div>
+        <div className="space-y-4 py-4">
+          <div>
+            <SectionTitle title="シェフ" />
             <ImageCarousel>
               {mockDataFav.map((data, index) => (
                 <ImageComponent
