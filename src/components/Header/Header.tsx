@@ -1,7 +1,8 @@
 import Link from "next/link";
 
-import { IconArrowLeft, IconMenu, IconUserCircle } from "@tabler/icons-react";
 import cc from "classcat";
+
+import { Icon } from "@/components/Icon/Icon";
 
 type Props = {
   title: string;
@@ -25,12 +26,12 @@ export const Header: React.FC<Props> = (props) => {
       <div className="w-6">
         {props.browserBackHref && (
           <Link href={{ pathname: props.browserBackHref }}>
-            <IconArrowLeft />
+            <Icon type="ArrowLeft" />
           </Link>
         )}
         {props.isMenuIcon && (
           <Link href="/settings">
-            <IconMenu />
+            <Icon type="Menu" />
           </Link>
         )}
       </div>
@@ -38,7 +39,7 @@ export const Header: React.FC<Props> = (props) => {
       <div className="w-6">
         {props.userPageHref && (
           <Link href={{ pathname: props.userPageHref }}>
-            <IconUserCircle className="w-6" />
+            <Icon type="UserCircle" />
           </Link>
         )}
       </div>
