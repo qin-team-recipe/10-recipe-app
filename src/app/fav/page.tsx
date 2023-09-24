@@ -9,11 +9,16 @@ import { Login } from "@/components/Login/Login";
 import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
 
 const FavPage = async () => {
-  const { session } = await getAuthDataForServer();
+  const { session, userData } = await getAuthDataForServer();
 
   return (
     <div>
-      <Header position="center" title="お気に入り" isMenuIcon={!!session} />
+      <Header
+        position="center"
+        title="お気に入り"
+        isMenuIcon={!!session}
+        userPageHref={userData?.name ? `${process.env.NEXT_PUBLIC_API_URL}/chef/${userData.id}` : undefined}
+      />
       {session ? (
         <div className="space-y-4 py-4">
           <div>
