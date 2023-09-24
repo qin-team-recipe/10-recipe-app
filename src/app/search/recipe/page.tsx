@@ -7,7 +7,7 @@ import { TabLinks, type Tab } from "@/components/TabLinks/TabLinks";
 import { type RecipeList } from "@/app/api/recipe/route";
 
 const SearchRecipePage = async () => {
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`);
   const recipes: RecipeList = await recipesResponse.json();
 
   const tabs: Tab[] = [

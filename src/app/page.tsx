@@ -12,15 +12,13 @@ import { type ChefList } from "@/app/api/chef/route";
 import { type RecipeList } from "@/app/api/recipe/route";
 
 const Home = async () => {
-  const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`, {
-    cache: "no-store",
-  });
+  const chefsSortFavResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/followerCountManyOrder`);
   const chefsSortFav: FollowCountManyOrderChefList = await chefsSortFavResponse.json();
 
-  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
+  const chefsSortNameResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`);
   const chefsSortName: ChefList = await chefsSortNameResponse.json();
 
-  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`, { cache: "no-store" });
+  const recipesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe`);
   const recipes: RecipeList = await recipesResponse.json();
 
   const { session, userData } = await getAuthDataForServer();
