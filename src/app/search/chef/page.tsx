@@ -8,7 +8,7 @@ import { TabLinks, type Tab } from "@/components/TabLinks/TabLinks";
 import { type ChefList } from "@/app/api/chef/route";
 
 const SearchChefPage = async () => {
-  const chefNamesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`);
+  const chefNamesResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/`, { cache: "no-store" });
   const chefs: ChefList = await chefNamesResponse.json();
 
   const tabs: Tab[] = [
