@@ -20,19 +20,9 @@ export const TopBar = () => {
     }
   };
 
-  const removeItem = () => {
-    alert("削除しました");
-  };
-  const makeRecipePrivate = () => {
-    alert("非公開にしました！");
-  };
-
   const items: PopoverItemsProps[] = [
     { href: "/", text: "プロフィールを編集する", icon: "Edit" },
     { onClick: copyToClipboard, text: "URLをコピーする", icon: "Copy" },
-    // TODO レシピを非公開にする、公開するトグルの実装 iconもLock LockOpenを出し分ける
-    { onClick: makeRecipePrivate, text: "レシピを非公開にする", icon: "Lock" },
-    { onClick: removeItem, text: "削除する", icon: "Trash", isTopBorder: true },
   ];
 
   return (
