@@ -1,65 +1,5 @@
-/*
-  Warnings:
-
-  - You are about to drop the `favorites` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `follows` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ingredients` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `ingredients_lists` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `links` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `recipes` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `users` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "public"."favorites" DROP CONSTRAINT "favorites_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."favorites" DROP CONSTRAINT "favorites_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."follows" DROP CONSTRAINT "follows_followed_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."follows" DROP CONSTRAINT "follows_following_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."ingredients" DROP CONSTRAINT "ingredients_ingredients_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."ingredients_lists" DROP CONSTRAINT "ingredients_lists_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."ingredients_lists" DROP CONSTRAINT "ingredients_lists_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."links" DROP CONSTRAINT "links_recipe_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."links" DROP CONSTRAINT "links_user_id_fkey";
-
--- DropForeignKey
-ALTER TABLE "public"."recipes" DROP CONSTRAINT "recipes_user_id_fkey";
-
--- DropTable
-DROP TABLE "public"."favorites";
-
--- DropTable
-DROP TABLE "public"."follows";
-
--- DropTable
-DROP TABLE "public"."ingredients";
-
--- DropTable
-DROP TABLE "public"."ingredients_lists";
-
--- DropTable
-DROP TABLE "public"."links";
-
--- DropTable
-DROP TABLE "public"."recipes";
-
--- DropTable
-DROP TABLE "public"."users";
+-- CreateEnum
+CREATE TYPE "RecipeStatus" AS ENUM ('PUBLIC', 'LIMIT', 'PRIVATE');
 
 -- CreateTable
 CREATE TABLE "users" (
@@ -68,8 +8,8 @@ CREATE TABLE "users" (
     "description" TEXT NOT NULL,
     "image_url" TEXT NOT NULL,
     "is_chef" BOOLEAN,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "users_pkey" PRIMARY KEY ("id")
 );
@@ -81,10 +21,10 @@ CREATE TABLE "recipes" (
     "title" TEXT NOT NULL,
     "description" TEXT,
     "image_url" TEXT,
-    "status" TEXT NOT NULL DEFAULT 'PUBLIC',
+    "status" "RecipeStatus" NOT NULL DEFAULT 'PUBLIC',
     "instructions" TEXT[],
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "recipes_pkey" PRIMARY KEY ("id")
 );
@@ -96,8 +36,8 @@ CREATE TABLE "ingredients_lists" (
     "user_id" UUID,
     "step" INTEGER,
     "quantity" INTEGER NOT NULL DEFAULT 1,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "ingredients_lists_pkey" PRIMARY KEY ("id")
 );
@@ -110,8 +50,8 @@ CREATE TABLE "ingredients" (
     "step" INTEGER,
     "is_checked" BOOLEAN,
     "is_shopping_list" BOOLEAN,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "ingredients_pkey" PRIMARY KEY ("id")
 );
@@ -122,8 +62,8 @@ CREATE TABLE "links" (
     "user_id" UUID,
     "recipe_id" TEXT,
     "url" TEXT NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "links_pkey" PRIMARY KEY ("id")
 );
@@ -132,16 +72,16 @@ CREATE TABLE "links" (
 CREATE TABLE "follows" (
     "following_id" UUID NOT NULL,
     "followed_id" UUID NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateTable
 CREATE TABLE "favorites" (
     "user_id" UUID NOT NULL,
     "recipe_id" TEXT NOT NULL,
-    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "created_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateIndex

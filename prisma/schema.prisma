@@ -1,6 +1,5 @@
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["multiSchema"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -15,8 +14,8 @@ model User {
   description String
   image_url   String
   is_chef     Boolean?
-  created_at  DateTime      @default(now())
-  updated_at  DateTime      @default(now()) @updatedAt
+  created_at  DateTime?     @default(now())
+  updated_at  DateTime?     @default(now()) @updatedAt
   following   Follow[]      @relation("following")
   followed    Follow[]      @relation("followed")
   Link        Link[]
@@ -27,23 +26,17 @@ model User {
   @@map("users")
 }
 
-model Recipe_status {
-  status  String   @unique
-  recipes Recipe[]
-}
-
 model Recipe {
-  id           String         @id @default(uuid())
-  user         User           @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id      String         @db.Uuid
+  id           String        @id @default(uuid())
+  user         User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id      String        @db.Uuid
   title        String
   description  String?
   image_url    String?
-  statusenum   Recipe_status? @relation(fields: [status], references: [status])
-  status       String         @default("PUBLIC")
+  status       RecipeStatus  @default(PUBLIC)
   instructions String[]
-  created_at   DateTime       @default(now())
-  updated_at   DateTime       @default(now()) @updatedAt
+  created_at   DateTime?     @default(now())
+  updated_at   DateTime?     @default(now()) @updatedAt
   Link         Link[]
   Favorite     Favorite[]
   Ingredients  Ingredients[]
@@ -59,8 +52,8 @@ model Ingredients {
   user_id    String?      @db.Uuid
   step       Int?
   quantity   Int          @default(1)
-  created_at DateTime     @default(now())
-  updated_at DateTime     @default(now()) @updatedAt
+  created_at DateTime?    @default(now())
+  updated_at DateTime?    @default(now()) @updatedAt
   ingredient Ingredient[]
 
   @@map("ingredients_lists")
@@ -74,45 +67,51 @@ model Ingredient {
   step             Int?
   is_checked       Boolean?
   is_shopping_list Boolean?
-  created_at       DateTime    @default(now())
-  updated_at       DateTime    @default(now()) @updatedAt
+  created_at       DateTime?   @default(now())
+  updated_at       DateTime?   @default(now()) @updatedAt
 
   @@map("ingredients")
 }
 
 model Link {
-  id         String   @id @default(uuid())
-  user       User?    @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id    String?  @db.Uuid
-  recipe     Recipe?  @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  id         String    @id @default(uuid())
+  user       User?     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String?   @db.Uuid
+  recipe     Recipe?   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id  String?
   url        String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now()) @updatedAt
 
   @@map("links")
 }
 
 model Follow {
-  following    User     @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
-  following_id String   @db.Uuid
-  followed     User     @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
-  followed_id  String   @db.Uuid
-  created_at   DateTime @default(now())
-  updated_at   DateTime @default(now()) @updatedAt
+  following    User      @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
+  following_id String    @db.Uuid
+  followed     User      @relation("followed", fields: [followed_id], references: [id], onDelete: Cascade)
+  followed_id  String    @db.Uuid
+  created_at   DateTime? @default(now())
+  updated_at   DateTime? @default(now()) @updatedAt
 
   @@unique([following_id, followed_id])
   @@map("follows")
 }
 
 model Favorite {
-  user       User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id    String   @db.Uuid
-  recipe     Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  user       User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id    String    @db.Uuid
+  recipe     Recipe    @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id  String
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now()) @updatedAt
 
   @@unique([user_id, recipe_id])
   @@map("favorites")
+}
+
+enum RecipeStatus {
+  PUBLIC
+  LIMIT
+  PRIVATE
 }
