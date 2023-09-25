@@ -86,7 +86,7 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
           sizes="20vw"
         />
         {props.nameLabel && (
-          <p className="absolute bottom-3 left-3 rounded-md bg-black/60 px-1 py-0.5 text-large font-bold text-white">
+          <p className="absolute bottom-0 left-0 w-full rounded-b-2xl bg-black/60 px-2 py-1 text-medium font-bold text-white">
             {props.nameLabel}
           </p>
         )}

@@ -17,7 +17,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   const isSelfUser = userData?.id === id;
 
   return (
-    <div>
+    <div className="relative min-h-screen w-full">
       <div className="space-y-2 p-4">
         {isSelfUser && <TopBar />}
         <div className="flex items-center justify-between">
@@ -47,10 +47,19 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
             プロフィールを編集
           </Button>
         ) : (
-          <ChefFollowButton />
+          <ChefFollowButton loginUserId={userData?.id} targetUserId={id} />
         )}
       </div>
       {children}
+      {isSelfUser && (
+        <Button
+          buttonColor="tomato"
+          href="/"
+          addClassNames="fixed bottom-6 left-1/2 ml-0 -translate-x-1/2 rounded-2xl px-4 py-1.5 shadow drop-shadow-md sm:left-auto sm:ml-14 sm:translate-x-1/2"
+        >
+          <span className="font-bold">マイレシピ</span>を追加する
+        </Button>
+      )}
     </div>
   );
 };

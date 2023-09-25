@@ -26,7 +26,7 @@ export const TopBar = () => {
   const makeRecipePrivate = () => {
     alert("非公開にしました！");
   };
-  
+
   // とりあえず可能性のあるリンク・onClick全部出し（TODO値はユーザーのLinkを取得
   const items: PopoverItemsProps[] = [
     // TODO SNS Linkから取得するロジック
