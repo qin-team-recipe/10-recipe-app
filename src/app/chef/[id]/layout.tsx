@@ -1,6 +1,9 @@
+import Link from "next/link";
+
 import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 
 import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent } from "@/components/Image";
 import { type Chef } from "@/app/api/chef/[id]/route";
 import { TopBar } from "@/app/chef/[id]/_component/TopBar";
@@ -12,13 +15,21 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${id}`, { cache: "no-store" });
   const chef: Chef = await res.json();
 
+  console.log(`chefだよ：${chef.Link}`);
+
   // ログインユーザー本人の画面かどうか
   const { userData } = await getAuthDataForServer();
   const isSelfUser = userData?.id === id;
+
   return (
     <div>
       <div className="space-y-2 p-4">
-        isSelfUser && <TopBar />
+        <div className="flex justify-between">
+          <Link href="/fav">
+            <Icon type="ArrowLeft" color="black" />
+          </Link>
+          {isSelfUser && <TopBar />}
+        </div>
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <h3 className="text-title font-bold">{chef.name}</h3>
