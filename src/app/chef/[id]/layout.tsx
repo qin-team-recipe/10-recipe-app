@@ -15,8 +15,6 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chef/${id}`, { cache: "no-store" });
   const chef: Chef = await res.json();
 
-  console.log(`chefだよ：${chef.Link}`);
-
   // ログインユーザー本人の画面かどうか
   const { userData } = await getAuthDataForServer();
   const isSelfUser = userData?.id === id;
@@ -28,7 +26,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
           <Link href="/fav">
             <Icon type="ArrowLeft" color="black" />
           </Link>
-          {isSelfUser && <TopBar />}
+          {isSelfUser && <TopBar link={chef.Link.map((link) => link.url)} />}
         </div>
         <div className="flex items-center justify-between">
           <div className="mr-2">
