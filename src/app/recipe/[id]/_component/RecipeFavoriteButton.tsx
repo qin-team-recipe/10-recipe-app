@@ -10,5 +10,9 @@ export const RecipeFavoriteButton: React.FC = () => {
     setIsFavorite(!isFavorite);
   };
 
-  return <ToggleButton onClick={handleClick}>{isFavorite ? "お気に入りに追加済み" : "お気に入りに追加"}</ToggleButton>;
+  return (
+    <ToggleButton isCheck onClick={handleClick}>
+      {isFavorite ? "お気に入りに追加済み" : "お気に入りに追加"}
+    </ToggleButton>
+  );
 };

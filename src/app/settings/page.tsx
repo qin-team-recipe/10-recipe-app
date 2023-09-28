@@ -1,6 +1,9 @@
-import { NextPage } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
+import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
+
+import { Header } from "@/components/Header/Header";
 import { Icon } from "@/components/Icon/Icon";
 
 import { LogOut } from "./_component/LogOut";
@@ -14,17 +17,16 @@ const LinkTitle = [
   { title: "お問い合わせ", url: "https://xxxx.com/contact", isExternalLink: true },
 ];
 
-const SettingsPage: NextPage = () => {
+const SettingsPage = async () => {
+  const { userData } = await getAuthDataForServer();
+
+  if (!userData?.name) {
+    redirect("/");
+  }
+
   return (
-    <div className="min-h-screen">
-      <div className="flex border-b border-lightGray p-1.5">
-        <div className="h-4">
-          <Link href="/fav">
-            <Icon type="ArrowLeft" color="black" />
-          </Link>
-        </div>
-        <div className="py-2 leading-4">設定</div>
-      </div>
+    <div>
+      <Header title="設定" browserBackHref="/fav" />
       <div className="flex flex-col justify-between gap-3 p-4">
         <div>
           <p className="pb-4 font-semibold">利用規約や問い合わせ</p>

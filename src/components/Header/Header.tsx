@@ -1,15 +1,15 @@
-import { UrlObject } from "url";
 import Link from "next/link";
 
-import { IconArrowLeft, IconMenu, IconUserCircle } from "@tabler/icons-react";
 import cc from "classcat";
+
+import { Icon } from "@/components/Icon/Icon";
 
 type Props = {
   title: string;
   addClassNames?: string;
   position?: "left" | "center";
-  isUserIcon?: boolean;
-  browserBackHref?: UrlObject;
+  userPageHref?: string;
+  browserBackHref?: string;
   isMenuIcon?: boolean;
 };
 
@@ -25,21 +25,21 @@ export const Header: React.FC<Props> = (props) => {
     <div className={cc(["flex items-center justify-between border-b border-lightGray p-4", props.addClassNames])}>
       <div className="w-6">
         {props.browserBackHref && (
-          <Link href={props.browserBackHref}>
-            <IconArrowLeft />
+          <Link href={{ pathname: props.browserBackHref }}>
+            <Icon type="ArrowLeft" />
           </Link>
         )}
         {props.isMenuIcon && (
           <Link href="/settings">
-            <IconMenu />
+            <Icon type="Menu" />
           </Link>
         )}
       </div>
       <h1 className={titleClass}>{props.title}</h1>
       <div className="w-6">
-        {props.isUserIcon && (
-          <Link href="/fav">
-            <IconUserCircle className="w-6" />
+        {props.userPageHref && (
+          <Link href={{ pathname: props.userPageHref }}>
+            <Icon type="UserCircle" />
           </Link>
         )}
       </div>
