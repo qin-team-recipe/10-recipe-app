@@ -7,8 +7,8 @@ export type Chef = Pick<User, "id" | "name" | "description" | "image_url"> & {
   _count: {
     followed: number;
     Recipe: number;
-  } & { Link: Pick<Link, "id" | "url">[] };
-};
+  };
+} & { Link: Pick<Link, "id" | "url">[] };
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const data = await prisma.user.findUnique({

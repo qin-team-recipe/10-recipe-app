@@ -1,6 +1,9 @@
+import Link from "next/link";
+
 import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 
 import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon/Icon";
 import { ImageComponent } from "@/components/Image";
 import { type Chef } from "@/app/api/chef/[id]/route";
 import { TopBar } from "@/app/chef/[id]/_component/TopBar";
@@ -19,7 +22,12 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
   return (
     <div className="relative min-h-screen w-full">
       <div className="space-y-2 p-4">
-        {isSelfUser && <TopBar />}
+        <div className="flex justify-between">
+          <Link href="/fav">
+            <Icon type="ArrowLeft" color="black" />
+          </Link>
+          {isSelfUser && <TopBar link={chef.Link.map((link) => link.url)} />}
+        </div>
         <div className="flex items-center justify-between">
           <div className="mr-2">
             <h3 className="text-title font-bold">{chef.name}</h3>
@@ -36,7 +44,6 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
             />
           )}
         </div>
-
         <p className="line-clamp-3">{chef.description}</p>
         <div className="text-small">
           <span className="mr-2">{chef._count.Recipe} レシピ</span>
