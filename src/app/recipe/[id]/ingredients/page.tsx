@@ -1,7 +1,7 @@
+import { Empty } from "@/components/Empty/Empty";
 import { type Tab } from "@/components/TabLinks/TabLinks";
 import { type IngredientsList } from "@/app/api/ingredients/route";
 
-import { Empty } from "../_component/Empty";
 import { RecipeBottomSection } from "../_component/RecipeBottomSection";
 
 const RecipeIngredientsPage = async ({ params }: { params: { id: string } }) => {

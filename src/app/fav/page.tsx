@@ -1,15 +1,35 @@
 import Link from "next/link";
 
 import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
-import { mockDataFav } from "@/mock";
 
+import { Empty } from "@/components/Empty/Empty";
 import { Header } from "@/components/Header/Header";
 import { ImageCarousel, ImageComponent, ImageGrid } from "@/components/Image";
 import { Login } from "@/components/Login/Login";
 import { SectionTitle } from "@/components/SectionTitle/SectionTitle";
+import { FavoriteList } from "@/app/api/favorite/route";
+import { FollowList } from "@/app/api/follow/route";
 
 const FavPage = async () => {
   const { session, userData } = await getAuthDataForServer();
+
+  // フォローしているユーザー
+  const followingChefsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/follow?id=${userData?.id}`, {
+    cache: "no-store",
+  });
+  const followingChefsObj: FollowList = await followingChefsRes.json();
+  const followingChefs = followingChefsObj.map((obj) => obj.followed);
+
+  // フォローしているユーザーのレシピ(日付昇順)
+  const followingChefsRecipes = followingChefs.map((chef) => chef.Recipe);
+  const sortedRecipes = followingChefsRecipes.flat().sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+
+  // お気に入りレシピ
+  const favRecipesRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorite?id=${userData?.id}`, {
+    cache: "no-store",
+  });
+  const favRecipesObj: FavoriteList = await favRecipesRes.json();
+  const favRecipes = favRecipesObj.map((obj) => obj.recipe);
 
   return (
     <div>
@@ -20,81 +40,73 @@ const FavPage = async () => {
         userPageHref={userData?.name ? `${process.env.NEXT_PUBLIC_API_URL}/chef/${userData.id}` : undefined}
       />
       {session ? (
-        <div className="space-y-4 py-4">
-          <div>
-            <SectionTitle title="シェフ" />
-            <ImageCarousel>
-              {mockDataFav.map((data, index) => (
-                <ImageComponent
-                  key={`bottom-carousel-${index}`}
-                  alt={`${data.nameLabel || data.title}の画像`}
-                  description={data.description || "シェフ"}
-                  descriptionAlign="center"
-                  src={data.src}
-                  isCircle
-                  ratio="1/1"
-                  width="xSmall"
-                  addClassNames="mb-8"
-                />
-              ))}
-            </ImageCarousel>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-4 font-bold">
-              <p className="text-large">新着レシピ</p>
-              <div className="text-gray">
-                <Link href="/fav">
-                  <p>マイレシピを作成</p>
-                </Link>
+        followingChefs.length || sortedRecipes.length || favRecipes.length ? (
+          <div className="space-y-8 py-4">
+            {followingChefs.length > 0 && (
+              <div>
+                <SectionTitle title="シェフ" addClassNames="mb-2" />
+                <ImageCarousel>
+                  {followingChefs.map((chef) => (
+                    <Link href={`/chef/${chef.id}`} key={chef.id}>
+                      <ImageComponent
+                        alt={`${chef.name}の画像`}
+                        description={chef.name}
+                        descriptionAlign="center"
+                        src={chef.image_url}
+                        isCircle
+                        ratio="1/1"
+                        width="xSmall"
+                      />
+                    </Link>
+                  ))}
+                </ImageCarousel>
               </div>
-            </div>
+            )}
 
-            <ImageCarousel>
-              {mockDataFav.map((data, index) => (
-                <ImageComponent
-                  key={`top-carousel-${index}`}
-                  title={data.title}
-                  alt={`${data.nameLabel || data.title}の画像`}
-                  description={data.description}
-                  nameLabel={data.nameLabel}
-                  src={data.src}
-                  isRounded
-                  ratio="3/4"
-                  width="large"
-                  addClassNames="mb-8"
-                />
-              ))}
-            </ImageCarousel>
-          </div>
-
-          <div className="space-y-2">
-            <div className="flex items-center justify-between px-4 font-bold">
-              <p className="text-large">お気に入りレシピ</p>
-              <div className="text-gray">
-                <Link href="/fav">
-                  <p>マイレシピを見る</p>
-                </Link>
+            {sortedRecipes.length > 0 && (
+              <div>
+                <SectionTitle title="新着レシピ" moreText="もっと見る" moreLink="/" addClassNames="mb-2" />
+                <ImageCarousel>
+                  {sortedRecipes.map((recipe) => (
+                    <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
+                      <ImageComponent
+                        title={recipe.title}
+                        alt={`${recipe.title}の画像`}
+                        description={recipe.description || undefined}
+                        favNum={recipe._count.Favorite}
+                        src={recipe.image_url || undefined}
+                        isRounded
+                        ratio="1/1"
+                        width="large"
+                      />
+                    </Link>
+                  ))}
+                </ImageCarousel>
               </div>
-            </div>
-            <div className="space-y-2">
-              <ImageGrid isTwoColumns addClassNames="mb-8">
-                {mockDataFav.slice(0, 10).map((data, index) => (
-                  <ImageComponent
-                    key={`grid-${index}`}
-                    src={data.src}
-                    isRounded
-                    alt={`${data.title}の画像`}
-                    width="full"
-                    favNum={data.favNum}
-                    ratio="1/1"
-                    nameLabel={data.nameLabel}
-                  />
-                ))}
-              </ImageGrid>
-            </div>
+            )}
+
+            {favRecipes.length > 0 && (
+              <div>
+                <SectionTitle title="お気に入りレシピ" addClassNames="mb-2" />
+                <ImageGrid isTwoColumns>
+                  {favRecipes.map((recipe) => (
+                    <ImageComponent
+                      key={recipe.id}
+                      src={recipe.image_url || undefined}
+                      isRounded
+                      alt={`${recipe.title}の画像`}
+                      width="full"
+                      favNum={recipe._count.Favorite}
+                      ratio="1/1"
+                    />
+                  ))}
+                </ImageGrid>
+              </div>
+            )}
           </div>
-        </div>
+        ) : (
+          <Empty text="フォローしているシェフまたはお気に入りしたレシピがありません。" />
+        )
       ) : (
         <Login imageType="favorite" />
       )}
