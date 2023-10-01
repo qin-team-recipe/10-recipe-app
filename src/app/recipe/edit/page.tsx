@@ -5,7 +5,7 @@ import { getAuthDataForServer } from "@/lib/getAuthData/getAuthDataForServer";
 import { RecipeForm } from "@/app/recipe/_component/RecipeForm";
 import { RecipeFormHeader } from "@/app/recipe/_component/RecipeFormHeader";
 
-const RecipeCreatePage = async () => {
+const RecipeEditPage = async () => {
   const { userData } = await getAuthDataForServer();
 
   // ユーザー登録していなければトップページにリダイレクト
@@ -22,4 +22,4 @@ const RecipeCreatePage = async () => {
   );
 };
 
-export default RecipeCreatePage;
+export default RecipeEditPage;

@@ -7,6 +7,7 @@ type ButtonProps = {
   buttonColor: "tomato" | "gray" | "blue" | "black" | "white";
   onClick?: () => void;
   href?: string;
+  pathQuery?: { [key: string]: string };
   addClassNames?: string;
   type?: "button" | "submit";
   isDisabled?: boolean;
@@ -27,7 +28,7 @@ export const Button: React.FC<ButtonProps> = (props) => {
   ]);
 
   return props.href ? (
-    <Link href={{ pathname: props.href }} className={buttonColor}>
+    <Link href={{ pathname: props.href, query: props.pathQuery }} className={buttonColor}>
       {props.children}
     </Link>
   ) : (

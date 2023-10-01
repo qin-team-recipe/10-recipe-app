@@ -8,6 +8,7 @@ import {
   BrandTiktok,
   BrandTwitter,
   BrandYoutube,
+  Check,
   ChevronDown,
   ChevronRight,
   ChevronUp,
@@ -29,6 +30,7 @@ import {
   Plus,
   Search,
   ShoppingCart,
+  ShoppingCartPlus,
   ToolsKitchen2,
   Trash,
   UserCircle,
@@ -47,6 +49,7 @@ export type IconType =
   | "BrandTiktok"
   | "BrandTwitter"
   | "BrandYoutube"
+  | "Check"
   | "Circle"
   | "CircleCheck"
   | "ChevronRight"
@@ -61,6 +64,7 @@ export type IconType =
   | "Minus"
   | "Search"
   | "ShoppingCart"
+  | "ShoppingCartPlus"
   | "SiteLogo"
   | "UserCircle"
   | "Trash"
@@ -116,6 +120,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <ChevronUp className={cc([iconColor, iconSize])} />;
       case "ChevronDown":
         return <ChevronDown className={cc([iconColor, iconSize])} />;
+      case "Check":
+        return <Check className={cc([iconColor, iconSize])} />;
       case "Circle":
         return <Circle className={cc([iconColor, iconSize])} />;
       case "CircleCheck":
@@ -143,6 +149,8 @@ export const Icon: React.FC<IconProps> = (props) => {
         return <Search className={cc([iconColor, iconSize])} />;
       case "ShoppingCart":
         return <ShoppingCart className={cc([iconColor, iconSize])} />;
+      case "ShoppingCartPlus":
+        return <ShoppingCartPlus className={cc([iconColor, iconSize])} />;
       case "SiteLogo":
         return <SiteLogo />;
       case "UserCircle":

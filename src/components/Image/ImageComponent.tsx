@@ -91,10 +91,10 @@ export const ImageComponent: React.FC<ImageComponentProps> = (props) => {
           </p>
         )}
         {/* NODE: favNumが0以上なら表示 */}
-        {props.favNum && props.favNum > 0 && (
+        {Number(props.favNum) > 0 && (
           <span className="absolute right-2 top-2 flex items-center rounded-2xl bg-black/60 px-2 py-1 text-medium text-white">
             <Icon type="Heart" color="white" size="small" addClassNames="mr-1" />
-            {props.favNum.toLocaleString()}
+            {props.favNum?.toLocaleString()}
           </span>
         )}
       </div>

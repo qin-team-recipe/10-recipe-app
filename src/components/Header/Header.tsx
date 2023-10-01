@@ -4,7 +4,7 @@ import cc from "classcat";
 
 import { Icon } from "@/components/Icon/Icon";
 
-type Props = {
+type HeaderProps = {
   title: string;
   addClassNames?: string;
   position?: "left" | "center";
@@ -13,7 +13,7 @@ type Props = {
   isMenuIcon?: boolean;
 };
 
-export const Header: React.FC<Props> = (props) => {
+export const Header: React.FC<HeaderProps> = (props) => {
   const titleClass = cc([
     "w-full px-2 text-large font-bold",
     {
@@ -21,8 +21,9 @@ export const Header: React.FC<Props> = (props) => {
       "text-center": props.position === "center",
     },
   ]);
+
   return (
-    <div className={cc(["flex items-center justify-between border-b border-lightGray p-4", props.addClassNames])}>
+    <div className={cc(["flex items-center justify-between border-b border-lightGray px-3 py-4", props.addClassNames])}>
       <div className="w-6">
         {props.browserBackHref && (
           <Link href={{ pathname: props.browserBackHref }}>

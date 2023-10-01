@@ -1,14 +1,13 @@
-import { Recipe } from "@prisma/client";
-
+import { Empty } from "@/components/Empty/Empty";
 import { type Tab } from "@/components/TabLinks/TabLinks";
+import { RecipeItem } from "@/app/api/recipe/[id]/route";
 
-import { Empty } from "./_component/Empty";
 import { RecipeBottomSection } from "./_component/RecipeBottomSection";
 
 const RecipePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/recipe/${id}`, { cache: "no-store" });
-  const recipe: Recipe = await res.json();
+  const recipe: RecipeItem = await res.json();
 
   const tabs: Tab[] = [
     {

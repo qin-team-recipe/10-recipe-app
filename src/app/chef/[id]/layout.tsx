@@ -61,7 +61,7 @@ const ChefLayout = async ({ children, params }: { children: React.ReactNode; par
       {isSelfUser && (
         <Button
           buttonColor="tomato"
-          href="/"
+          href="/recipe/new"
           addClassNames="fixed bottom-6 left-1/2 ml-0 -translate-x-1/2 rounded-2xl px-4 py-1.5 shadow drop-shadow-md sm:left-auto sm:ml-14 sm:translate-x-1/2"
         >
           <span className="font-bold">マイレシピ</span>を追加する

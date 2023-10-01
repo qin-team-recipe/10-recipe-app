@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { clientComponentSupabase } from "@/lib/clientComponentSupabase";
+import { generateUploadImagePath } from "@/lib/generateUploadImagePath";
 import { getAuthDataForClient } from "@/lib/getAuthData/getAuthDataForClient";
 import { UpdateUserPostSchema, UpdateUserPostSchemaType } from "@/types/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -46,7 +46,7 @@ const AccountPage = () => {
   useEffect(() => {
     const getUser = async () => {
       const { userData } = await getAuthDataForClient();
-      if (!userData) {
+      if (!userData?.name) {
         router.push("/");
       }
       setUser(userData);
@@ -63,27 +63,6 @@ const AccountPage = () => {
   /** マイページに遷移させる */
   const transitionToMyPage = useCallback(() => router.push(`/chef/${user?.id}`), [router, user?.id]);
 
-  /** ストレージに画像をアップロードし、画像のパスを返す */
-  const generateUserImagePath = async (image: File | undefined) => {
-    if (!image) return undefined;
-    const imageId = crypto.randomUUID();
-    const filePath = `public/${imageId}`;
-    const { data: uploadFilePathObj, error: imageUploadError } = await clientComponentSupabase.storage
-      .from("chefs")
-      .upload(filePath, image);
-
-    if (imageUploadError) {
-      setErrorMessage({
-        link: "",
-        submit: "画像のアップロードに失敗しました。時間を置いて再度試していただくか、管理者にお問い合わせください。",
-      });
-      return;
-    }
-
-    const imageUrl = await clientComponentSupabase.storage.from("chefs").getPublicUrl(uploadFilePathObj.path);
-    return imageUrl.data.publicUrl;
-  };
-
   const onSubmit: SubmitHandler<PreUpdateUserPostSchemaType> = async (data) => {
     if (!user) return;
     try {
@@ -92,13 +71,22 @@ const AccountPage = () => {
 
       // postするためにデータを整形
       const link = data.links.map((link) => link.value).filter(Boolean);
-      const image_url = await generateUserImagePath(data.image[0]);
+      const { imagePath, imageUploadErrorFlg } = await generateUploadImagePath(data.image[0]);
+
+      if (imageUploadErrorFlg) {
+        setErrorMessage({
+          link: "",
+          submit: "画像のアップロードに失敗しました。時間を置いて再度試していただくか、管理者にお問い合わせください。",
+        });
+        return;
+      }
+
       const postData: UpdateUserPostSchemaType = {
         id: user.id,
         name: data.name,
         description: data.description,
         link,
-        image_url,
+        image_url: imagePath,
       };
 
       // ユーザーアップデート
@@ -108,8 +96,16 @@ const AccountPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
+      }).then((res) => {
+        if (res.ok) {
+          transitionToMyPage();
+        } else {
+          setErrorMessage({
+            link: "",
+            submit: "登録できませんでした。時間を置いて再度試していただくか、管理者にお問い合わせください。",
+          });
+        }
       });
-      transitionToMyPage();
     } catch (e) {
       if (e instanceof z.ZodError) {
         const errorMessage = e.errors[0].message;
@@ -130,7 +126,8 @@ const AccountPage = () => {
         // TODO: loadingコンポーネントを作成
         <p>loading...</p>
       ) : (
-        <form className="space-y-4 py-4" onSubmit={handleSubmit(onSubmit)}>
+        // TODO: Formタグで実装すると、エンターキーでsubmitされてしまうので、後ほど対応
+        <div className="space-y-4 py-4">
           <InputText
             label="ニックネーム"
             register={register("name")}
@@ -157,9 +154,10 @@ const AccountPage = () => {
             register={register}
             control={control}
             errorText={errorMessage.link}
+            addText="リンクを追加する"
           />
           <div className="flex justify-between gap-x-4 px-4">
-            <Button type="submit" buttonColor="tomato" addClassNames="w-full">
+            <Button buttonColor="tomato" addClassNames="w-full" onClick={handleSubmit(onSubmit)}>
               保存する
             </Button>
             <Button onClick={transitionToMyPage} buttonColor="white" addClassNames="w-full">
@@ -167,7 +165,7 @@ const AccountPage = () => {
             </Button>
           </div>
           {errorMessage.submit && <p className="text-red">{errorMessage.submit}</p>}
-        </form>
+        </div>
       )}
     </div>
   );
