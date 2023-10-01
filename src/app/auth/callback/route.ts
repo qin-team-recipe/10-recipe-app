@@ -3,8 +3,6 @@ import { NextResponse, type NextRequest } from "next/server";
 
 import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
 
-import { Database } from "../../../types/schema";
-
 export const dynamic = "force-dynamic";
 
 export async function GET(request: NextRequest) {
@@ -12,7 +10,7 @@ export async function GET(request: NextRequest) {
   const code = requestUrl.searchParams.get("code");
 
   if (code) {
-    const supabase = createRouteHandlerClient<Database>({ cookies });
+    const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
   }
 

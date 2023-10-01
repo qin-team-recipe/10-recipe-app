@@ -45,16 +45,17 @@ model Recipe {
 }
 
 model Ingredients {
-  id         String       @id @default(uuid())
-  recipe     Recipe?      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
-  recipe_id  String?
-  user       User?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id    String?      @db.Uuid
-  step       Int?
-  quantity   Int          @default(1)
-  created_at DateTime?    @default(now())
-  updated_at DateTime?    @default(now()) @updatedAt
-  ingredient Ingredient[]
+  id               String       @id @default(uuid())
+  recipe           Recipe?      @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  recipe_id        String?
+  user             User?        @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id          String?      @db.Uuid
+  step             Int?
+  quantity         Int          @default(1)
+  is_shopping_list Boolean      @default(false)
+  created_at       DateTime?    @default(now())
+  updated_at       DateTime?    @default(now()) @updatedAt
+  ingredient       Ingredient[]
 
   @@map("ingredients_lists")
 }

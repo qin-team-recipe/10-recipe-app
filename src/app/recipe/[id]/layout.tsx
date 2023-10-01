@@ -16,10 +16,12 @@ const RecipeLayout = async ({ children, params }: { children: React.ReactNode; p
   const { userData } = await getAuthDataForServer();
   const isSelfUser = userData?.id === recipe.user_id;
 
-  const resFavoriteRecipe = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorite/${id}?id=${userData?.id}`, {
-    cache: "no-store",
-  });
-  const favoriteRecipe = await resFavoriteRecipe.json();
+  const resFavoriteRecipe = userData?.name
+    ? await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorite/${id}?id=${userData?.id}`, {
+        cache: "no-store",
+      })
+    : undefined;
+  const favoriteRecipe = await resFavoriteRecipe?.json();
 
   const recipeStatus = recipe.status === "PRIVATE" ? "非公開" : "公開";
 

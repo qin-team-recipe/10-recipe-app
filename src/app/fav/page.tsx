@@ -14,22 +14,28 @@ const FavPage = async () => {
   const { session, userData } = await getAuthDataForServer();
 
   // フォローしているユーザー
-  const followingChefsRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/follow?id=${userData?.id}`, {
-    cache: "no-store",
-  });
-  const followingChefsObj: FollowList = await followingChefsRes.json();
-  const followingChefs = followingChefsObj.map((obj) => obj.followed);
+  const followingChefsRes = userData?.name
+    ? await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/follow?id=${userData.id}`, {
+        cache: "no-store",
+      })
+    : undefined;
+  const followingChefsObj: FollowList = await followingChefsRes?.json();
+  const followingChefs = followingChefsObj?.map((obj) => obj.followed);
 
   // フォローしているユーザーのレシピ(日付昇順)
-  const followingChefsRecipes = followingChefs.map((chef) => chef.Recipe);
-  const sortedRecipes = followingChefsRecipes.flat().sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+  const followingChefsRecipes = followingChefs?.map((chef) => chef.Recipe);
+  const sortedRecipes = followingChefsRecipes
+    ?.flat()
+    .sort((a, b) => ((a.created_at || "") < (b.created_at || "") ? 1 : -1));
 
   // お気に入りレシピ
-  const favRecipesRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorite?id=${userData?.id}`, {
-    cache: "no-store",
-  });
-  const favRecipesObj: FavoriteList = await favRecipesRes.json();
-  const favRecipes = favRecipesObj.map((obj) => obj.recipe);
+  const favRecipesRes = userData?.name
+    ? await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/favorite?id=${userData.id}`, {
+        cache: "no-store",
+      })
+    : undefined;
+  const favRecipesObj: FavoriteList = favRecipesRes ? await favRecipesRes?.json() : undefined;
+  const favRecipes = favRecipesObj?.map((obj) => obj.recipe);
 
   return (
     <div>
@@ -90,15 +96,16 @@ const FavPage = async () => {
                 <SectionTitle title="お気に入りレシピ" addClassNames="mb-2" />
                 <ImageGrid isTwoColumns>
                   {favRecipes.map((recipe) => (
-                    <ImageComponent
-                      key={recipe.id}
-                      src={recipe.image_url || undefined}
-                      isRounded
-                      alt={`${recipe.title}の画像`}
-                      width="full"
-                      favNum={recipe._count.Favorite}
-                      ratio="1/1"
-                    />
+                    <Link href={`/recipe/${recipe.id}`} key={recipe.id}>
+                      <ImageComponent
+                        src={recipe.image_url || undefined}
+                        isRounded
+                        alt={`${recipe.title}の画像`}
+                        width="full"
+                        favNum={recipe._count.Favorite}
+                        ratio="1/1"
+                      />
+                    </Link>
                   ))}
                 </ImageGrid>
               </div>
